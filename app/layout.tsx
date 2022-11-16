@@ -13,9 +13,9 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className="bg-gray-50 relative">
+      <body className="relative bg-gray-50">
         <Header />
-        <main>{children}</main>
+        {children}
         <footer></footer>
       </body>
     </html>

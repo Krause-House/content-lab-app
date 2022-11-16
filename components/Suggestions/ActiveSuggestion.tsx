@@ -29,27 +29,27 @@ const suggestion = {
 
 export default function ActiveSuggestion() {
   return (
-    <div className="overflow-hidden bg-gradient shadow rounded-md my-12">
+    <div className="my-8 overflow-hidden rounded-md shadow bg-gradient">
       <a href="#" className="block">
         <div className="flex items-center px-4 py-4 sm:px-6">
-          <div className="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
+          <div className="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
             <div className="">
-              <label className="text-xs sm:text-sm flex text-gray-300">
+              <label className="flex text-xs text-gray-300 sm:text-sm">
                 Current Segment
               </label>
 
-              <h3 className="truncate font-medium text-gray-50 text-base sm:text-xl">
+              <h3 className="text-base font-medium truncate text-gray-50 sm:text-xl">
                 {suggestion.title}
               </h3>
 
-              <div className="mt-3 flex gap-2 text-gray-300">
+              <div className="flex gap-2 mt-3 text-gray-300">
                 <div className="flex -space-x-1">
                   {suggestion.users.map((user) => (
                     <Image
                       width={24}
                       height={24}
                       key={user.id}
-                      className="inline-block h-6 w-6 rounded-full ring-2 ring-gray-50"
+                      className="inline-block w-6 h-6 rounded-full ring-2 ring-gray-50"
                       src={user.imageUrl}
                       alt={user.name}
                     />
@@ -61,9 +61,9 @@ export default function ActiveSuggestion() {
               </div>
             </div>
           </div>
-          <div className="ml-5 flex-shrink-0 flex items-center gap-1 text-gray-50 font-medium">
+          <div className="flex items-center flex-shrink-0 gap-1 ml-5 font-medium text-gray-50">
             <p className="hidden sm:block">Watch now</p>
-            <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+            <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
           </div>
         </div>
       </a>
