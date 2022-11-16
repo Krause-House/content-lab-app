@@ -12,7 +12,7 @@ export default function BannerImage({ isLive }: { isLive?: boolean }) {
         alt="Krause House"
       />
       {isLive && (
-        <span className="absolute top-2 right-2 inline-flex items-center rounded-md bg-red-600 px-2.5 py-0.5 text-sm font-medium text-white">
+        <span className="absolute bottom-2 right-2 inline-flex items-center rounded-md bg-red-600 px-2.5 py-0.5 text-sm font-medium text-white">
           <svg
             className="-ml-0.5 mr-1.5 h-2 w-2"
             fill="currentColor"

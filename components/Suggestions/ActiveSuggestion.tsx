@@ -55,12 +55,14 @@ export default function ActiveSuggestion() {
                     />
                   ))}
                 </div>
-                <p>{suggestion.watching} fans watching</p>
+                <p className="hidden sm:block">
+                  {suggestion.watching} fans watching
+                </p>
               </div>
             </div>
           </div>
           <div className="ml-5 flex-shrink-0 flex items-center gap-1 text-gray-50 font-medium">
-            <p>Watch now</p>
+            <p className="hidden sm:block">Watch now</p>
             <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
           </div>
         </div>

@@ -125,7 +125,7 @@ export default function FansVoice() {
           <div className="ml-4 mt-4 flex-shrink-0">
             <button
               type="button"
-              className="relative inline-flex items-center rounded-full border border-transparent bg-primary-200 p-1 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="relative inline-flex items-center rounded-full border border-transparent bg-primary-200 p-1 text-sm font-medium text-white shadow-sm hover:bg-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:ring-offset-2"
             >
               <PlusSmallIcon className="h-8 w-auto" />
             </button>

@@ -5,7 +5,7 @@ import ActiveSuggestion from "~/components/Suggestions/ActiveSuggestion";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="mt-16">
       <BannerImage isLive />
       <main className="max-w-7xl mx-auto px-4">
         <PageHeader />
