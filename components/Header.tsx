@@ -3,7 +3,6 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -11,7 +10,7 @@ function classNames(...classes: string[]) {
 
 export default function Header() {
   return (
-    <Disclosure as="nav" className="bg-primary-500">
+    <Disclosure as="nav" className="bg-primary-500 border-b-4 border-white">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
@@ -19,14 +18,9 @@ export default function Header() {
               <div className="flex items-center px-2 lg:px-0">
                 <div className="flex-shrink-0">
                   <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
-                  <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    className="h-8 w-auto block"
+                    src="/icon.png"
+                    alt="Krause House"
                   />
                 </div>
               </div>
