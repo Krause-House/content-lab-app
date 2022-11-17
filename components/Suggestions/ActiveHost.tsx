@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const suggestion = {
   id: 3,
-  title: "Jon does blind commentary",
+  title: "Commodore",
   watching: 23,
   users: [
     {
@@ -24,7 +24,7 @@ const suggestion = {
   ],
 };
 
-export default function ActiveSuggestion() {
+export default function ActiveHost() {
   return (
     <div className="my-8 overflow-hidden rounded-md shadow bg-gradient">
       <a href="#" className="block">
@@ -32,7 +32,7 @@ export default function ActiveSuggestion() {
           <div className="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
             <div className="">
               <label className="flex text-xs text-gray-300 sm:text-sm">
-                Currently
+                Currently Co-Hosting
               </label>
 
               <h3 className="text-base font-medium truncate text-gray-50 sm:text-xl">
