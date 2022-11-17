@@ -61,8 +61,7 @@ export default function SuggestionForm({
                         </div>
                         <div className="mt-1">
                           <p className="text-sm text-gray-300">
-                            Get started by filling in the information below to
-                            create your new project.
+                            Lorem ipsum dolor sit amet consectetur adipisicing
                           </p>
                         </div>
                       </div>
