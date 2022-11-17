@@ -9,20 +9,17 @@ const suggestion = {
     {
       name: "Emily Selman",
       id: 1,
-      imageUrl:
-        "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      imageUrl: "/assets/avatars/commodore.jpeg",
     },
     {
       name: "Kristin Watson",
       id: 2,
-      imageUrl:
-        "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      imageUrl: "/assets/avatars/flex.jpeg",
     },
     {
       name: "Emma Dorsey",
       id: 3,
-      imageUrl:
-        "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      imageUrl: "/assets/avatars/mario.jpeg",
     },
   ],
 };
@@ -35,7 +32,7 @@ export default function ActiveSuggestion() {
           <div className="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
             <div className="">
               <label className="flex text-xs text-gray-300 sm:text-sm">
-                Current Segment
+                Currently
               </label>
 
               <h3 className="text-base font-medium truncate text-gray-50 sm:text-xl">

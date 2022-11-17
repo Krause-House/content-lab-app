@@ -5,104 +5,87 @@ const suggestions = [
   {
     id: 1,
     title: "Jon should sing play-by-play commentary for a quarter",
-    likes: 23,
+    likes: 21,
     isLiked: false,
     likedBy: [
       {
         id: 1,
         name: "Emily Selman",
-        imageUrl:
-          "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/jon.jpeg",
       },
       {
         id: 2,
         name: "Kristin Watson",
-        imageUrl:
-          "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/mario.jpeg",
       },
       {
         id: 3,
         name: "Emma Dorsey",
-        imageUrl:
-          "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/crabtree.jpg",
       },
     ],
   },
   {
     id: 2,
     title: "Bring Ty Lawson on stage",
-    likes: 23,
+    likes: 10,
     isLiked: false,
     likedBy: [
       {
         id: 1,
         name: "Emily Selman",
-        imageUrl:
-          "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/commodore.jpeg",
       },
       {
         id: 2,
         name: "Kristin Watson",
-        imageUrl:
-          "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/flex.jpeg",
       },
       {
         id: 3,
         name: "Emma Dorsey",
-        imageUrl:
-          "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/boosh.jpg",
       },
     ],
   },
   {
     id: 3,
     title: "Make Crabtree fourth quarter host",
-    likes: 23,
+    likes: 4,
     isLiked: true,
     likedBy: [
       {
         id: 1,
         name: "Emily Selman",
-        imageUrl:
-          "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/crabtree.jpg",
       },
       {
-        id: 2,
-        name: "Kristin Watson",
-        imageUrl:
-          "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        id: 1,
+        name: "Emily Selman",
+        imageUrl: "/assets/avatars/glad.png",
       },
       {
         id: 3,
         name: "Emma Dorsey",
-        imageUrl:
-          "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/greg.jpeg",
       },
     ],
   },
   {
     id: 4,
-    title: "Make Crabtree fourth quarter host",
-    likes: 23,
-    isLiked: true,
+    title: "Do something cool",
+    likes: 2,
+    isLiked: false,
     likedBy: [
       {
         id: 1,
         name: "Emily Selman",
-        imageUrl:
-          "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/lewwwk.png",
       },
       {
         id: 2,
         name: "Kristin Watson",
-        imageUrl:
-          "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      },
-      {
-        id: 3,
-        name: "Emma Dorsey",
-        imageUrl:
-          "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        imageUrl: "/assets/avatars/boosh.jpg",
       },
     ],
   },
@@ -115,7 +98,7 @@ export default function FansVoice() {
         <div className="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-nowrap">
           <div className="mt-4 ml-4">
             <h3 className="text-xl font-medium leading-6 text-gray-900">
-              Fans' Voice
+              Fans&apos; Voice
             </h3>
             <p className="mt-1 text-sm text-gray-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit quam
