@@ -2,7 +2,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
-type SuggestionData = {
+type HostData = {
   id: number;
   title: string;
   likes: number;
@@ -14,7 +14,7 @@ type SuggestionData = {
   }[];
 };
 
-export default function Suggestion({ data }: { data: SuggestionData }) {
+export default function HostListItem({ data }: { data: HostData }) {
   return (
     <a href="#" className="block bg-white ">
       <div className="flex items-center px-4 py-4 sm:px-6">

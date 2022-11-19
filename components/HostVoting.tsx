@@ -1,5 +1,5 @@
-import Suggestion from "~/components/Suggestions/Suggestion";
-import NewSuggestionButton from "~/components/Suggestions/NewSuggestionButton";
+import Suggestion from "~/components/Hosts/HostListItem";
+import NewSuggestionButton from "~/components/Hosts/NewSuggestionButton";
 
 const suggestions = [
   {
