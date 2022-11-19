@@ -5,3 +5,15 @@
 .bg-gradient {
   @apply bg-gradient-to-r from-primary-50 to-primary-400;
 }
+
+.button-shadow {
+  box-shadow: -2px 4px black;
+}
+
+.button-border {
+  border: 2px solid black;
+}
+
+button {
+  @apply button-shadow button-border;
+}
