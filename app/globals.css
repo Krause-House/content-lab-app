@@ -28,7 +28,7 @@ button {
 
 @font-face {
   font-family: "Sequel Sans";
-  src: url("/assets/fonts/Sequel Sans Bold Display.ttf");
+  src: url("/assets/fonts/Sequel Sans Bold Disp.ttf");
   font-weight: 700;
 }
 @font-face {
@@ -50,4 +50,20 @@ button {
   font-family: "Sequel Sans";
   src: url("/assets/fonts/Sequel Sans Light Body.ttf");
   font-weight: 300;
+}
+
+h1 {
+  @apply text-2xl font-bold sm:text-3xl;
+}
+
+h2 {
+  @apply text-xl font-medium;
+}
+
+h3 {
+  @apply text-base font-medium sm:text-xl;
+}
+
+h4 {
+  @apply text-base font-medium;
 }

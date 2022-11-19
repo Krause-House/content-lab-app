@@ -6,7 +6,7 @@ const suggestions = [
   {
     id: 1,
     name: "Boosh",
-    handle: "@boosh0x",
+    handle: "boosh0x",
     score: 21,
     userScore: -1,
     avatarUrl: "/assets/avatars/boosh.jpg",
@@ -14,7 +14,7 @@ const suggestions = [
   {
     id: 2,
     name: "Flex",
-    handle: "@flexchapman",
+    handle: "flexchapman",
     score: 10,
     userScore: 0,
     avatarUrl: "/assets/avatars/flex.jpeg",
@@ -22,7 +22,7 @@ const suggestions = [
   {
     id: 3,
     name: "Crabtree",
-    handle: "@jdcrabtreeii",
+    handle: "jdcrabtreeii",
     score: 4,
     userScore: 1,
     avatarUrl: "/assets/avatars/crabtree.jpg",
@@ -30,7 +30,7 @@ const suggestions = [
   {
     id: 4,
     name: "greg",
-    handle: "@gregfromstl",
+    handle: "gregfromstl",
     score: 2,
     userScore: 0,
     avatarUrl: "/assets/avatars/greg.jpeg",
@@ -43,9 +43,7 @@ export default function HostVoting() {
       <div className="px-4 py-5 border-b border-gray-300 sm:px-6">
         <div className="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-nowrap">
           <div className="mt-4 ml-4">
-            <h3 className="text-xl font-bold leading-6 text-gray-900">
-              Leaderboard
-            </h3>
+            <h2 className="text-gray-900">Leaderboard</h2>
             <p className="mt-1 text-sm text-gray-500">
               Upvote and downvote hosts to influence who&apos;s on stage. The
               leader will be the co-host until they fall out of first place.

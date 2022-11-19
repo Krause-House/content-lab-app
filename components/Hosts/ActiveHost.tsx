@@ -36,7 +36,7 @@ export default function ActiveHost() {
                 Currently Hosting
               </label>
 
-              <h3 className="text-base font-medium truncate text-gray-50 sm:text-xl">
+              <h3 className="truncate text-gray-50">
                 {suggestion.title} & Uncle Jon
               </h3>
 

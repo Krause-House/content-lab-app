@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Sequel Sans", "serif", "sans-serif"],
+        sans: ["Sequel Sans", "Inter", "sans-serif"],
       },
       colors: {
         primary: {

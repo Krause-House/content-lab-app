@@ -1,6 +1,6 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
-import { Twitter } from "react-feather";
 import Image from "next/image";
+import TwitterTag from "~/components/TwitterTag";
 
 type HostData = {
   id: number;
@@ -13,7 +13,7 @@ type HostData = {
 
 export default function HostListItem({ host }: { host: HostData }) {
   return (
-    <a href="#" className="block ">
+    <div className="block">
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="flex items-center justify-start flex-1 min-w-0 gap-3">
           <Image
@@ -25,18 +25,8 @@ export default function HostListItem({ host }: { host: HostData }) {
             alt={host.name}
           />
           <div className="">
-            <h4 className="text-base font-medium text-gray-800 truncate">
-              {host.name}
-            </h4>
-            <a
-              className="flex items-center mt-0 text-sm text-gray-500"
-              href={`https://twitter.com/${host.handle}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Twitter className="h-4" />
-              {host.handle}
-            </a>
+            <h4 className="text-gray-800 truncate">{host.name}</h4>
+            <TwitterTag handle={host.handle} />
           </div>
         </div>
         <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-400">
@@ -53,6 +43,6 @@ export default function HostListItem({ host }: { host: HostData }) {
           />
         </div>
       </div>
-    </a>
+    </div>
   );
 }

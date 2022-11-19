@@ -4,11 +4,11 @@ import { PrimaryButton, SecondaryButton } from "~/components/Buttons";
 
 export default function PageHeader() {
   return (
-    <div className="my-10 sm:flex sm:items-start sm:justify-between">
+    <div className="my-10 md:flex md:items-start md:justify-between">
       <div className="flex-1 min-w-0">
-        <h2 className="text-2xl font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+        <h1 className="text-gray-900 sm:truncate">
           Krause House Gameday: Bucks vs Cavs
-        </h2>
+        </h1>
         <p className="max-w-4xl mt-2 text-sm text-gray-500">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -16,7 +16,7 @@ export default function PageHeader() {
           aliquip ex ea commodo consequat.
         </p>
       </div>
-      <div className="flex gap-3 mt-3 sm:mt-0 sm:ml-4">
+      <div className="flex gap-3 mt-3 md:mt-0 md:ml-4">
         <SecondaryButton>
           <ShareIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
           Share
