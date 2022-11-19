@@ -30,7 +30,8 @@ export default function Header() {
               alt="Gameday"
               width={138}
               height={32}
-              className="h-auto"
+              priority
+              className="hidden w-auto h-5 md:block"
             />
           </div>
           <div className="block">
