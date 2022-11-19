@@ -12,7 +12,7 @@ export default function PrimaryButton({
   return (
     <button
       type="button"
-      className={`inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg focus:outline-none ${className}`}
+      className={`inline-flex items-center px-4 py-2 text-sm rounded-lg focus:outline-none ${className}`}
     >
       {children}
     </button>

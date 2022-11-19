@@ -12,7 +12,7 @@ export default function PrimaryButton({
 }) {
   return (
     <BaseButton
-      className={`text-white bg-primary-200 hover:bg-primary-300 ${className}`}
+      className={`${className} font-medium text-white bg-primary-200 hover:bg-primary-300 `}
       onClick={onClick}
     >
       {children}

@@ -5,6 +5,7 @@ export default function Head() {
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="Krause House Gameday: Bucks vs Cavs" />
       <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.png" />
     </>
   );
 }
