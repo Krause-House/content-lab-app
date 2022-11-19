@@ -1,5 +1,6 @@
 import Suggestion from "~/components/Hosts/HostListItem";
 import HostButton from "~/components/Hosts/HostButton";
+import Card from "~/components/Card";
 
 const suggestions = [
   {
@@ -34,8 +35,8 @@ const suggestions = [
 
 export default function HostVoting() {
   return (
-    <div className="my-8 bg-white rounded-md shadow">
-      <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
+    <Card className="my-8 bg-tan">
+      <div className="px-4 py-5 border-b border-gray-300 sm:px-6">
         <div className="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-nowrap">
           <div className="mt-4 ml-4">
             <h3 className="text-xl font-medium leading-6 text-gray-900">
@@ -51,13 +52,13 @@ export default function HostVoting() {
           </div>
         </div>
       </div>
-      <ul role="list" className="divide-y divide-gray-200">
+      <ul role="list" className="divide-y divide-gray-300">
         {suggestions.map((suggestion) => (
           <li key={suggestion.id}>
             <Suggestion data={suggestion} />
           </li>
         ))}
       </ul>
-    </div>
+    </Card>
   );
 }

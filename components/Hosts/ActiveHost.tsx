@@ -1,5 +1,6 @@
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
+import Card from "~/components/Card";
 
 const suggestion = {
   id: 3,
@@ -26,7 +27,7 @@ const suggestion = {
 
 export default function ActiveHost() {
   return (
-    <div className="my-8 overflow-hidden rounded-md shadow bg-gradient">
+    <Card className="my-8 bg-primary-200 card-shadow">
       <a href="#" className="block">
         <div className="flex items-center px-4 py-4 sm:px-6">
           <div className="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
@@ -64,6 +65,6 @@ export default function ActiveHost() {
           </div>
         </div>
       </a>
-    </div>
+    </Card>
   );
 }

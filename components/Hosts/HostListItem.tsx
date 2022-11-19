@@ -12,7 +12,7 @@ type HostData = {
 
 export default function HostListItem({ data }: { data: HostData }) {
   return (
-    <a href="#" className="block bg-white ">
+    <a href="#" className="block ">
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="flex items-center justify-start flex-1 min-w-0 gap-3">
           <Image

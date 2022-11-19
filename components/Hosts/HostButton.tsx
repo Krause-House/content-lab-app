@@ -9,7 +9,7 @@ export default function HostButton() {
     <>
       <button
         type="button"
-        className="inline-flex items-center px-4 py-2 text-sm font-medium text-white transition rounded-full bg-primary-200 hover:bg-primary-300 focus:outline-none "
+        className="inline-flex items-center px-4 py-2 text-sm font-medium text-white transition rounded-lg bg-primary-200 hover:bg-primary-300 focus:outline-none"
       >
         <MicrophoneIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
         Host
