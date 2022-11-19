@@ -39,8 +39,8 @@ export default function HostVoting() {
       <div className="px-4 py-5 border-b border-gray-300 sm:px-6">
         <div className="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-nowrap">
           <div className="mt-4 ml-4">
-            <h3 className="text-xl font-medium leading-6 text-gray-900">
-              Host Leaderboard
+            <h3 className="text-xl font-bold leading-6 text-gray-900">
+              Leaderboard
             </h3>
             <p className="mt-1 text-sm text-gray-500">
               Upvote and downvote hosts to influence who&apos;s on stage. The
