@@ -1,93 +1,34 @@
 import Suggestion from "~/components/Hosts/HostListItem";
-import NewSuggestionButton from "~/components/Hosts/NewSuggestionButton";
+import HostButton from "~/components/Hosts/HostButton";
 
 const suggestions = [
   {
     id: 1,
-    title: "Boosh",
+    name: "Boosh",
     likes: 21,
     isLiked: false,
-    likedBy: [
-      {
-        id: 1,
-        name: "Emily Selman",
-        imageUrl: "/assets/avatars/jon.jpeg",
-      },
-      {
-        id: 2,
-        name: "Kristin Watson",
-        imageUrl: "/assets/avatars/mario.jpeg",
-      },
-      {
-        id: 3,
-        name: "Emma Dorsey",
-        imageUrl: "/assets/avatars/crabtree.jpg",
-      },
-    ],
+    avatarUrl: "/assets/avatars/boosh.jpg",
   },
   {
     id: 2,
-    title: "Flex",
+    name: "Flex",
     likes: 10,
     isLiked: false,
-    likedBy: [
-      {
-        id: 1,
-        name: "Emily Selman",
-        imageUrl: "/assets/avatars/commodore.jpeg",
-      },
-      {
-        id: 2,
-        name: "Kristin Watson",
-        imageUrl: "/assets/avatars/flex.jpeg",
-      },
-      {
-        id: 3,
-        name: "Emma Dorsey",
-        imageUrl: "/assets/avatars/boosh.jpg",
-      },
-    ],
+    avatarUrl: "/assets/avatars/flex.jpeg",
   },
   {
     id: 3,
-    title: "Crabtree",
+    name: "Crabtree",
     likes: 4,
     isLiked: true,
-    likedBy: [
-      {
-        id: 1,
-        name: "Emily Selman",
-        imageUrl: "/assets/avatars/crabtree.jpg",
-      },
-      {
-        id: 1,
-        name: "Emily Selman",
-        imageUrl: "/assets/avatars/glad.png",
-      },
-      {
-        id: 3,
-        name: "Emma Dorsey",
-        imageUrl: "/assets/avatars/greg.jpeg",
-      },
-    ],
+    avatarUrl: "/assets/avatars/crabtree.jpg",
   },
   {
     id: 4,
-    title: "greg",
+    name: "greg",
     likes: 2,
     isLiked: false,
-    likedBy: [
-      {
-        id: 1,
-        name: "Emily Selman",
-        imageUrl: "/assets/avatars/lewwwk.png",
-      },
-      {
-        id: 2,
-        name: "Kristin Watson",
-        imageUrl: "/assets/avatars/boosh.jpg",
-      },
-    ],
+    avatarUrl: "/assets/avatars/greg.jpeg",
   },
 ];
 
@@ -98,7 +39,7 @@ export default function HostVoting() {
         <div className="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-nowrap">
           <div className="mt-4 ml-4">
             <h3 className="text-xl font-medium leading-6 text-gray-900">
-              Co-Host Leaderboard
+              Host Leaderboard
             </h3>
             <p className="mt-1 text-sm text-gray-500">
               Upvote and downvote hosts to influence who&apos;s on stage. The
@@ -106,7 +47,7 @@ export default function HostVoting() {
             </p>
           </div>
           <div className="flex-shrink-0 mt-4 ml-4">
-            <NewSuggestionButton />
+            <HostButton />
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const suggestion = {
   id: 3,
-  title: "Commodore",
+  title: "Boosh",
   watching: 23,
   users: [
     {
@@ -32,11 +32,11 @@ export default function ActiveHost() {
           <div className="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
             <div className="">
               <label className="flex text-xs text-gray-300 sm:text-sm">
-                Currently Co-Hosting
+                Currently Hosting
               </label>
 
               <h3 className="text-base font-medium truncate text-gray-50 sm:text-xl">
-                {suggestion.title}
+                {suggestion.title} & Uncle Jon
               </h3>
 
               <div className="flex gap-2 mt-3 text-gray-300">
