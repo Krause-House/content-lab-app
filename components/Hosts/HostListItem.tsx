@@ -1,16 +1,17 @@
-import { HeartIcon } from "@heroicons/react/24/outline";
-import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
+import { Twitter } from "react-feather";
 import Image from "next/image";
 
 type HostData = {
   id: number;
   name: string;
+  handle: string;
   avatarUrl: string;
-  likes: number;
-  isLiked: boolean;
+  score: number;
+  userScore: number;
 };
 
-export default function HostListItem({ data }: { data: HostData }) {
+export default function HostListItem({ host }: { host: HostData }) {
   return (
     <a href="#" className="block ">
       <div className="flex items-center px-4 py-4 sm:px-6">
@@ -18,26 +19,38 @@ export default function HostListItem({ data }: { data: HostData }) {
           <Image
             width={48}
             height={48}
-            key={data.id}
-            className="inline-block w-10 h-10 rounded-full ring-2 ring-gray-50"
-            src={data.avatarUrl}
-            alt={data.name}
+            key={host.id}
+            className="inline-block w-12 h-12 rounded-full ring-2 ring-gray-50"
+            src={host.avatarUrl}
+            alt={host.name}
           />
           <div className="">
-            <h4 className="text-base font-medium truncate text-primary-500">
-              {data.name}
+            <h4 className="text-base font-medium text-gray-800 truncate">
+              {host.name}
             </h4>
-            <div className="flex items-center gap-2 mt-0 text-sm text-gray-500">
-              <p>{data.likes} fans want to see this host</p>
-            </div>
+            <a
+              className="flex items-center mt-0 text-sm text-gray-500"
+              href={`https://twitter.com/${host.handle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Twitter className="h-4" />
+              {host.handle}
+            </a>
           </div>
         </div>
-        <div className="flex items-center flex-shrink-0 gap-1 mx-2 font-medium">
-          {data.isLiked ? (
-            <HeartIconSolid className="w-auto h-6 text-primary-200" />
-          ) : (
-            <HeartIcon className="w-auto h-6 text-gray-500 transition hover:text-primary-200" />
-          )}
+        <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-400">
+          <ChevronUpIcon
+            className={`w-5 h-5 hover:text-gray-600 ${
+              host.userScore > 0 && "text-gray-600"
+            }`}
+          />
+          <p className="text-gray-600">{host.score}</p>
+          <ChevronDownIcon
+            className={`w-5 h-5 hover:text-gray-600 ${
+              host.userScore < 0 && "text-gray-600"
+            }`}
+          />
         </div>
       </div>
     </a>

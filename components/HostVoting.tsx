@@ -6,29 +6,33 @@ const suggestions = [
   {
     id: 1,
     name: "Boosh",
-    likes: 21,
-    isLiked: false,
+    handle: "@boosh0x",
+    score: 21,
+    userScore: -1,
     avatarUrl: "/assets/avatars/boosh.jpg",
   },
   {
     id: 2,
     name: "Flex",
-    likes: 10,
-    isLiked: false,
+    handle: "@flexchapman",
+    score: 10,
+    userScore: 0,
     avatarUrl: "/assets/avatars/flex.jpeg",
   },
   {
     id: 3,
     name: "Crabtree",
-    likes: 4,
-    isLiked: true,
+    handle: "@jdcrabtreeii",
+    score: 4,
+    userScore: 1,
     avatarUrl: "/assets/avatars/crabtree.jpg",
   },
   {
     id: 4,
     name: "greg",
-    likes: 2,
-    isLiked: false,
+    handle: "@gregfromstl",
+    score: 2,
+    userScore: 0,
     avatarUrl: "/assets/avatars/greg.jpeg",
   },
 ];
@@ -55,7 +59,7 @@ export default function HostVoting() {
       <ul role="list" className="divide-y divide-gray-300">
         {suggestions.map((suggestion) => (
           <li key={suggestion.id}>
-            <Suggestion data={suggestion} />
+            <Suggestion host={suggestion} />
           </li>
         ))}
       </ul>
