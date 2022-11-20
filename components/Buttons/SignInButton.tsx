@@ -1,14 +1,28 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { PrimaryButton } from "~/components/Buttons";
-import { supabase } from "~/util/supabaseClient";
+import supabase from "~/util/supabaseClient";
 
-async function signInWithTwitter() {
-  console.log("Signing in...");
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "twitter",
+async function signInWithDiscord() {
+  await supabase.auth.signInWithOAuth({
+    provider: "discord",
+    options: {
+      redirectTo: "http://localhost:3000/auth",
+    },
   });
 }
 
 export default function SignInButton() {
-  return <PrimaryButton onClick={signInWithTwitter}>Sign In</PrimaryButton>;
+  const router = useRouter();
+  // set cookies for use server side
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+      const maxAge = 1 * 60 * 60; // 1 hour
+      document.cookie = `gameday-access-token=${session?.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; secure`;
+      document.cookie = `gameday-refresh-token=${session?.refresh_token}; path=/; max-age=${maxAge}; SameSite=Lax; secure`;
+      router.push("/");
+    }
+  });
+
+  return <PrimaryButton onClick={signInWithDiscord}>Sign In</PrimaryButton>;
 }

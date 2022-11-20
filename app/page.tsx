@@ -1,9 +1,20 @@
+import { cookies } from "next/headers";
 import BannerImage from "~/components/BannerImage";
 import HostVoting from "~/components/HostVoting";
 import PageHeader from "~/components/PageHeader";
 import ActiveHost from "~/components/Hosts/ActiveHost";
+import { redirect } from "next/navigation";
+import getCurrentUser from "~/util/getCurrentUser";
 
-export default function Home() {
+export const guardPage = async () => {
+  const user = await getCurrentUser();
+  if (!user) {
+    redirect("/auth");
+  }
+};
+
+export default async function Home() {
+  await guardPage();
   return (
     <>
       <BannerImage isLive />
