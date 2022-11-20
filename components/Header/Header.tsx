@@ -5,18 +5,14 @@ import supabase from "~/util/supabaseClient";
 import UserMenu from "./UserMenu";
 
 export default function Header() {
-  const [signedIn, setSignedIn] = useState(false);
+  const [user, setUser] = useState<any | undefined>();
 
   useEffect(() => {
     supabase.auth.getUser().then((user) => {
-      setSignedIn(!!user);
+      setUser(user);
     });
     supabase.auth.onAuthStateChange((event, session) => {
-      if (!!session?.user) {
-        setSignedIn(true);
-      } else {
-        setSignedIn(false);
-      }
+      setUser(session?.user);
     });
   }, []);
 
@@ -45,10 +41,10 @@ export default function Header() {
               className="hidden w-auto h-5 md:block"
             />
           </div>
-          {signedIn && (
+          {!!user && (
             <div className="block">
               <div className="flex items-center">
-                <UserMenu />
+                <UserMenu user={user} />
               </div>
             </div>
           )}

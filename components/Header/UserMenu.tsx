@@ -7,7 +7,7 @@ import classNames from "~/util/classNames";
 import { useRouter } from "next/navigation";
 import supabase from "~/util/supabaseClient";
 
-export default function UserMenu() {
+export default function UserMenu({ user }: { user: any }) {
   const router = useRouter();
 
   const signout = async () => {
@@ -28,7 +28,7 @@ export default function UserMenu() {
             width={24}
             height={24}
             className="w-8 h-8 rounded-full"
-            src="/assets/avatars/greg.jpeg"
+            src={user.data.user?.user_metadata?.avatar_url}
             alt=""
           />
         </Menu.Button>
