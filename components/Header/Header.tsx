@@ -10,7 +10,7 @@ export default function Header() {
   useEffect(() => {
     supabase.auth.getUser().then((_user) => {
       console.log(_user);
-      setUser(_user);
+      setUser(_user.data.user);
     });
     supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user);
