@@ -7,7 +7,7 @@ async function signInWithDiscord() {
   await supabase.auth.signInWithOAuth({
     provider: "discord",
     options: {
-      redirectTo: "http://localhost:3000/auth",
+      redirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/auth`,
     },
   });
 }
