@@ -28,7 +28,7 @@ export default function UserMenu({ user }: { user: any }) {
             width={24}
             height={24}
             className="w-8 h-8 rounded-full"
-            src={user.data.user?.user_metadata?.avatar_url}
+            src={user.user_metadata?.avatar_url}
             alt=""
           />
         </Menu.Button>
