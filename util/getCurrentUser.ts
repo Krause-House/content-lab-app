@@ -16,7 +16,6 @@ const getCurrentUser = async () => {
 
   // returns user information
   const user = await supabase.auth.getUser();
-  console.log(user.data.user?.user_metadata);
   return user;
 };
 
