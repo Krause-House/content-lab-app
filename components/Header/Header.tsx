@@ -8,8 +8,9 @@ export default function Header() {
   const [user, setUser] = useState<any | undefined>();
 
   useEffect(() => {
-    supabase.auth.getUser().then((user) => {
-      setUser(user);
+    supabase.auth.getUser().then((_user) => {
+      console.log(_user);
+      setUser(_user);
     });
     supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user);
