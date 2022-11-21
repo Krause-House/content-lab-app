@@ -14,7 +14,7 @@ async function signInWithDiscord() {
 
 export default function SignInButton() {
   const router = useRouter();
-  // set cookies for use server side
+
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
       const maxAge = 1 * 60 * 60; // 1 hour
