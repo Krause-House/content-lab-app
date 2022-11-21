@@ -1,3 +1,4 @@
+import "server-only";
 import { cookies } from "next/headers";
 import supabase from "~/util/supabaseClient";
 
@@ -14,8 +15,8 @@ const getCurrentUser = async () => {
     return null;
   }
 
-  // returns user information
   const user = await supabase.auth.getUser();
+
   return user;
 };
 

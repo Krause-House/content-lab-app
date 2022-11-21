@@ -4,7 +4,7 @@ import HostVoting from "~/components/HostVoting";
 import PageHeader from "~/components/PageHeader";
 import ActiveHost from "~/components/Hosts/ActiveHost";
 import { redirect } from "next/navigation";
-import getCurrentUser from "~/util/getCurrentUser";
+import getCurrentUser from "~/lib/getCurrentUser";
 
 export const guardPage = async () => {
   const user = await getCurrentUser();
