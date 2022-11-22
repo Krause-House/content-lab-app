@@ -1,18 +1,20 @@
-// import getCurrentUser from "./getCurrentUser";
+import supabase from "~/util/supabaseClient";
+import getCurrentUserClientSide from "./getCurrentUserClientSide";
 
 const addHost = async () => {
-  // const user = await getCurrentUser();
+  const user = await getCurrentUserClientSide();
+  if (!user) {
+    throw new Error("User is not logged in");
+  }
 
-  // if (!user) {
-  //   throw new Error("User is not logged in");
-  // }
-  console.log("addHost");
+  const { data, error } = await supabase.from("hosts").insert({
+    user: user.id,
+    displayName: user.user_metadata.full_name,
+    discordName: user.user_metadata.name,
+    avatarUrl: user.user_metadata.avatar_url,
+  });
 
-  //   const { data, error } = await supabase
-  //     .from("hosts")
-  //     .insert({ user: user.id });
-
-  //   return user;
+  return user;
 };
 
 export default addHost;
