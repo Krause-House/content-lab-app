@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import getCurrentUserClientSide from "~/lib/getCurrentUserClientSide";
 import supabase from "~/util/supabaseClient";
 import UserMenu from "./UserMenu";
 
@@ -8,9 +9,7 @@ export default function Header() {
   const [user, setUser] = useState<any | undefined>();
 
   useEffect(() => {
-    supabase.auth.getUser().then((_user) => {
-      setUser(_user.data.user);
-    });
+    getCurrentUserClientSide().then(setUser);
     supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user);
     });

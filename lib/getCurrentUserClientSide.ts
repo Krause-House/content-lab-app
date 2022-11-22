@@ -1,11 +1,9 @@
-import "server-only";
-import { cookies } from "next/headers";
+import { getCookie } from "cookies-next";
 import supabase from "~/util/supabaseClient";
 
-const getCurrentUser = async () => {
-  const nextCookies = cookies();
-  const refreshToken = nextCookies.get("gameday-refresh-token")?.value;
-  const accessToken = nextCookies.get("gameday-access-token")?.value;
+const getCurrentUserClientSide = async () => {
+  const refreshToken = getCookie("gameday-refresh-token") as string;
+  const accessToken = getCookie("gameday-access-token") as string;
   if (refreshToken && accessToken) {
     await supabase.auth.setSession({
       refresh_token: refreshToken,
@@ -20,4 +18,4 @@ const getCurrentUser = async () => {
   return userResponse.data.user;
 };
 
-export default getCurrentUser;
+export default getCurrentUserClientSide;

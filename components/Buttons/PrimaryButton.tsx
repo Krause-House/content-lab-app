@@ -15,7 +15,7 @@ export default function PrimaryButton({
 }) {
   return (
     <BaseButton
-      className={`${className} font-medium text-white bg-primary-200 hover:bg-primary-300 `}
+      className={`font-medium text-white bg-primary-200 hover:bg-primary-300  ${className}`}
       disabled={disabled}
       onClick={onClick}
     >

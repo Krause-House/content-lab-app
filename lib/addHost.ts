@@ -1,23 +1,18 @@
-import "server-only";
-import { cookies } from "next/headers";
-import supabase from "~/util/supabaseClient";
+// import getCurrentUser from "./getCurrentUser";
 
-const getCurrentUser = async () => {
-  const nextCookies = cookies();
-  const refreshToken = nextCookies.get("gameday-refresh-token")?.value;
-  const accessToken = nextCookies.get("gameday-access-token")?.value;
-  if (refreshToken && accessToken) {
-    await supabase.auth.setSession({
-      refresh_token: refreshToken,
-      access_token: accessToken,
-    });
-  } else {
-    return null;
-  }
+const addHost = async () => {
+  // const user = await getCurrentUser();
 
-  const user = await supabase.auth.getUser();
+  // if (!user) {
+  //   throw new Error("User is not logged in");
+  // }
+  console.log("addHost");
 
-  return user;
+  //   const { data, error } = await supabase
+  //     .from("hosts")
+  //     .insert({ user: user.id });
+
+  //   return user;
 };
 
-export default getCurrentUser;
+export default addHost;
