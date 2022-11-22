@@ -1,6 +1,10 @@
+"use client";
 import Suggestion from "~/components/Hosts/HostListItem";
 import HostButton from "~/components/Hosts/HostButton";
 import Card from "~/components/Card";
+import User from "~/types/User";
+import supabase from "~/util/supabaseClient";
+import { useRouter } from "next/navigation";
 
 const suggestions = [
   {
@@ -37,7 +41,13 @@ const suggestions = [
   },
 ];
 
-export default function HostVoting() {
+export default function HostVoting({ user }: { user: User | null }) {
+  const router = useRouter();
+
+  supabase.auth.onAuthStateChange((event, session) => {
+    router.refresh();
+  });
+
   return (
     <Card className="my-8 bg-tan">
       <div className="px-4 py-5 border-b border-gray-300 sm:px-6">
@@ -49,9 +59,11 @@ export default function HostVoting() {
               leader will be the co-host until they fall out of first place.
             </p>
           </div>
-          <div className="flex-shrink-0 mt-4 ml-4">
-            <HostButton />
-          </div>
+          {user && (
+            <div className="flex-shrink-0 mt-4 ml-4">
+              <HostButton />
+            </div>
+          )}
         </div>
       </div>
       <ul role="list" className="divide-y divide-gray-300">

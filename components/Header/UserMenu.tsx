@@ -4,25 +4,16 @@ import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
 import classNames from "~/util/classNames";
-import { useRouter } from "next/navigation";
 import supabase from "~/util/supabaseClient";
-
-interface User {
-  user_metadata?: {
-    avatar_url: string;
-  };
-}
+import User from "~/types/User";
 
 export default function UserMenu({ user }: { user: User }) {
-  const router = useRouter();
-
   const signout = async () => {
     // delete cookies on sign out
     await supabase.auth.signOut();
     const expires = new Date(0).toUTCString();
     document.cookie = `gameday-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`;
     document.cookie = `gameday-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`;
-    router.push("/");
   };
 
   return (

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import getCurrentUserClientSide from "~/lib/getCurrentUserClientSide";
 import supabase from "~/util/supabaseClient";
+import { SignInButton } from "../Buttons";
 import UserMenu from "./UserMenu";
 
 export default function Header() {
@@ -40,13 +41,12 @@ export default function Header() {
               className="hidden w-auto h-5 md:block"
             />
           </div>
-          {!!user && (
-            <div className="block">
-              <div className="flex items-center">
-                <UserMenu user={user} />
-              </div>
+
+          <div className="block">
+            <div className="flex items-center">
+              {!!user ? <UserMenu user={user} /> : <SignInButton />}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </header>

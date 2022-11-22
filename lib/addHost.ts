@@ -14,7 +14,9 @@ const addHost = async () => {
     avatarUrl: user.user_metadata.avatar_url,
   });
 
-  return user;
+  console.log(data, error);
+
+  return { data, error };
 };
 
 export default addHost;

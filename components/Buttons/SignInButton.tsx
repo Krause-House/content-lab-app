@@ -6,9 +6,7 @@ import supabase from "~/util/supabaseClient";
 async function signInWithDiscord() {
   await supabase.auth.signInWithOAuth({
     provider: "discord",
-    options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/auth`,
-    },
+    options: {},
   });
 }
 

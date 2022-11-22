@@ -2,18 +2,21 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import addHost from "~/lib/addHost";
 
-type Data = {
-  name: string;
-};
+type Data = any;
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  console.log("AAA");
   if (req.method === "POST") {
-    addHost();
-    res.status(200).json({ name: "John Doe" });
+    const { data, error } = await addHost();
+    if (error) {
+      res.status(500).send(error);
+    }
+    res.status(200).json(data ?? {});
   } else {
-    res.status(400);
+    res.status(400).send({ message: "Invalid route" });
   }
+  res.status(200);
 }
