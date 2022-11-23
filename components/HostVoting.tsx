@@ -2,7 +2,6 @@
 import HostListItem from "~/components/Hosts/HostListItem";
 import HostButton from "~/components/Hosts/HostButton";
 import Card from "~/components/Card";
-import User from "~/types/User";
 import supabase from "~/util/supabaseClient";
 import { useRouter } from "next/navigation";
 import HostData from "~/types/HostData";
@@ -76,7 +75,7 @@ export default function HostVoting({
       <ul role="list" className="divide-y divide-gray-300">
         {hosts.map((host: HostData) => (
           <li key={host.id}>
-            <HostListItem host={host} />
+            <HostListItem host={host} vote={signedIn ? () => {} : null} />
           </li>
         ))}
       </ul>
