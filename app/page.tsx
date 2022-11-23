@@ -3,6 +3,7 @@ import HostVoting from "~/components/HostVoting";
 import PageHeader from "~/components/PageHeader";
 import ActiveHost from "~/components/Hosts/ActiveHost";
 import getCurrentUser from "~/lib/getCurrentUser";
+import fetchHosts from "~/lib/fetchHosts";
 
 const getUser = async () => {
   const user = await getCurrentUser();
@@ -10,10 +11,7 @@ const getUser = async () => {
 };
 
 const getHosts = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/hosts`, {
-    cache: "no-store",
-  });
-  const hosts = await res.json();
+  const { data: hosts } = await fetchHosts();
   return { hosts };
 };
 
@@ -27,7 +25,7 @@ export default async function Home() {
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader />
         <ActiveHost />
-        <HostVoting signedIn={!!user} hosts={hosts} />
+        <HostVoting user={user} hosts={hosts ?? []} />
       </main>
     </>
   );

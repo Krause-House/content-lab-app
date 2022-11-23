@@ -5,6 +5,7 @@ import Card from "~/components/Card";
 import supabase from "~/util/supabaseClient";
 import { useRouter } from "next/navigation";
 import HostData from "~/types/HostData";
+import User from "~/types/User";
 
 const hosts = [
   {
@@ -42,10 +43,10 @@ const hosts = [
 ];
 
 export default function HostVoting({
-  signedIn,
+  user,
   hosts,
 }: {
-  signedIn: boolean;
+  user: User | null;
   hosts: HostData[];
 }) {
   const router = useRouter();
@@ -65,7 +66,7 @@ export default function HostVoting({
               leader will be the co-host until they fall out of first place.
             </p>
           </div>
-          {signedIn && (
+          {user && !hosts.find((host) => host.user == user.id) && (
             <div className="flex-shrink-0 mt-4 ml-4">
               <HostButton />
             </div>
@@ -75,7 +76,7 @@ export default function HostVoting({
       <ul role="list" className="divide-y divide-gray-300">
         {hosts.map((host: HostData) => (
           <li key={host.id}>
-            <HostListItem host={host} vote={signedIn ? () => {} : null} />
+            <HostListItem host={host} vote={user ? () => {} : null} />
           </li>
         ))}
       </ul>

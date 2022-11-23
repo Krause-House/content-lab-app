@@ -1,5 +1,5 @@
 type HostData = {
-  id: number;
+  id: string;
   user: string;
   displayName: string;
   discordName: string;
