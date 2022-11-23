@@ -25,7 +25,7 @@ const suggestion = {
   ],
 };
 
-export default function ActiveHost() {
+export default function ActiveHost({ hostsName }: { hostsName: string }) {
   return (
     <Card className="my-8 bg-primary-200 card-shadow">
       <a href="#" className="block">
@@ -36,9 +36,7 @@ export default function ActiveHost() {
                 Currently Hosting
               </label>
 
-              <h3 className="truncate text-gray-50">
-                {suggestion.title} & Uncle Jon
-              </h3>
+              <h3 className="truncate text-gray-50">{hostsName}</h3>
 
               <div className="flex gap-2 mt-3 text-gray-300">
                 <div className="flex -space-x-1">

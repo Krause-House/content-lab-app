@@ -74,11 +74,13 @@ export default function HostVoting({
         </div>
       </div>
       <ul role="list" className="divide-y divide-gray-300">
-        {hosts.map((host: HostData) => (
-          <li key={host.id}>
-            <HostListItem host={host} vote={user ? () => {} : null} />
-          </li>
-        ))}
+        {hosts
+          .sort((host) => host.score)
+          .map((host: HostData) => (
+            <li key={host.id}>
+              <HostListItem host={host} vote={user ? () => {} : null} />
+            </li>
+          ))}
       </ul>
     </Card>
   );
