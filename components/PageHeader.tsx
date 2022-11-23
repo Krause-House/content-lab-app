@@ -7,7 +7,7 @@ export default function PageHeader() {
     <div className="my-10 md:flex md:items-start md:justify-between">
       <div className="flex-1 min-w-0">
         <h1 className="text-gray-900 sm:truncate">
-          Krause House Gameday: Bucks vs Cavs
+          Krause House Gameday: Timberwolves vs Pacers
         </h1>
         <p className="max-w-4xl mt-2 text-sm text-gray-500">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
