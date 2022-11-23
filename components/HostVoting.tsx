@@ -1,12 +1,13 @@
 "use client";
-import Suggestion from "~/components/Hosts/HostListItem";
+import HostListItem from "~/components/Hosts/HostListItem";
 import HostButton from "~/components/Hosts/HostButton";
 import Card from "~/components/Card";
 import User from "~/types/User";
 import supabase from "~/util/supabaseClient";
 import { useRouter } from "next/navigation";
+import HostData from "~/types/HostData";
 
-const suggestions = [
+const hosts = [
   {
     id: 1,
     name: "Boosh",
@@ -41,7 +42,13 @@ const suggestions = [
   },
 ];
 
-export default function HostVoting({ user }: { user: User | null }) {
+export default function HostVoting({
+  signedIn,
+  hosts,
+}: {
+  signedIn: boolean;
+  hosts: HostData[];
+}) {
   const router = useRouter();
 
   supabase.auth.onAuthStateChange((event, session) => {
@@ -59,7 +66,7 @@ export default function HostVoting({ user }: { user: User | null }) {
               leader will be the co-host until they fall out of first place.
             </p>
           </div>
-          {user && (
+          {signedIn && (
             <div className="flex-shrink-0 mt-4 ml-4">
               <HostButton />
             </div>
@@ -67,9 +74,9 @@ export default function HostVoting({ user }: { user: User | null }) {
         </div>
       </div>
       <ul role="list" className="divide-y divide-gray-300">
-        {suggestions.map((suggestion) => (
-          <li key={suggestion.id}>
-            <Suggestion host={suggestion} />
+        {hosts.map((host: HostData) => (
+          <li key={host.id}>
+            <HostListItem host={host} />
           </li>
         ))}
       </ul>

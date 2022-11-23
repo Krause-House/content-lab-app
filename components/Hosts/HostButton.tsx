@@ -5,7 +5,7 @@ import { MicrophoneIcon } from "@heroicons/react/20/solid";
 import { PrimaryButton } from "~/components/Buttons";
 
 const call = async () => {
-  await axios.get("/api/host");
+  await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/hosts`);
 };
 
 export default function HostButton() {
