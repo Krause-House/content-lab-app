@@ -3,7 +3,6 @@ import getCurrentUserClientSide from "./getCurrentUserClientSide";
 
 const addHost = async () => {
   const user = await getCurrentUserClientSide();
-  console.log("USER", user);
   if (!user) {
     throw new Error("User is not logged in");
   }
@@ -14,7 +13,6 @@ const addHost = async () => {
     discordName: user.user_metadata.name,
     avatarUrl: user.user_metadata.avatar_url,
   });
-  console.log("DATA", data, error);
 
   return { data, error };
 };

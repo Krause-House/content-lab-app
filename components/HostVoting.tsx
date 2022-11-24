@@ -7,41 +7,6 @@ import { useRouter } from "next/navigation";
 import HostData from "~/types/HostData";
 import User from "~/types/User";
 
-const hosts = [
-  {
-    id: 1,
-    name: "Boosh",
-    handle: "boosh0x",
-    score: 21,
-    userScore: -1,
-    avatarUrl: "/assets/avatars/boosh.jpg",
-  },
-  {
-    id: 2,
-    name: "Flex",
-    handle: "flexchapman",
-    score: 10,
-    userScore: 0,
-    avatarUrl: "/assets/avatars/flex.jpeg",
-  },
-  {
-    id: 3,
-    name: "Crabtree",
-    handle: "jdcrabtreeii",
-    score: 4,
-    userScore: 1,
-    avatarUrl: "/assets/avatars/crabtree.jpg",
-  },
-  {
-    id: 4,
-    name: "greg",
-    handle: "gregfromstl",
-    score: 2,
-    userScore: 0,
-    avatarUrl: "/assets/avatars/greg.jpeg",
-  },
-];
-
 export default function HostVoting({
   user,
   hosts,
@@ -75,10 +40,10 @@ export default function HostVoting({
       </div>
       <ul role="list" className="divide-y divide-gray-300">
         {hosts
-          .sort((host) => host.score)
+          .sort((host) => host.for.length - host.against.length)
           .map((host: HostData) => (
             <li key={host.id}>
-              <HostListItem host={host} vote={user ? () => {} : null} />
+              <HostListItem userId={user?.id ?? null} host={host} />
             </li>
           ))}
       </ul>

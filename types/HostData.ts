@@ -1,11 +1,12 @@
 type HostData = {
-  id: string;
+  id: number;
   user: string;
   displayName: string;
   discordName: string;
   handle: string;
   avatarUrl: string;
-  score: number;
+  for: string[];
+  against: string[];
 };
 
 export default HostData;
