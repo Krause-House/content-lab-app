@@ -3,7 +3,10 @@ export default function Head() {
     <>
       <title>Gameday</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
-      <meta name="description" content="Krause House Gameday: Bucks vs Cavs" />
+      <meta
+        name="description"
+        content="Krause House Gameday: Timberwolves vs Pacers"
+      />
       <link rel="icon" href="/favicon.ico" />
       <link rel="icon" href="/favicon.png" />
     </>

@@ -12,16 +12,22 @@ export default function BannerImage({ isLive }: { isLive?: boolean }) {
         alt="Krause House"
       />
       {isLive && (
-        <button className="absolute top-2 left-2 inline-flex items-center rounded-md bg-red-600 px-2.5 py-0.5 text-sm font-medium text-white">
-          <svg
-            className="-ml-0.5 mr-1.5 h-2 w-2"
-            fill="currentColor"
-            viewBox="0 0 8 8"
-          >
-            <circle cx={4} cy={4} r={3} />
-          </svg>
-          Live Now
-        </button>
+        <a
+          href="https://playback.tv/krausehouse"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <button className="absolute top-2 left-2 inline-flex items-center rounded-md bg-red-600 px-2.5 py-0.5 text-sm font-medium text-white">
+            <svg
+              className="-ml-0.5 mr-1.5 h-2 w-2"
+              fill="currentColor"
+              viewBox="0 0 8 8"
+            >
+              <circle cx={4} cy={4} r={3} />
+            </svg>
+            Live Now
+          </button>
+        </a>
       )}
     </div>
   );
