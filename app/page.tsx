@@ -27,7 +27,8 @@ export default async function Home() {
         <ActiveHost
           hostsName={`${
             hosts?.length ?? 0 > 0
-              ? hosts?.sort((host) => host.score)[0].displayName + " & "
+              ? hosts?.sort((host) => host.against.length - host.for.length)[0]
+                  .displayName + " & "
               : ""
           }Uncle Jon`}
         />

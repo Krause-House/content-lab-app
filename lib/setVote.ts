@@ -11,13 +11,14 @@ const voteFor = async (currentHost: HostData, voterId: string) => {
   if (currentHost.for.includes(voterId)) {
     throw new Error("User has already voted for this host");
   } else {
-    const { data, error } = await supabase
+    const data = {
+      ...currentHost,
+      for: [...currentHost.for, voterId],
+      against: currentHost.against.filter((id) => id !== voterId),
+    };
+    const { error } = await supabase
       .from("hosts")
-      .update({
-        ...currentHost,
-        for: [...currentHost.for, voterId],
-        against: currentHost.against.filter((id) => id !== voterId),
-      })
+      .update(data)
       .eq("id", currentHost.id);
     return { data, error };
   }
@@ -25,15 +26,16 @@ const voteFor = async (currentHost: HostData, voterId: string) => {
 
 const voteAgainst = async (currentHost: HostData, voterId: string) => {
   if (currentHost.against.includes(voterId)) {
-    throw new Error("User has already voted for this host");
+    throw new Error("User has already voted against this host");
   } else {
-    const { data, error } = await supabase
+    const data = {
+      ...currentHost,
+      for: currentHost.for.filter((id) => id !== voterId),
+      against: [...currentHost.against, voterId],
+    };
+    const { error } = await supabase
       .from("hosts")
-      .update({
-        ...currentHost,
-        for: currentHost.for.filter((id) => id !== voterId),
-        against: [...currentHost.against, voterId],
-      })
+      .update(data)
       .eq("id", currentHost.id);
     return { data, error };
   }

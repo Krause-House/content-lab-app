@@ -40,7 +40,7 @@ export default function HostVoting({
       </div>
       <ul role="list" className="divide-y divide-gray-300">
         {hosts
-          .sort((host) => host.for.length - host.against.length)
+          .sort((host) => host.against.length - host.for.length)
           .map((host: HostData) => (
             <li key={host.id}>
               <HostListItem userId={user?.id ?? null} host={host} />

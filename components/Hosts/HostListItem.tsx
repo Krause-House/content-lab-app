@@ -1,10 +1,11 @@
+import { useCallback, useMemo, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import HostData from "~/types/HostData";
 import DiscordTag from "~/components/SocialTags/DiscordTag";
 import setVote, { VOTE } from "~/lib/setVote";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import _ from "lodash";
 
 const act = async (
   host: HostData,
@@ -12,8 +13,9 @@ const act = async (
   vote: VOTE,
   refresh: () => void
 ) => {
-  await setVote(host, userId, vote);
+  const { data, error } = await setVote(host, userId, vote);
   refresh();
+  return { data };
 };
 
 export default function HostListItem({
@@ -23,37 +25,52 @@ export default function HostListItem({
   host: HostData;
   userId: string | null;
 }) {
-  const [score, setScore] = useState(host.for.length - host.against.length);
-  const [currentVote, setCurrentVote] = useState<VOTE | null>(null);
-
-  useEffect(() => {
-    setCurrentVote(null);
-    if (userId && host.for.includes(userId)) setCurrentVote(VOTE.FOR);
-    if (userId && host.against.includes(userId)) setCurrentVote(VOTE.AGAINST);
-  }, [host, userId]);
+  const [localHostData, setLocalHostData] = useState(host);
+  const [isWaiting, setIsWaiting] = useState(false);
 
   const vote = useCallback(
     async (vote: VOTE) => {
-      const originalScore = score;
-      const originalVote = currentVote;
+      setIsWaiting(true);
+      console.log("CALLED");
+      const originalHostData = localHostData;
       try {
         if (userId) {
-          const baseChange = vote === VOTE.FOR ? 1 : -1;
-          const change =
-            baseChange *
-            (host.against.includes(userId) || host.for.includes(userId)
-              ? 2
-              : 1);
-          setScore(score + change);
-          setCurrentVote(vote);
-          await act(host, userId, vote, router.refresh);
+          if (vote === VOTE.FOR && localHostData.for.includes(userId)) {
+            throw new Error("User has already voted for this host");
+          }
+          if (vote === VOTE.AGAINST && localHostData.against.includes(userId)) {
+            throw new Error("User has already voted against this host");
+          }
+          setLocalHostData({
+            ...localHostData,
+            for:
+              vote === VOTE.FOR
+                ? [...localHostData.for, userId]
+                : localHostData.for.filter((id) => id !== userId),
+            against:
+              vote === VOTE.AGAINST
+                ? [...localHostData.against, userId]
+                : localHostData.against.filter((id) => id !== userId),
+          });
+          const { data } = await act(host, userId, vote, router.refresh);
+          setLocalHostData(data); // ensure the local host data matches what's in the DB
         } else throw new Error("User is not logged in");
       } catch (e) {
-        setScore(originalScore);
-        setCurrentVote(originalVote);
+        setLocalHostData(originalHostData);
+      } finally {
+        setIsWaiting(false);
       }
     },
     [host, userId]
+  );
+
+  const debouncedVote = useCallback(
+    (voteSelection: VOTE) =>
+      _.debounce(() => vote(voteSelection), 500, {
+        trailing: false,
+        leading: true,
+      })(),
+    []
   );
 
   const router = useRouter();
@@ -77,18 +94,32 @@ export default function HostListItem({
         <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-400">
           {userId && (
             <ChevronUpIcon
-              onClick={() => currentVote != VOTE.FOR && vote(VOTE.FOR)}
+              onClick={() =>
+                !localHostData.for.includes(userId) &&
+                !isWaiting &&
+                debouncedVote(VOTE.FOR)
+              }
               className={`w-5 h-5 hover:text-gray-600 ${
-                currentVote != VOTE.FOR ? "cursor-pointer" : "text-gray-600"
+                !localHostData.for.includes(userId) && !isWaiting
+                  ? "cursor-pointer"
+                  : "text-gray-600"
               }`}
             />
           )}
-          <p className="text-gray-600">{score}</p>
+          <p className="text-gray-600">
+            {localHostData.for.length - localHostData.against.length}
+          </p>
           {userId && (
             <ChevronDownIcon
-              onClick={() => currentVote != VOTE.AGAINST && vote(VOTE.AGAINST)}
+              onClick={() =>
+                !localHostData.against.includes(userId) &&
+                !isWaiting &&
+                debouncedVote(VOTE.AGAINST)
+              }
               className={`w-5 h-5 hover:text-gray-600 ${
-                currentVote != VOTE.AGAINST ? "cursor-pointer" : "text-gray-600"
+                !localHostData.against.includes(userId) && !isWaiting
+                  ? "cursor-pointer"
+                  : "text-gray-600"
               }`}
             />
           )}
