@@ -28,7 +28,12 @@ const watching = {
 export default function ActiveHost({ hostsName }: { hostsName: string }) {
   return (
     <Card className="my-8 bg-primary-200 card-shadow">
-      <a href="#" className="block">
+      <a
+        href="https://playback.tv/krausehouse"
+        target="_blank"
+        rel="noreferrer noopener"
+        className="block"
+      >
         <div className="flex items-center px-4 py-4 sm:px-6">
           <div className="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
             <div className="">
