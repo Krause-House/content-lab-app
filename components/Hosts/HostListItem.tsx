@@ -1,11 +1,10 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import HostData from "~/types/HostData";
 import DiscordTag from "~/components/SocialTags/DiscordTag";
 import setVote, { VOTE } from "~/lib/setVote";
 import { useRouter } from "next/navigation";
-import _ from "lodash";
 
 const act = async (
   host: HostData,
@@ -25,6 +24,7 @@ export default function HostListItem({
   host: HostData;
   userId: string | null;
 }) {
+  const [localHostData, setLocalHostData] = useState(host);
   const [isWaiting, setIsWaiting] = useState(false);
 
   const vote = useCallback(
@@ -39,6 +39,7 @@ export default function HostListItem({
             throw new Error("User has already voted against this host");
           }
           const { data } = await act(host, userId, vote, router.refresh);
+          setLocalHostData(data);
         } else throw new Error("User is not logged in");
       } catch (e) {
         console.log(e);
@@ -74,24 +75,27 @@ export default function HostListItem({
             <>
               {userId && (
                 <ChevronUpIcon
-                  onClick={() => !host.for.includes(userId) && vote(VOTE.FOR)}
+                  onClick={() =>
+                    !localHostData.for.includes(userId) && vote(VOTE.FOR)
+                  }
                   className={`w-5 h-5 hover:text-gray-600 ${
-                    !host.for.includes(userId)
+                    !localHostData.for.includes(userId)
                       ? "cursor-pointer"
                       : "text-gray-600"
                   }`}
                 />
               )}
               <p className="text-gray-600">
-                {host.for.length - host.against.length}
+                {localHostData.for.length - localHostData.against.length}
               </p>
               {userId && (
                 <ChevronDownIcon
                   onClick={() =>
-                    !host.against.includes(userId) && vote(VOTE.AGAINST)
+                    !localHostData.against.includes(userId) &&
+                    vote(VOTE.AGAINST)
                   }
                   className={`w-5 h-5 hover:text-gray-600 ${
-                    !host.against.includes(userId)
+                    !localHostData.against.includes(userId)
                       ? "cursor-pointer"
                       : "text-gray-600"
                   }`}
