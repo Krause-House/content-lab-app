@@ -31,7 +31,6 @@ export default function HostListItem({
   const vote = useCallback(
     async (vote: VOTE) => {
       setIsWaiting(true);
-      console.log("CALLED");
       const originalHostData = localHostData;
       try {
         if (userId) {
@@ -56,21 +55,13 @@ export default function HostListItem({
           setLocalHostData(data); // ensure the local host data matches what's in the DB
         } else throw new Error("User is not logged in");
       } catch (e) {
+        console.log(e);
         setLocalHostData(originalHostData);
       } finally {
         setIsWaiting(false);
       }
     },
     [host, userId]
-  );
-
-  const debouncedVote = useCallback(
-    (voteSelection: VOTE) =>
-      _.debounce(() => vote(voteSelection), 500, {
-        trailing: false,
-        leading: true,
-      })(),
-    []
   );
 
   const router = useRouter();
@@ -97,7 +88,7 @@ export default function HostListItem({
               onClick={() =>
                 !localHostData.for.includes(userId) &&
                 !isWaiting &&
-                debouncedVote(VOTE.FOR)
+                vote(VOTE.FOR)
               }
               className={`w-5 h-5 hover:text-gray-600 ${
                 !localHostData.for.includes(userId) && !isWaiting
@@ -114,7 +105,7 @@ export default function HostListItem({
               onClick={() =>
                 !localHostData.against.includes(userId) &&
                 !isWaiting &&
-                debouncedVote(VOTE.AGAINST)
+                vote(VOTE.AGAINST)
               }
               className={`w-5 h-5 hover:text-gray-600 ${
                 !localHostData.against.includes(userId) && !isWaiting
