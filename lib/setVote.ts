@@ -13,7 +13,7 @@ const voteFor = async (currentHost: HostData, voterId: string) => {
   } else {
     const data = {
       ...currentHost,
-      for: [...currentHost.for, voterId],
+      for: [...currentHost.for.filter((id) => id !== voterId), voterId],
       against: currentHost.against.filter((id) => id !== voterId),
     };
     const { error } = await supabase
@@ -31,7 +31,7 @@ const voteAgainst = async (currentHost: HostData, voterId: string) => {
     const data = {
       ...currentHost,
       for: currentHost.for.filter((id) => id !== voterId),
-      against: [...currentHost.against, voterId],
+      against: [...currentHost.against.filter((id) => id !== voterId), voterId],
     };
     const { error } = await supabase
       .from("hosts")
