@@ -2,7 +2,7 @@ import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Card from "~/components/Card";
 
-const suggestion = {
+const watching = {
   id: 3,
   title: "Boosh",
   watching: 23,
@@ -40,7 +40,7 @@ export default function ActiveHost({ hostsName }: { hostsName: string }) {
 
               <div className="flex gap-2 mt-3 text-gray-300">
                 <div className="flex -space-x-1">
-                  {suggestion.users.map((user) => (
+                  {watching.users.map((user) => (
                     <Image
                       width={24}
                       height={24}
@@ -52,7 +52,7 @@ export default function ActiveHost({ hostsName }: { hostsName: string }) {
                   ))}
                 </div>
                 <p className="hidden sm:block">
-                  {suggestion.watching} fans watching
+                  {watching.watching} fans watching
                 </p>
               </div>
             </div>

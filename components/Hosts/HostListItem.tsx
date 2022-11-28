@@ -4,7 +4,7 @@ import HostData from "~/types/HostData";
 import DiscordTag from "~/components/SocialTags/DiscordTag";
 import setVote, { VOTE } from "~/lib/setVote";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const act = async (
   host: HostData,
@@ -24,15 +24,13 @@ export default function HostListItem({
   userId: string | null;
 }) {
   const [score, setScore] = useState(host.for.length - host.against.length);
-  const [currentVote, setCurrentVote] = useState<VOTE | null>(
-    userId
-      ? host.for.includes(userId)
-        ? VOTE.FOR
-        : host.against.includes(userId)
-        ? VOTE.AGAINST
-        : null
-      : null
-  );
+  const [currentVote, setCurrentVote] = useState<VOTE | null>(null);
+
+  useEffect(() => {
+    setCurrentVote(null);
+    if (userId && host.for.includes(userId)) setCurrentVote(VOTE.FOR);
+    if (userId && host.against.includes(userId)) setCurrentVote(VOTE.AGAINST);
+  }, [host, userId]);
 
   const vote = useCallback(
     async (vote: VOTE) => {
