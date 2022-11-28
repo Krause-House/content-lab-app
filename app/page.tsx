@@ -21,7 +21,7 @@ export default async function Home() {
 
   return (
     <>
-      <BannerImage isLive />
+      <BannerImage />
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader />
         <ActiveHost
