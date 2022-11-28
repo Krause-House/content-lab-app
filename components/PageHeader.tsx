@@ -17,14 +17,26 @@ export default function PageHeader() {
         </p>
       </div>
       <div className="flex gap-3 mt-3 md:mt-0 md:ml-4">
-        <SecondaryButton>
-          <ShareIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
-          Share
-        </SecondaryButton>
-        <PrimaryButton>
-          <TvIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
-          Watch
-        </PrimaryButton>
+        <a
+          href="http://twitter.com/intent/tweet?text=Come%20watch%20Timberwolves%20vs%20Pacers%20live%20on%20Krause%20House%20Gameday&url=https%3A%2F%2Fplayback.tv/krausehouse%2F"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <SecondaryButton>
+            <ShareIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+            Share
+          </SecondaryButton>
+        </a>
+        <a
+          href="https://playback.tv/krausehouse"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <PrimaryButton>
+            <TvIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+            Watch
+          </PrimaryButton>
+        </a>
       </div>
     </div>
   );
