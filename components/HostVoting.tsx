@@ -6,19 +6,66 @@ import supabase from "~/util/supabaseClient";
 import { useRouter } from "next/navigation";
 import HostData from "~/types/HostData";
 import User from "~/types/User";
+import { useCallback, useState } from "react";
+import setVote, { VOTE } from "~/lib/setVote";
+
+const update = async (host: HostData, userId: string, vote: VOTE) => {
+  return await setVote(host, userId, vote);
+};
 
 export default function HostVoting({
   user,
-  hosts,
+  initialHosts,
 }: {
   user: User | null;
-  hosts: HostData[];
+  initialHosts: HostData[];
 }) {
   const router = useRouter();
+  const [hosts, setHosts] = useState(initialHosts);
+
+  const vote = async (host: HostData, vote: VOTE) => {
+    let originalHosts = hosts;
+    try {
+      if (user?.id) {
+        setHosts([
+          ...hosts.filter((h) => h.id !== host.id),
+          {
+            ...host,
+            for:
+              vote === VOTE.FOR
+                ? [...host.for.filter((id) => id !== user.id), user.id]
+                : host.for.filter((id) => id !== user.id),
+            against:
+              vote === VOTE.AGAINST
+                ? [...host.against.filter((id) => id !== user.id), user.id]
+                : host.against.filter((id) => id !== user.id),
+          },
+        ]);
+        await update(host, user?.id, vote);
+      } else throw new Error("User is not logged in");
+    } catch (e) {
+      console.error(e);
+      setHosts(originalHosts);
+    }
+  };
 
   supabase.auth.onAuthStateChange((event, session) => {
     router.refresh();
   });
+
+  supabase
+    .channel("host-changes")
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "public", table: "hosts" },
+      (payload) => {
+        setHosts([
+          ...hosts.filter((host) => host.id !== (payload.new as HostData).id),
+          payload.new as HostData,
+        ]);
+      }
+    )
+    .subscribe();
 
   return (
     <Card className="my-8 bg-tan">
@@ -48,7 +95,11 @@ export default function HostVoting({
           )
           .map((host: HostData) => (
             <li key={host.id}>
-              <HostListItem userId={user?.id ?? null} host={host} />
+              <HostListItem
+                userId={user?.id ?? null}
+                host={host}
+                vote={(_vote) => vote(host, _vote)}
+              />
             </li>
           ))}
       </ul>

@@ -36,7 +36,7 @@ export default async function Home() {
               : ""
           }Uncle Jon`}
         />
-        <HostVoting user={user} hosts={hosts ?? []} />
+        <HostVoting user={user} initialHosts={hosts ?? []} />
       </main>
     </>
   );
