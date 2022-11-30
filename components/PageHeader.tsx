@@ -16,7 +16,7 @@ export default function PageHeader() {
       </div>
       <div className="flex gap-3 mt-3 md:mt-0 md:ml-4">
         <a
-          href="http://twitter.com/intent/tweet?text=Come%20watch%20Timberwolves%20vs%20Pacers%20live%20on%20Krause%20House%20Gameday&url=https%3A%2F%2Fplayback.tv/krausehouse%2F"
+          href="http://twitter.com/intent/tweet?text=Come%20watch%the%20NBA%20live%20on%20Krause%20House%20Gameday&url=https%3A%2F%2Fplayback.tv/krausehouse%2F"
           target="_blank"
           rel="noreferrer noopener"
         >
