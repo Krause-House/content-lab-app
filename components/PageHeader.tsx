@@ -8,7 +8,7 @@ export default function PageHeader() {
       <div className="flex-1 min-w-0">
         <h1 className="text-gray-900 sm:truncate">Krause House Gameday</h1>
         <p className="max-w-4xl mt-2 text-sm text-gray-500">
-          Welcome to a better way to watch your favorite NBA teams. We've
+          Welcome to a better way to watch your favorite NBA teams. We&apos;ve
           partnered with Playback to provide you with live streamed NBA action,
           great commentary from hosts picked by you, and a rowdy community of
           hoops fanatics.
