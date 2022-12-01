@@ -21,10 +21,11 @@ export default async function Home() {
 
   return (
     <>
-      <BannerImage />
+      <BannerImage isLive />
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader />
         <ActiveHost
+          isLive
           hostsName={`${
             hosts?.length ?? 0 > 0
               ? hosts?.sort(
