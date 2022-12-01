@@ -1,6 +1,7 @@
 import "server-only";
 import Header from "~/components/Header";
 import SupabaseListener from "~/components/supabase-listener";
+import ToastContainer from "~/components/ToastContainer";
 import createClient from "~/util/supabase-server";
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default async function RootLayout({
       <head />
       <SupabaseListener accessToken={session?.access_token} />
       <body className="relative overflow-x-hidden font-light bg-tan-500">
+        <ToastContainer />
         <Header user={user} />
         <div className="mt-16">{children}</div>
         <footer></footer>

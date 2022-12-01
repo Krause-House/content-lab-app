@@ -6,6 +6,7 @@ import Card from "~/components/Card";
 import supabase from "~/util/supabase-browser";
 import { PrimaryButton } from "~/components/Buttons";
 import Input from "~/components/Input";
+import toast from "react-hot-toast";
 
 async function signInWithDiscord() {
   await supabase.auth.signInWithOAuth({
@@ -55,9 +56,9 @@ export default function AuthModal({
         mode === "Sign Up"
           ? await signUp(email, password)
           : await signInWithPassword(email, password);
-      console.log(data, error);
       // only turn off loading if there was an error, otherwise we wait till the page refreshes on recognized auth change
       if (error) {
+        toast.error(error.message, { id: "auth-error" });
         setLoading(false);
       }
     }
