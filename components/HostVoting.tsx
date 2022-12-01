@@ -6,7 +6,7 @@ import supabase from "~/util/supabaseClient";
 import { useRouter } from "next/navigation";
 import HostData from "~/types/HostData";
 import User from "~/types/User";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import setVote, { VOTE } from "~/lib/setVote";
 
 const update = async (host: HostData, userId: string, vote: VOTE) => {
@@ -72,7 +72,7 @@ export default function HostVoting({
       <div className="px-4 py-5 border-b border-gray-300 sm:px-6">
         <div className="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-nowrap">
           <div className="mt-4 ml-4">
-            <h2 className="text-gray-900">Leaderboard</h2>
+            <h2 className="text-gray-900">Host Leaderboard</h2>
             <p className="mt-1 text-sm text-gray-500">
               Upvote and downvote hosts to influence who&apos;s on stage. The
               leader will be the co-host until they fall out of first place.

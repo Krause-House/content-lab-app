@@ -9,7 +9,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className="relative font-light bg-tan-500">
+      <body className="relative overflow-x-hidden font-light bg-tan-500">
         <Header />
         <div className="mt-16">{children}</div>
         <footer></footer>

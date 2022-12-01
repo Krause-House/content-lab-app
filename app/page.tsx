@@ -21,10 +21,13 @@ export default async function Home() {
 
   return (
     <>
-      <BannerImage isLive />
+      <iframe
+        src="https://playback.tv/krausehouse"
+        className="w-screen h-[800px]"
+      />
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader />
-        <ActiveHost
+        {/* <ActiveHost
           isLive
           hostsName={`${
             hosts?.length ?? 0 > 0
@@ -36,7 +39,7 @@ export default async function Home() {
                 )[0].displayName + " & "
               : ""
           }Uncle Jon`}
-        />
+        /> */}
         <HostVoting user={user} initialHosts={hosts ?? []} />
       </main>
     </>
