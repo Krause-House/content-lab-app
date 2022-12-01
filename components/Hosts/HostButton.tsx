@@ -11,7 +11,7 @@ const act = async (refresh: () => void) => {
 };
 
 export default function HostButton() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const host = async () => {
