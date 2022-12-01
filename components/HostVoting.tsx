@@ -2,11 +2,11 @@
 import HostListItem from "~/components/Hosts/HostListItem";
 import HostButton from "~/components/Hosts/HostButton";
 import Card from "~/components/Card";
-import supabase from "~/util/supabaseClient";
+import supabase from "~/util/supabase-browser";
 import { useRouter } from "next/navigation";
 import HostData from "~/types/HostData";
 import User from "~/types/User";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import setVote, { VOTE } from "~/lib/setVote";
 
 const update = async (host: HostData, userId: string, vote: VOTE) => {
@@ -20,7 +20,6 @@ export default function HostVoting({
   user: User | null;
   initialHosts: HostData[];
 }) {
-  const router = useRouter();
   const [hosts, setHosts] = useState(initialHosts);
 
   const vote = async (host: HostData, vote: VOTE) => {
@@ -49,23 +48,25 @@ export default function HostVoting({
     }
   };
 
-  supabase.auth.onAuthStateChange((event, session) => {
-    router.refresh();
-  });
+  useEffect(() => {
+    const channel = supabase
+      .channel("host-changes")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "hosts" },
+        (payload) => {
+          setHosts([
+            ...hosts.filter((host) => host.id !== (payload.new as HostData).id),
+            payload.new as HostData,
+          ]);
+        }
+      )
+      .subscribe();
 
-  supabase
-    .channel("host-changes")
-    .on(
-      "postgres_changes",
-      { event: "*", schema: "public", table: "hosts" },
-      (payload) => {
-        setHosts([
-          ...hosts.filter((host) => host.id !== (payload.new as HostData).id),
-          payload.new as HostData,
-        ]);
-      }
-    )
-    .subscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
 
   return (
     <Card className="my-8 bg-tan">

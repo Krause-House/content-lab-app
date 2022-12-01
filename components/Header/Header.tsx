@@ -1,21 +1,10 @@
-"use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import getCurrentUserClientSide from "~/lib/getCurrentUserClientSide";
-import supabase from "~/util/supabaseClient";
+import { MaybeUser } from "~/types/User";
+
 import { SignInButton } from "../Buttons";
 import UserMenu from "./UserMenu";
 
-export default function Header() {
-  const [user, setUser] = useState<any | undefined>();
-
-  useEffect(() => {
-    getCurrentUserClientSide().then(setUser);
-    supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user);
-    });
-  }, []);
-
+export default function Header({ user }: { user: MaybeUser }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-10 border-b-2 border-gray-500 bg-tan">
       <div className="px-4 mx-auto max-w-7xl">

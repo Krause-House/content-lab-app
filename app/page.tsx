@@ -2,22 +2,14 @@ import BannerImage from "~/components/BannerImage";
 import HostVoting from "~/components/HostVoting";
 import PageHeader from "~/components/PageHeader";
 import ActiveHost from "~/components/Hosts/ActiveHost";
-import getCurrentUser from "~/lib/getCurrentUser";
-import fetchHosts from "~/lib/fetchHosts";
-
-const getUser = async () => {
-  const user = await getCurrentUser();
-  return { user };
-};
-
-const getHosts = async () => {
-  const { data: hosts } = await fetchHosts();
-  return { hosts };
-};
+import createClient from "~/util/supabase-server";
 
 export default async function Home() {
-  const { user } = await getUser();
-  const { hosts } = await getHosts();
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { data: hosts } = await supabase.from("hosts").select();
 
   return (
     <>

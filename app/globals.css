@@ -14,6 +14,14 @@
   border: 2px solid black;
 }
 
+.input-shadow {
+  box-shadow: -2px 4px black !important;
+}
+
+.input-border {
+  border: 3px solid black !important;
+}
+
 .card {
   border: 3px solid black;
 }

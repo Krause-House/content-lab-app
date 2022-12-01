@@ -1,6 +1,5 @@
 import HostData from "~/types/HostData";
-import supabase from "~/util/supabaseClient";
-import getCurrentUserClientSide from "./getCurrentUserClientSide";
+import supabase from "~/util/supabase-browser";
 
 export enum VOTE {
   FOR = "for",
@@ -42,7 +41,7 @@ const voteAgainst = async (currentHost: HostData, voterId: string) => {
 };
 
 const setVote = async (currentHost: HostData, voterId: string, vote: VOTE) => {
-  const user = await getCurrentUserClientSide();
+  const user = await supabase.auth.getUser();
   if (!user) {
     throw new Error("User is not logged in");
   }
