@@ -41,7 +41,6 @@ export default function AuthModal({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
-  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [mode, setMode] = useState<"Sign In" | "Sign Up">("Sign In");
@@ -98,7 +97,7 @@ export default function AuthModal({
                 <Card className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-tan">
                   <Dialog.Title as="h2">{mode}</Dialog.Title>
                   <form onSubmit={attemptSignInOrSignUp}>
-                    <div className="flex flex-col gap-2 mt-4 w-96">
+                    <div className="flex flex-col w-64 gap-2 mt-4 md:w-96">
                       <div className="w-full">
                         <label htmlFor="email" className="sr-only">
                           Email address
