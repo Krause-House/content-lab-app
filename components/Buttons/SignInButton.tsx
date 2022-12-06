@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { PrimaryButton } from "~/components/Buttons";
 import AuthModal from "~/components/AuthModal";
 

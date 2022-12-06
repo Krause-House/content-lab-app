@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { MaybeUser } from "~/types/User";
 
-import { SignInButton } from "../Buttons";
+import { SignInButton, SignOutButton } from "~/components/Buttons";
 import UserMenu from "./UserMenu";
 
 export default function Header({ user }: { user: MaybeUser }) {
@@ -33,7 +33,7 @@ export default function Header({ user }: { user: MaybeUser }) {
 
           <div className="block">
             <div className="flex items-center">
-              {!!user ? <UserMenu user={user} /> : <SignInButton />}
+              {!!user ? <SignOutButton /> : <SignInButton />}
             </div>
           </div>
         </div>

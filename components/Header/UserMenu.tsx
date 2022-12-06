@@ -7,11 +7,11 @@ import classNames from "~/util/classNames";
 import supabase from "~/util/supabase-browser";
 import User from "~/types/User";
 
-export default function UserMenu({ user }: { user: User }) {
-  const signout = async () => {
-    await supabase.auth.signOut();
-  };
+const signout = async () => {
+  await supabase.auth.signOut();
+};
 
+export default function UserMenu({ user }: { user: User }) {
   return (
     <Menu as="div" className="relative flex-shrink-0">
       <div>
