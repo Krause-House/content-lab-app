@@ -1,3 +1,4 @@
+import Candidate from "~/types/Candidate";
 import HostData from "~/types/HostData";
 import supabase from "~/util/supabase-browser";
 
@@ -6,41 +7,51 @@ export enum VOTE {
   AGAINST = "against",
 }
 
-const voteFor = async (currentHost: HostData, voterId: string) => {
-  if (currentHost.for.includes(voterId)) {
+const voteFor = async (candidate: Candidate, voterEmail: string) => {
+  if (candidate.for.includes(voterEmail)) {
     throw new Error("User has already voted for this host");
   } else {
     const data = {
-      ...currentHost,
-      for: [...currentHost.for.filter((id) => id !== voterId), voterId],
-      against: currentHost.against.filter((id) => id !== voterId),
+      ...candidate,
+      for: [
+        ...candidate.for.filter((email) => email !== voterEmail),
+        voterEmail,
+      ],
+      against: candidate.against.filter((email) => email !== voterEmail),
     };
     const { error } = await supabase
-      .from("hosts")
+      .from("candidates")
       .update(data)
-      .eq("id", currentHost.id);
+      .eq("id", candidate.id);
     return { data, error };
   }
 };
 
-const voteAgainst = async (currentHost: HostData, voterId: string) => {
-  if (currentHost.against.includes(voterId)) {
+const voteAgainst = async (candidate: Candidate, voterEmail: string) => {
+  if (candidate.against.includes(voterEmail)) {
     throw new Error("User has already voted against this host");
   } else {
     const data = {
-      ...currentHost,
-      for: currentHost.for.filter((id) => id !== voterId),
-      against: [...currentHost.against.filter((id) => id !== voterId), voterId],
+      ...candidate,
+      for: candidate.for.filter((email) => email !== voterEmail),
+      against: [
+        ...candidate.against.filter((email) => email !== voterEmail),
+        voterEmail,
+      ],
     };
     const { error } = await supabase
-      .from("hosts")
+      .from("candidates")
       .update(data)
-      .eq("id", currentHost.id);
+      .eq("id", candidate.id);
     return { data, error };
   }
 };
 
-const setVote = async (currentHost: HostData, voterId: string, vote: VOTE) => {
+const setVote = async (
+  candidate: Candidate,
+  voterEmail: string,
+  vote: VOTE
+) => {
   const user = await supabase.auth.getUser();
   if (!user) {
     throw new Error("User is not logged in");
@@ -48,9 +59,9 @@ const setVote = async (currentHost: HostData, voterId: string, vote: VOTE) => {
 
   switch (vote) {
     case VOTE.FOR:
-      return voteFor(currentHost, voterId);
+      return voteFor(candidate, voterEmail);
     case VOTE.AGAINST:
-      return voteAgainst(currentHost, voterId);
+      return voteAgainst(candidate, voterEmail);
   }
 };
 

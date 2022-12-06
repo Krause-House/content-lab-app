@@ -3,14 +3,13 @@ import HostListItem from "~/components/Hosts/HostListItem";
 import HostButton from "~/components/Hosts/HostButton";
 import Card from "~/components/Card";
 import supabase from "~/util/supabase-browser";
-import { useRouter } from "next/navigation";
 import HostData from "~/types/HostData";
 import User from "~/types/User";
 import { useEffect, useState } from "react";
 import setVote, { VOTE } from "~/lib/setVote";
 
 const update = async (host: HostData, userId: string, vote: VOTE) => {
-  return await setVote(host, userId, vote);
+  // return await setVote(host, userId, vote);
 };
 
 export default function HostVoting({
