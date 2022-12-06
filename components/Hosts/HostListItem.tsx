@@ -22,7 +22,7 @@ export default function HostListItem({
             width={48}
             height={48}
             key={host.id}
-            className="inline-block w-12 h-12 rounded-full ring-2 ring-gray-50"
+            className="inline-block w-12 h-12 rounded-full ring-2 ring-tan-400"
             src={host.avatarUrl}
             alt={host.displayName}
           />

@@ -71,16 +71,16 @@ export default function HostVoting({
   return (
     <Card className="my-8 bg-tan">
       <div className="px-4 py-5 border-b border-gray-300 sm:px-6">
-        <div className="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-nowrap">
-          <div className="mt-4 ml-4">
-            <h2 className="text-gray-900">Host Leaderboard</h2>
+        <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
+          <div className="">
+            <h2 className="text-primary-500">Host Leaderboard</h2>
             <p className="mt-1 text-sm text-gray-500">
               Upvote and downvote hosts to influence who&apos;s on stage. The
               leader will be the co-host until they fall out of first place.
             </p>
           </div>
           {user && !hosts.find((host) => host.user == user.id) && (
-            <div className="flex-shrink-0 mt-4 ml-4">
+            <div className="flex-shrink-0">
               <HostButton />
             </div>
           )}

@@ -1,39 +1,44 @@
-import BannerImage from "~/components/BannerImage";
-import HostVoting from "~/components/HostVoting";
-import PageHeader from "~/components/PageHeader";
-import ActiveHost from "~/components/Hosts/ActiveHost";
-import createClient from "~/util/supabase-server";
+import Image from "next/image";
+import React from "react";
+import Card from "~/components/Card";
 
 export default async function Home() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  const { data: hosts } = await supabase.from("hosts").select();
-
   return (
-    <>
-      <iframe
-        src="https://playback.tv/krausehouse"
-        className="w-screen h-[800px]"
-      />
-      <main className="relative px-4 mx-auto max-w-7xl">
-        <PageHeader />
-        {/* <ActiveHost
-          isLive
-          hostsName={`${
-            hosts?.length ?? 0 > 0
-              ? hosts?.sort(
-                  (host1, host2) =>
-                    host2.for.length -
-                    host2.against.length -
-                    (host1.for.length - host1.against.length)
-                )[0].displayName + " & "
-              : ""
-          }Uncle Jon`}
-        /> */}
-        <HostVoting user={user} initialHosts={hosts ?? []} />
-      </main>
-    </>
+    <main className="relative px-4 mx-auto max-w-7xl">
+      <div className="flex items-center justify-center gap-12 p-12">
+        <a href="/gameday">
+          <Card className="w-[351px] h-[453px] relative card-shadow-hover cursor-pointer transition-shadow">
+            <div className="absolute inset-0 z-0 object-cover w-full h-full">
+              <Image
+                className="object-cover w-full h-full"
+                src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=40"
+                alt=""
+                fill
+              />
+              <div className="w-full h-full opacity-40 bg-primary-500" />
+            </div>
+            <div className="absolute flex flex-col justify-between w-full h-full p-6">
+              <h1 className="text-white mega">Gameday Livestream</h1>
+              <p className="text-center text-white accent">7 PM • Wednesday</p>
+            </div>
+          </Card>
+        </a>
+        <Card className="w-[351px] h-[453px] relative card-shadow-hover cursor-pointer transition-shadow">
+          <div className="absolute inset-0 z-0 object-cover w-full h-full">
+            <Image
+              className="object-cover w-full h-full"
+              src="https://images.unsplash.com/photo-1648999600048-5410bc413bd9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
+              alt=""
+              fill
+            />
+            <div className="w-full h-full opacity-40 bg-primary-500" />
+          </div>
+          <div className="absolute flex flex-col justify-between w-full h-full p-6">
+            <h1 className="text-white mega">Around the Association Weekly</h1>
+            <p className="text-center text-white accent">Vote Now</p>
+          </div>
+        </Card>
+      </div>
+    </main>
   );
 }

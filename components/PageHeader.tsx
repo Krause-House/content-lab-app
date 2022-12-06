@@ -6,7 +6,7 @@ export default function PageHeader() {
   return (
     <div className="my-10 md:flex md:items-start md:justify-between">
       <div className="flex-1 min-w-0">
-        <h1 className="text-gray-900 sm:truncate">Krause House Gameday</h1>
+        <h1 className="text-primary sm:truncate">Krause House Gameday</h1>
         <p className="max-w-4xl mt-2 text-sm text-gray-500">
           Welcome to a better way to watch your favorite NBA teams. We&apos;ve
           partnered with Playback to provide you with live streamed NBA action,

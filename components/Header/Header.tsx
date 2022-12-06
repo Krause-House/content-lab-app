@@ -6,7 +6,7 @@ import UserMenu from "./UserMenu";
 
 export default function Header({ user }: { user: MaybeUser }) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-10 border-b-2 border-gray-500 bg-tan">
+    <header className="fixed top-0 left-0 right-0 z-10 border-b border-gray-500 bg-tan">
       <div className="px-4 mx-auto max-w-7xl">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex items-center px-2 lg:px-0">
@@ -19,8 +19,8 @@ export default function Header({ user }: { user: MaybeUser }) {
             </div>
           </div>
 
-          <div className="flex items-center h-full">
-            <span className="sr-only">Gameday</span>
+          <a className="flex items-center h-full" href="/">
+            <span className="sr-only">Home</span>
             <Image
               src="/assets/wordmark.png"
               alt="Gameday"
@@ -29,7 +29,7 @@ export default function Header({ user }: { user: MaybeUser }) {
               priority
               className="hidden w-auto h-5 md:block"
             />
-          </div>
+          </a>
 
           <div className="block">
             <div className="flex items-center">

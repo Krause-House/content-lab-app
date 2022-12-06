@@ -1,12 +1,11 @@
 "use client";
+import React, { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useRouter } from "next/navigation";
-import React, { useState, Fragment, useCallback } from "react";
+import toast from "react-hot-toast";
 import Card from "~/components/Card";
 import supabase from "~/util/supabase-browser";
 import { PrimaryButton } from "~/components/Buttons";
 import Input from "~/components/Input";
-import toast from "react-hot-toast";
 
 async function signInWithDiscord() {
   await supabase.auth.signInWithOAuth({
@@ -47,7 +46,6 @@ export default function AuthModal({
   const [loading, setLoading] = useState(false);
 
   const attemptSignInOrSignUp = async (e: React.FormEvent) => {
-    console.log("called");
     e.preventDefault();
     setLoading(true);
     if (email && password) {
