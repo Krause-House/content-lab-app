@@ -17,14 +17,15 @@ export default function LeaderboardCandidate({
     <div className="block">
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="flex items-center justify-start flex-1 min-w-0 gap-3">
-          <Image
-            width={48}
-            height={48}
-            key={candidate.id}
-            className="inline-block w-12 h-12 rounded-full ring-2 ring-tan-400"
-            src={candidate.imageUrl}
-            alt={candidate.name}
-          />
+          <div className="relative w-12 h-12 rounded-full overflow-clip bg-tan-500 ring-2 ring-tan-400">
+            <Image
+              fill
+              key={candidate.id}
+              className="object-cover w-full h-full"
+              src={candidate.imageUrl}
+              alt={candidate.name}
+            />
+          </div>
           <div className="">
             <h4 className="text-gray-800 truncate">{candidate.name}</h4>
             <p className="text-sm text-gray-500">{candidate.supporting_text}</p>

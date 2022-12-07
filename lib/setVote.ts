@@ -1,5 +1,4 @@
 import Candidate from "~/types/Candidate";
-import HostData from "~/types/HostData";
 import supabase from "~/util/supabase-browser";
 
 export enum VOTE {
