@@ -1,3 +1,4 @@
+import BannerImage from "~/components/BannerImage";
 import HostVoting from "~/components/HostVoting";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
@@ -12,32 +13,30 @@ export default async function Weekly() {
   const { data: candidates } = await supabase.from("candidates").select();
 
   return (
-    <main className="relative px-4 mx-auto max-w-7xl">
-      <PageHeader />
-      {/* <ActiveHost
-          isLive
-          hostsName={`${
-            hosts?.length ?? 0 > 0
-              ? hosts?.sort(
-                  (host1, host2) =>
-                    host2.for.length -
-                    host2.against.length -
-                    (host1.for.length - host1.against.length)
-                )[0].displayName + " & "
-              : ""
-          }Uncle Jon`}
-        /> */}
-      {contests?.map((contest) => (
-        <Leaderboard
-          user={user}
-          candidates={
-            candidates?.filter(
-              (candidate) => contest.id === candidate.contest_id
-            ) ?? []
-          }
-          contest={contest}
+    <>
+      <BannerImage imageUrl="/assets/weekly_banner.png" />
+      <main className="relative px-4 mx-auto max-w-7xl">
+        <PageHeader
+          title="Around the Association Weekly"
+          description="Vote on the segments for this week's Around the Association weekly episode. The winning players and games will be broken down for all to hear."
+          shareLink={`http://twitter.com/intent/tweet?text=${"Vote on the which players and games to cover in this week's Around the Association podcast!".replace(
+            " ",
+            "%20"
+          )}&url=https%3A%2F%2Fgameday.watch/weekly%2F`}
         />
-      ))}
-    </main>
+        {contests?.map((contest, idx) => (
+          <Leaderboard
+            key={idx}
+            user={user}
+            candidates={
+              candidates?.filter(
+                (candidate) => contest.id === candidate.contest_id
+              ) ?? []
+            }
+            contest={contest}
+          />
+        ))}
+      </main>
+    </>
   );
 }

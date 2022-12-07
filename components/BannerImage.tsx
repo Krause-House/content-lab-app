@@ -1,15 +1,21 @@
 import Image from "next/image";
 import React from "react";
 
-export default function BannerImage({ isLive }: { isLive?: boolean }) {
+export default function BannerImage({
+  imageUrl,
+  isLive,
+}: {
+  imageUrl: string;
+  isLive?: boolean;
+}) {
   return (
     <div className="relative">
       <Image
         width={1512}
         height={200}
         className="block w-full"
-        src="/assets/banner.png"
-        alt="Krause House"
+        src={imageUrl}
+        alt=""
       />
       {isLive && (
         <a
