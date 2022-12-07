@@ -19,7 +19,10 @@ export default function Head() {
       <meta name="twitter:site" content="@KrauseHouseDAO" />
       <meta name="twitter:creator" content="@gregfromstl" />
       <meta property="og:url" content="https://gameday.watch/weekly" />
-      <meta property="og:image" content="https://ibb.co/3zNmB7h" />
+      <meta
+        property="og:image"
+        content="https://i.ibb.co/9tTHsNY/The-Weekly-Preview-Image.png"
+      />
       <link rel="icon" href="/favicon.ico" />
       <link rel="icon" href="/favicon.png" />
     </>
