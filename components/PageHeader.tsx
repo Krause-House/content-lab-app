@@ -1,6 +1,6 @@
 import React from "react";
-import { TvIcon, ShareIcon } from "@heroicons/react/20/solid";
-import { PrimaryButton, SecondaryButton } from "~/components/Buttons";
+import { ShareIcon } from "@heroicons/react/20/solid";
+import { SecondaryButton } from "~/components/Buttons";
 
 export default function PageHeader({
   title,
