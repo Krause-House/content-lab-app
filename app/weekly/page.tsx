@@ -1,9 +1,21 @@
 import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
-import HostVoting from "~/components/HostVoting";
+import { PrimaryButton } from "~/components/Buttons";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
 import createClient from "~/util/supabase-server";
+
+function ListenButton() {
+  return (
+    <a
+      href="https://open.spotify.com/show/3YadlLpwrMTOG0ecvX65bw?si=18d05d20368444cf"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <PrimaryButton>Listen</PrimaryButton>
+    </a>
+  );
+}
 
 export default async function Weekly() {
   const supabase = createClient();
@@ -33,6 +45,7 @@ export default async function Weekly() {
             " ",
             "%20"
           )}&url=https%3A%2F%2Fgameday.watch/weekly%2F`}
+          primaryButton={<ListenButton />}
         />
         {contests?.map((contest, idx) => (
           <Leaderboard
