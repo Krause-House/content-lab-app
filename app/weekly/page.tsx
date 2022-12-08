@@ -6,7 +6,7 @@ import PageHeader from "~/components/PageHeader";
 import ShareCard from "~/components/ShareCard";
 import createClient from "~/util/supabase-server";
 
-const shareLink = `http://twitter.com/intent/tweet?text=${"Vote on the which players and games to cover in this week's Around the Association podcast! @WatchGameday".replace(
+const shareLink = `http://twitter.com/intent/tweet?text=${"Vote on which players and games to cover in this week's Around the Association podcast! @WatchGameday".replace(
   " ",
   "%20"
 )}&url=https%3A%2F%2Fgameday.watch/weekly%2F`;
