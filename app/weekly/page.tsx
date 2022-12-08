@@ -1,3 +1,4 @@
+import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
 import HostVoting from "~/components/HostVoting";
 import Leaderboard from "~/components/Leaderboard";
@@ -14,6 +15,13 @@ export default async function Weekly() {
 
   return (
     <>
+      <ActionBanner
+        text={
+          user?.id
+            ? "Click the share button to win more votes next week!"
+            : "Sign in to pick this week's Around the Association segments!"
+        }
+      />
       <BannerImage imageUrl="/assets/weekly_banner.png" />
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader
