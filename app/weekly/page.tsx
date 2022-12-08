@@ -3,7 +3,13 @@ import BannerImage from "~/components/BannerImage";
 import { PrimaryButton } from "~/components/Buttons";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
+import ShareCard from "~/components/ShareCard";
 import createClient from "~/util/supabase-server";
+
+const shareLink = `http://twitter.com/intent/tweet?text=${"Vote on which players and games to cover in this week's Around the Association podcast! @WatchGameday".replace(
+  " ",
+  "%20"
+)}&url=https%3A%2F%2Fgameday.watch/weekly%2F`;
 
 function ListenButton() {
   return (
@@ -27,13 +33,9 @@ export default async function Weekly() {
 
   return (
     <>
-      <ActionBanner
-        text={
-          user?.id
-            ? "Click the share button to win more votes next week!"
-            : "Sign in to pick this week's Around the Association segments!"
-        }
-      />
+      {!user?.id && (
+        <ActionBanner text="Sign in to pick this week's Around the Association segments" />
+      )}
       <div className="hidden sm:block">
         <BannerImage imageUrl="/assets/weekly_banner.png" />
       </div>
@@ -41,11 +43,12 @@ export default async function Weekly() {
         <PageHeader
           title="Around the Association Weekly"
           description="Vote on the segments for this week's Around the Association weekly episode. The winning players and games will be broken down for all to hear."
-          shareLink={`http://twitter.com/intent/tweet?text=${"Vote on the which players and games to cover in this week's Around the Association podcast!".replace(
-            " ",
-            "%20"
-          )}&url=https%3A%2F%2Fgameday.watch/weekly%2F`}
+          shareLink={shareLink}
           primaryButton={<ListenButton />}
+        />
+        <ShareCard
+          shareLink={shareLink}
+          description="Share Around the Association Weekly with friends to get more voting power next week. Tweet using @WatchGameday and every like and retweet will increase your future voting power."
         />
         {contests?.map((contest, idx) => (
           <Leaderboard
