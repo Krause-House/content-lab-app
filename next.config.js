@@ -4,7 +4,12 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["images.unsplash.com", "cdn.discordapp.com"],
+    domains: [
+      "images.unsplash.com",
+      "cdn.discordapp.com",
+      "s.espncdn.com",
+      "a.espncdn.com",
+    ],
   },
 };
 

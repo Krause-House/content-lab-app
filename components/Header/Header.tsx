@@ -1,23 +1,12 @@
-"use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import getCurrentUserClientSide from "~/lib/getCurrentUserClientSide";
-import supabase from "~/util/supabaseClient";
-import { SignInButton } from "../Buttons";
+import { MaybeUser } from "~/types/User";
+
+import { SignInButton, SignOutButton } from "~/components/Buttons";
 import UserMenu from "./UserMenu";
 
-export default function Header() {
-  const [user, setUser] = useState<any | undefined>();
-
-  useEffect(() => {
-    getCurrentUserClientSide().then(setUser);
-    supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user);
-    });
-  }, []);
-
+export default function Header({ user }: { user: MaybeUser }) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-10 border-b-2 border-gray-500 bg-tan">
+    <header className="fixed top-0 left-0 right-0 z-10 border-b border-gray-500 bg-tan">
       <div className="px-4 mx-auto max-w-7xl">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex items-center px-2 lg:px-0">
@@ -30,8 +19,8 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="flex items-center h-full">
-            <span className="sr-only">Gameday</span>
+          <a className="flex items-center h-full" href="/">
+            <span className="sr-only">Home</span>
             <Image
               src="/assets/wordmark.png"
               alt="Gameday"
@@ -40,11 +29,11 @@ export default function Header() {
               priority
               className="hidden w-auto h-5 md:block"
             />
-          </div>
+          </a>
 
           <div className="block">
             <div className="flex items-center">
-              {!!user ? <UserMenu user={user} /> : <SignInButton />}
+              {!!user ? <SignOutButton /> : <SignInButton />}
             </div>
           </div>
         </div>

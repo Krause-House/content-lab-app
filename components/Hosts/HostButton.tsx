@@ -21,23 +21,11 @@ export default function HostButton() {
   };
 
   return (
-    <>
-      <PrimaryButton onClick={() => !isLoading && host()} disabled={isLoading}>
-        {isLoading ? (
-          <>
-            <div className="-ml-0.5 mr-2 w-4 h-4 ease-linear border-[3px] border-t- border-transparent rounded-full loader"></div>
-            Loading
-          </>
-        ) : (
-          <>
-            <MicrophoneIcon
-              className="-ml-0.5 mr-2 h-4 w-4"
-              aria-hidden="true"
-            />
-            Host
-          </>
-        )}
-      </PrimaryButton>
-    </>
+    <PrimaryButton onClick={host} isLoading={isLoading}>
+      <>
+        <MicrophoneIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+        Host
+      </>
+    </PrimaryButton>
   );
 }

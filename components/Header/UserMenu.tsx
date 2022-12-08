@@ -4,18 +4,14 @@ import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
 import classNames from "~/util/classNames";
-import supabase from "~/util/supabaseClient";
+import supabase from "~/util/supabase-browser";
 import User from "~/types/User";
 
-export default function UserMenu({ user }: { user: User }) {
-  const signout = async () => {
-    // delete cookies on sign out
-    await supabase.auth.signOut();
-    const expires = new Date(0).toUTCString();
-    document.cookie = `gameday-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`;
-    document.cookie = `gameday-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`;
-  };
+const signout = async () => {
+  await supabase.auth.signOut();
+};
 
+export default function UserMenu({ user }: { user: User }) {
   return (
     <Menu as="div" className="relative flex-shrink-0">
       <div>

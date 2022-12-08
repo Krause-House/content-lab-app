@@ -7,19 +7,31 @@
 }
 
 .button-shadow {
-  box-shadow: -2px 4px black;
+  box-shadow: -2px 4px #190a2d;
 }
 
 .button-border {
-  border: 2px solid black;
+  border: 2px solid #190a2d;
+}
+
+.input-shadow {
+  box-shadow: -2px 4px #190a2d !important;
+}
+
+.input-border {
+  border: 3px solid #190a2d !important;
 }
 
 .card {
-  border: 3px solid black;
+  border: 3px solid #190a2d;
 }
 
 .card-shadow {
-  box-shadow: -3px 3px black;
+  box-shadow: -3px 3px #190a2d;
+}
+
+.card-shadow-hover:hover {
+  box-shadow: -3px 3px #190a2d;
 }
 
 .loader {
@@ -77,9 +89,22 @@ button {
   src: url("/assets/fonts/Sequel Sans Light Body.ttf");
   font-weight: 300;
 }
+@font-face {
+  font-family: "Montserrat";
+  src: url("/assets/fonts/Montserrat-Light.ttf");
+}
+
+.mega {
+  @apply text-2xl font-bold sm:text-4xl;
+}
+
+.accent {
+  @apply tracking-[0.2em] uppercase;
+  font-family: "Montserrat", sans-serif;
+}
 
 h1 {
-  @apply text-2xl font-bold sm:text-3xl;
+  @apply text-3xl font-bold;
 }
 
 h2 {

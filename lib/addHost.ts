@@ -1,8 +1,7 @@
-import supabase from "~/util/supabaseClient";
-import getCurrentUserClientSide from "./getCurrentUserClientSide";
+import supabase from "~/util/supabase-browser";
 
 const addHost = async () => {
-  const user = await getCurrentUserClientSide();
+  const user = await (await supabase.auth.getUser()).data.user;
   if (!user) {
     throw new Error("User is not logged in");
   }
