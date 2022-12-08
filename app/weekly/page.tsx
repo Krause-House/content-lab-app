@@ -22,7 +22,9 @@ export default async function Weekly() {
             : "Sign in to pick this week's Around the Association segments!"
         }
       />
-      <BannerImage imageUrl="/assets/weekly_banner.png" />
+      <div className="hidden sm:block">
+        <BannerImage imageUrl="/assets/weekly_banner.png" />
+      </div>
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader
           title="Around the Association Weekly"

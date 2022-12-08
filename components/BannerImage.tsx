@@ -13,7 +13,7 @@ export default function BannerImage({
       <Image
         width={1512}
         height={200}
-        className="block w-full"
+        className="block object-cover w-full"
         src={imageUrl}
         alt=""
       />
