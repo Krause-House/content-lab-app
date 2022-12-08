@@ -64,10 +64,9 @@ export default function Leaderboard({
         "postgres_changes",
         { event: "*", schema: "public", table: "candidates" },
         (payload) => {
-          console.log(payload.new);
           if ((payload.new as Candidate).contest_id === contest.id) {
             setCandidates([
-              ...candidates.filter(
+              ..._candidates.filter(
                 (candidate) => candidate.id !== (payload.new as Candidate).id
               ),
               payload.new as Candidate,
@@ -80,7 +79,7 @@ export default function Leaderboard({
     return () => {
       supabase.removeChannel(channel);
     };
-  }, []);
+  }, [_candidates]);
 
   return (
     <Card className="my-8 bg-tan">

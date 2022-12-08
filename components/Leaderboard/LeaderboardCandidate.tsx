@@ -20,6 +20,7 @@ export default function LeaderboardCandidate({
           <div className="relative w-12 h-12 overflow-hidden rounded-full bg-tan-500 ring-2 ring-tan-400">
             <Image
               fill
+              sizes="100%"
               key={candidate.id}
               className="object-cover w-full h-full"
               src={candidate.imageUrl}

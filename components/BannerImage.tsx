@@ -11,6 +11,7 @@ export default function BannerImage({
   return (
     <div className="relative">
       <Image
+        priority
         width={1512}
         height={200}
         className="block object-cover w-full"
