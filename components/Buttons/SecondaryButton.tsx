@@ -13,7 +13,7 @@ export default function SecondaryButton({
 }) {
   return (
     <BaseButton
-      className={`font-light text-gray-800 bg-tan-400 hover:bg-tan-500 ${className}`}
+      className={`font-light text-primary-500 bg-tan-400 hover:bg-tan-500 ${className}`}
       onClick={onClick}
     >
       {children}
