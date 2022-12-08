@@ -23,20 +23,6 @@ export default async function Gameday() {
           great commentary from hosts picked by you, and a rowdy community of
           hoops fanatics."
         />
-        {/* <ActiveHost
-          isLive
-          hostsName={`${
-            hosts?.length ?? 0 > 0
-              ? hosts?.sort(
-                  (host1, host2) =>
-                    host2.for.length -
-                    host2.against.length -
-                    (host1.for.length - host1.against.length)
-                )[0].displayName + " & "
-              : ""
-          }Uncle Jon`}
-        /> */}
-        <HostVoting user={user} initialHosts={hosts ?? []} />
       </main>
     </>
   );
