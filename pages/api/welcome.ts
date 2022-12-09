@@ -29,7 +29,7 @@ export default async function handler(
   });
   let user = null;
   try {
-    await mailchimpClient.lists.getListMember(
+    user = await mailchimpClient.lists.getListMember(
       process.env.NEWSLETTER_AUDIENCE_ID,
       req.body.email
     );
@@ -40,7 +40,6 @@ export default async function handler(
   // has the user already signed up on this or another list?, if not create user
   if (!user) {
     try {
-      console.log("creating user");
       user = await mailchimpClient.lists.addListMember(
         process.env.NEWSLETTER_AUDIENCE_ID,
         {
