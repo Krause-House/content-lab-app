@@ -6,6 +6,7 @@ import Card from "~/components/Card";
 import supabase from "~/util/supabase-browser";
 import { PrimaryButton } from "~/components/Buttons";
 import Input from "~/components/Input";
+import axios from "axios";
 
 async function signInWithDiscord() {
   await supabase.auth.signInWithOAuth({
@@ -27,6 +28,11 @@ async function signUp(email: string, password: string) {
     email,
     password,
   });
+  try {
+    await axios.post(`/api/welcome`, { email });
+  } catch (e) {
+    console.error(e);
+  }
   if (!error) {
     await signInWithPassword(email, password);
   }
