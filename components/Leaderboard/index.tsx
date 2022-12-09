@@ -7,6 +7,8 @@ import setVote, { VOTE } from "~/lib/setVote";
 import Contest from "~/types/Contest";
 import Candidate from "~/types/Candidate";
 import LeaderboardCandidate from "./LeaderboardCandidate";
+import { PrimaryButton } from "../Buttons";
+import AuthModal from "../AuthModal";
 
 const update = async (candidate: Candidate, userEmail: string, vote: VOTE) => {
   return await setVote(candidate, userEmail, vote);
@@ -21,6 +23,7 @@ export default function Leaderboard({
   contest: Contest;
   candidates: Candidate[];
 }) {
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [_candidates, setCandidates] = useState(candidates);
 
   const vote = async (candidate: Candidate, vote: VOTE) => {
@@ -82,31 +85,41 @@ export default function Leaderboard({
   }, [_candidates]);
 
   return (
-    <Card className="my-8 bg-tan">
-      <div className="px-4 py-5 border-b border-gray-300 sm:px-6">
-        <div className="">
-          <h2 className="text-primary-500">{contest.name}</h2>
-          <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
+    <>
+      <Card className="my-8 bg-tan">
+        <div className="flex items-center justify-between px-4 py-5 border-b border-gray-300 sm:px-6">
+          <div className="">
+            <h2 className="text-primary-500">{contest.name}</h2>
+            <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
+          </div>
+          {!user?.id && (
+            <PrimaryButton onClick={() => setShowAuthModal(true)}>
+              Vote
+            </PrimaryButton>
+          )}
         </div>
-      </div>
-      <ul role="list" className="divide-y divide-gray-300">
-        {_candidates
-          .sort(
-            (candidate1, candidate2) =>
-              candidate2.for.length -
-              candidate2.against.length -
-              (candidate1.for.length - candidate1.against.length)
-          )
-          .map((candidate: Candidate) => (
-            <li key={candidate.id}>
-              <LeaderboardCandidate
-                userEmail={user?.email ?? null}
-                candidate={candidate}
-                vote={(_vote) => vote(candidate, _vote)}
-              />
-            </li>
-          ))}
-      </ul>
-    </Card>
+        <ul role="list" className="divide-y divide-gray-300">
+          {_candidates
+            .sort(
+              (candidate1, candidate2) =>
+                candidate2.for.length -
+                candidate2.against.length -
+                (candidate1.for.length - candidate1.against.length)
+            )
+            .map((candidate: Candidate) => (
+              <li key={candidate.id}>
+                <LeaderboardCandidate
+                  userEmail={user?.email ?? null}
+                  candidate={candidate}
+                  vote={(_vote) => vote(candidate, _vote)}
+                />
+              </li>
+            ))}
+        </ul>
+      </Card>
+      {!user?.id && (
+        <AuthModal isOpen={showAuthModal} setIsOpen={setShowAuthModal} />
+      )}
+    </>
   );
 }
