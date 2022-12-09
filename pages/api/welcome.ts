@@ -27,10 +27,15 @@ export default async function handler(
     apiKey: process.env.MARKETING_KEY,
     server: process.env.MAILCHIMP_SERVER,
   });
-  let user = await mailchimpClient.lists.getListMember(
-    process.env.NEWSLETTER_AUDIENCE_ID,
-    req.body.email
-  );
+  let user = null;
+  try {
+    await mailchimpClient.lists.getListMember(
+      process.env.NEWSLETTER_AUDIENCE_ID,
+      req.body.email
+    );
+  } catch (error: any) {
+    // user not found, so keep it null
+  }
 
   // has the user already signed up on this or another list?, if not create user
   if (!user) {
