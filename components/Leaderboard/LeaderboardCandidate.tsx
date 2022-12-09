@@ -38,14 +38,14 @@ export default function LeaderboardCandidate({
               onClick={() =>
                 !candidate.for.includes(userEmail) && vote(VOTE.FOR)
               }
-              className={`w-5 h-5 hover:text-gray-600 ${
+              className={`w-5 h-5 hover:text-gray-800 transition ${
                 !candidate.for.includes(userEmail)
-                  ? "cursor-pointer"
-                  : "text-gray-600"
+                  ? "cursor-pointer hover:scale-125"
+                  : "text-gray-800"
               }`}
             />
           )}
-          <p className="text-gray-600">
+          <p className="text-base text-primary">
             {candidate.for.length - candidate.against.length}
           </p>
           {userEmail && (
@@ -53,10 +53,10 @@ export default function LeaderboardCandidate({
               onClick={() =>
                 !candidate.against.includes(userEmail) && vote(VOTE.AGAINST)
               }
-              className={`w-5 h-5 hover:text-gray-600 ${
+              className={`w-5 h-5 hover:text-gray-800 transition ${
                 !candidate.against.includes(userEmail)
-                  ? "cursor-pointer"
-                  : "text-gray-600"
+                  ? "cursor-pointer hover:scale-125"
+                  : "text-gray-800"
               }`}
             />
           )}
