@@ -89,7 +89,7 @@ export default function Leaderboard({
       <Card className="my-8 bg-tan">
         <div className="flex items-center justify-between px-4 py-5 border-b border-gray-300 sm:px-6">
           <div className="">
-            <h2 className="text-primary-500">{contest.name}</h2>
+            <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
           {!user?.id && (
