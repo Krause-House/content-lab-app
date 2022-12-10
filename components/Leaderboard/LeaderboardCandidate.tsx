@@ -1,6 +1,5 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import DiscordTag from "~/components/SocialTags/DiscordTag";
 import { VOTE } from "~/lib/setVote";
 import Candidate from "~/types/Candidate";
 

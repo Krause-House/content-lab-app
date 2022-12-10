@@ -29,8 +29,12 @@ export default function PrimaryButton({
       <>
         {isLoading ? (
           <div className="flex items-center justify-center w-full">
-            <div className="-ml-0.5 mr-2 w-4 h-4 ease-linear border-[3px] border-t- border-transparent rounded-full loader"></div>
-            {loadingText ?? "Loading"}
+            <div
+              className={`${
+                loadingText && "-ml-0.5 mr-2"
+              } w-4 h-4 ease-linear border-[3px] border-t- border-transparent rounded-full loader`}
+            ></div>
+            {loadingText}
           </div>
         ) : (
           children
