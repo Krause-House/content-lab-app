@@ -34,7 +34,7 @@ export default async function Weekly() {
   return (
     <>
       {!user?.id && (
-        <ActionBanner text="Sign in to pick this week's Around the Association segments" />
+        <ActionBanner text="Voting has ended for this week! Check back Thursday for another round of options." />
       )}
       <div className="hidden sm:block">
         <BannerImage imageUrl="/assets/weekly_banner.png" />
@@ -59,6 +59,7 @@ export default async function Weekly() {
                 (candidate) => contest.id === candidate.contest_id
               ) ?? []
             }
+            votingOpen={false}
             contest={contest}
           />
         ))}

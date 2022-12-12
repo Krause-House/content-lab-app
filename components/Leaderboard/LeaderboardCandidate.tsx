@@ -6,10 +6,12 @@ import Candidate from "~/types/Candidate";
 export default function LeaderboardCandidate({
   candidate,
   userEmail,
+  canVote,
   vote,
 }: {
   candidate: Candidate;
   userEmail: string | null;
+  canVote: boolean;
   vote: (vote: VOTE) => void;
 }) {
   return (
@@ -32,7 +34,7 @@ export default function LeaderboardCandidate({
           </div>
         </div>
         <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-400">
-          {userEmail && (
+          {userEmail && canVote && (
             <ChevronUpIcon
               onClick={() =>
                 !candidate.for.includes(userEmail) && vote(VOTE.FOR)
@@ -47,7 +49,7 @@ export default function LeaderboardCandidate({
           <p className="text-base text-primary">
             {candidate.for.length - candidate.against.length}
           </p>
-          {userEmail && (
+          {userEmail && canVote && (
             <ChevronDownIcon
               onClick={() =>
                 !candidate.against.includes(userEmail) && vote(VOTE.AGAINST)
