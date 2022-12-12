@@ -33,9 +33,7 @@ export default async function Weekly() {
 
   return (
     <>
-      {!user?.id && (
-        <ActionBanner text="Voting has ended for this week! Check back Thursday for another round of options." />
-      )}
+      <ActionBanner text="Voting has ended for this week! Check back Thursday for another round of options." />
       <div className="hidden sm:block">
         <BannerImage imageUrl="/assets/weekly_banner.png" />
       </div>

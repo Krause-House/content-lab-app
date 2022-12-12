@@ -22,11 +22,18 @@ export default async function handler(
     res.status(400).json({ message: "Email is required" });
     return;
   }
+
   const mailchimpClient = require("@mailchimp/mailchimp_marketing");
-  mailchimpClient.setConfig({
-    apiKey: process.env.MARKETING_KEY,
-    server: process.env.MAILCHIMP_SERVER,
-  });
+
+  try {
+    mailchimpClient.setConfig({
+      apiKey: process.env.MARKETING_KEY,
+      server: process.env.MAILCHIMP_SERVER,
+    });
+  } catch (error: any) {
+    res.status(500).send({ message: error.response.body.detail });
+  }
+
   let user = null;
   try {
     user = await mailchimpClient.lists.getListMember(
