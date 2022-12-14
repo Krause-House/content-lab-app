@@ -93,25 +93,27 @@ export default function Leaderboard({
   return (
     <>
       <Card className="my-8 bg-tan">
-        <div className="flex items-center justify-between px-4 py-5 border-b border-gray-300 sm:px-6">
+        <div className="px-4 py-5 border-b border-gray-300 md:flex md:items-center md:gap-2 md:justify-between sm:px-6">
           <div className="">
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          {!user?.id && votingOpen ? (
-            <PrimaryButton onClick={() => setShowAuthModal(true)}>
-              Vote
-            </PrimaryButton>
-          ) : (
-            <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
-              <PrimaryButton className="flex items-center justify-center gap-2">
-                <div className="flex items-end text-xs font-normal accent">
-                  Voting Power:
-                </div>
-                {votingPower}
+          <div className="flex items-end justify-end w-full mt-3 lg:mt-0 lg:ml-4">
+            {!user?.id && votingOpen ? (
+              <PrimaryButton onClick={() => setShowAuthModal(true)}>
+                Vote
               </PrimaryButton>
-            </Tooltip>
-          )}
+            ) : (
+              <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
+                <PrimaryButton className="flex items-center justify-center w-48 gap-2">
+                  <div className="flex items-end text-xs font-normal accent">
+                    Voting Power:
+                  </div>
+                  {votingPower}
+                </PrimaryButton>
+              </Tooltip>
+            )}
+          </div>
         </div>
         <ul role="list" className="divide-y divide-gray-300">
           {_candidates
