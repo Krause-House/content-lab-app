@@ -7,9 +7,5 @@ export default function Card({
   className?: string;
   children: React.ReactNode;
 }) {
-  return (
-    <div className={`card rounded-xl overflow-hidden ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`card rounded-xl ${className}`}>{children}</div>;
 }

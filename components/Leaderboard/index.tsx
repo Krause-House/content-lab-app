@@ -7,8 +7,10 @@ import setVote, { VOTE } from "~/lib/setVote";
 import Contest from "~/types/Contest";
 import Candidate from "~/types/Candidate";
 import LeaderboardCandidate from "./LeaderboardCandidate";
-import { PrimaryButton } from "../Buttons";
-import AuthModal from "../AuthModal";
+import { PrimaryButton } from "~/components/Buttons";
+import AuthModal from "~/components/AuthModal";
+import Tooltip from "~/components/Tooltip";
+import { HeartIcon, StarIcon } from "@heroicons/react/24/outline";
 
 const update = async (candidate: Candidate, userEmail: string, vote: VOTE) => {
   return await setVote(candidate, userEmail, vote);
@@ -19,11 +21,13 @@ export default function Leaderboard({
   contest,
   candidates,
   votingOpen,
+  votingPower,
 }: {
   user: User | null;
   contest: Contest;
   candidates: Candidate[];
   votingOpen: boolean;
+  votingPower: number;
 }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [_candidates, setCandidates] = useState(candidates);
@@ -95,10 +99,21 @@ export default function Leaderboard({
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          {!user?.id && votingOpen && (
+          {!user?.id && votingOpen ? (
             <PrimaryButton onClick={() => setShowAuthModal(true)}>
               Vote
             </PrimaryButton>
+          ) : (
+            <div className="mx-2 text-primary-500">
+              <Tooltip text="This is your current voting power. Use the share button each week to get a 2x multiplier on your voting power.">
+                <span className="flex items-center justify-center gap-1 text-xl font-bold">
+                  <div className="flex items-end h-5 text-xs font-normal">
+                    VP
+                  </div>
+                  {votingPower}
+                </span>
+              </Tooltip>
+            </div>
           )}
         </div>
         <ul role="list" className="divide-y divide-gray-300">
