@@ -103,16 +103,12 @@ export default function Leaderboard({
               Vote
             </PrimaryButton>
           ) : (
-            <div className="mx-2 text-primary-500">
-              <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
-                <PrimaryButton className="flex items-center justify-center gap-1 text-xl">
-                  <div className="flex items-end h-5 text-xs font-normal">
-                    VP
-                  </div>
-                  {votingPower}
-                </PrimaryButton>
-              </Tooltip>
-            </div>
+            <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
+              <PrimaryButton className="flex items-center justify-center gap-1 text-xl">
+                <div className="flex items-end h-5 text-xs font-normal">VP</div>
+                {votingPower}
+              </PrimaryButton>
+            </Tooltip>
           )}
         </div>
         <ul role="list" className="divide-y divide-gray-300">
