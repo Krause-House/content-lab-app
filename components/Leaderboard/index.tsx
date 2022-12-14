@@ -98,7 +98,7 @@ export default function Leaderboard({
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          <div className="flex items-end justify-end w-full mt-3 lg:mt-0 lg:ml-4">
+          <div className="flex items-end justify-end w-full mt-3 md:mt-0">
             {!user?.id && votingOpen ? (
               <PrimaryButton onClick={() => setShowAuthModal(true)}>
                 Vote
