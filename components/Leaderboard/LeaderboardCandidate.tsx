@@ -18,7 +18,7 @@ export default function LeaderboardCandidate({
     <div className="block">
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="flex items-center justify-start flex-1 min-w-0 gap-3">
-          <div className="relative min-w-[50px] min-h-[50px] overflow-hidden rounded-full min-w-lg bg-tan-500 ring-2 ring-tan-400">
+          <div className="relative min-w-[50px] min-h-[50px] overflow-hidden rounded-full min-w-lg bg-tan-500 ring-2 ring-tan-400 z-0">
             <Image
               fill
               sizes="100%"

@@ -7,8 +7,9 @@ import setVote, { VOTE } from "~/lib/setVote";
 import Contest from "~/types/Contest";
 import Candidate from "~/types/Candidate";
 import LeaderboardCandidate from "./LeaderboardCandidate";
-import { PrimaryButton } from "../Buttons";
-import AuthModal from "../AuthModal";
+import { PrimaryButton } from "~/components/Buttons";
+import AuthModal from "~/components/AuthModal";
+import Tooltip from "~/components/Tooltip";
 
 const update = async (candidate: Candidate, userEmail: string, vote: VOTE) => {
   return await setVote(candidate, userEmail, vote);
@@ -19,11 +20,13 @@ export default function Leaderboard({
   contest,
   candidates,
   votingOpen,
+  votingPower,
 }: {
   user: User | null;
   contest: Contest;
   candidates: Candidate[];
   votingOpen: boolean;
+  votingPower: number;
 }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [_candidates, setCandidates] = useState(candidates);
@@ -41,7 +44,7 @@ export default function Leaderboard({
               vote === VOTE.FOR
                 ? [
                     ...candidate.for.filter((email) => email !== user.email),
-                    user.email,
+                    ...Array(votingPower).fill(user.email), // add votes as many times as voting power
                   ]
                 : candidate.for.filter((email) => email !== user.email),
             against:
@@ -50,7 +53,7 @@ export default function Leaderboard({
                     ...candidate.against.filter(
                       (email) => email !== user.email
                     ),
-                    user.email,
+                    ...Array(votingPower).fill(user.email), // add votes as many times as voting power
                   ]
                 : candidate.against.filter((email) => email !== user.email),
           },
@@ -90,16 +93,27 @@ export default function Leaderboard({
   return (
     <>
       <Card className="my-8 bg-tan">
-        <div className="flex items-center justify-between px-4 py-5 border-b border-gray-300 sm:px-6">
+        <div className="px-4 py-5 border-b border-gray-300 md:flex md:items-center md:gap-2 md:justify-between sm:px-6">
           <div className="">
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          {!user?.id && votingOpen && (
-            <PrimaryButton onClick={() => setShowAuthModal(true)}>
-              Vote
-            </PrimaryButton>
-          )}
+          <div className="flex items-end justify-end w-full mt-3 md:mt-0">
+            {!user?.id && votingOpen ? (
+              <PrimaryButton onClick={() => setShowAuthModal(true)}>
+                Vote
+              </PrimaryButton>
+            ) : (
+              <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
+                <PrimaryButton className="flex items-center justify-center w-48 gap-2">
+                  <div className="flex items-end text-xs font-normal accent">
+                    Voting Power:
+                  </div>
+                  {votingPower}
+                </PrimaryButton>
+              </Tooltip>
+            )}
+          </div>
         </div>
         <ul role="list" className="divide-y divide-gray-300">
           {_candidates
