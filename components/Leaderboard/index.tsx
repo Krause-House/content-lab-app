@@ -104,7 +104,7 @@ export default function Leaderboard({
             </PrimaryButton>
           ) : (
             <div className="mx-2 text-primary-500">
-              <Tooltip text="This is your voting power for this category. Use the share button each week to get a stacking 2x multiplier.">
+              <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
                 <span className="flex items-center justify-center gap-1 text-xl font-bold">
                   <div className="flex items-end h-5 text-xs font-normal">
                     VP
