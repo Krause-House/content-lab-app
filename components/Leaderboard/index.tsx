@@ -10,7 +10,6 @@ import LeaderboardCandidate from "./LeaderboardCandidate";
 import { PrimaryButton } from "~/components/Buttons";
 import AuthModal from "~/components/AuthModal";
 import Tooltip from "~/components/Tooltip";
-import { HeartIcon, StarIcon } from "@heroicons/react/24/outline";
 
 const update = async (candidate: Candidate, userEmail: string, vote: VOTE) => {
   return await setVote(candidate, userEmail, vote);
@@ -45,7 +44,7 @@ export default function Leaderboard({
               vote === VOTE.FOR
                 ? [
                     ...candidate.for.filter((email) => email !== user.email),
-                    user.email,
+                    ...Array(votingPower).fill(user.email), // add votes as many times as voting power
                   ]
                 : candidate.for.filter((email) => email !== user.email),
             against:
@@ -54,7 +53,7 @@ export default function Leaderboard({
                     ...candidate.against.filter(
                       (email) => email !== user.email
                     ),
-                    user.email,
+                    ...Array(votingPower).fill(user.email), // add votes as many times as voting power
                   ]
                 : candidate.against.filter((email) => email !== user.email),
           },
@@ -105,7 +104,7 @@ export default function Leaderboard({
             </PrimaryButton>
           ) : (
             <div className="mx-2 text-primary-500">
-              <Tooltip text="This is your current voting power. Use the share button each week to get a 2x multiplier on your voting power.">
+              <Tooltip text="This is your voting power for this category. Use the share button each week to get a stacking 2x multiplier.">
                 <span className="flex items-center justify-center gap-1 text-xl font-bold">
                   <div className="flex items-end h-5 text-xs font-normal">
                     VP

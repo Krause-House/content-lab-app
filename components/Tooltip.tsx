@@ -26,7 +26,7 @@ export default function Tooltip({
         leaveFrom="opacity-100 -translate-y-8"
         leaveTo="opacity-0 translate-y-0"
       >
-        <Card className="absolute flex w-48 px-2 py-1 text-sm text-center -translate-x-full rounded-lg bg-tan -left-3 ">
+        <Card className="absolute flex w-64 px-2 py-1 text-sm text-center -translate-x-full rounded-lg bg-tan -left-3 ">
           {text}
         </Card>
       </Transition>
