@@ -105,10 +105,10 @@ export default function Leaderboard({
           ) : (
             <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
               <PrimaryButton className="flex items-center justify-center gap-2">
-                {votingPower}
                 <div className="flex items-end text-xs font-normal accent">
-                  Voting Power
+                  Voting Power:
                 </div>
+                {votingPower}
               </PrimaryButton>
             </Tooltip>
           )}
