@@ -12,7 +12,7 @@ export default function Tooltip({
   const [isShown, setIsShown] = useState(false);
   return (
     <div
-      className="relative hover:cursor-pointer"
+      className="relative z-10 hover:cursor-pointer"
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}
     >
