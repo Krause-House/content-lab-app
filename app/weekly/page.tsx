@@ -68,22 +68,24 @@ export default async function Weekly() {
           shareLink={shareLink}
           description="Share Around the Association Weekly with friends to get more voting power next week. Tweet using @WatchGameday and every like and retweet will increase your future voting power."
         />
-        {contests
-          ?.filter((contest) => new Date(contest.end_date) > new Date())
-          .map((contest, idx) => (
-            <Leaderboard
-              key={idx}
-              user={user}
-              candidates={
-                candidates?.filter(
-                  (candidate) => candidate.contest_id === contest.id
-                ) ?? []
-              }
-              votingPower={userDetails.voting_power}
-              votingOpen={true}
-              contest={contest}
-            />
-          ))}
+        <div className="flex flex-col gap-8 lg:flex-row">
+          {contests
+            ?.filter((contest) => new Date(contest.end_date) > new Date())
+            .map((contest, idx) => (
+              <Leaderboard
+                key={idx}
+                user={user}
+                candidates={
+                  candidates?.filter(
+                    (candidate) => candidate.contest_id === contest.id
+                  ) ?? []
+                }
+                votingPower={userDetails.voting_power}
+                votingOpen={true}
+                contest={contest}
+              />
+            ))}
+        </div>
       </main>
     </>
   );
