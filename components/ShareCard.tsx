@@ -10,7 +10,7 @@ export default function ShareCard({
   description: string;
 }) {
   return (
-    <Card className="my-6 transition cursor-pointer bg-primary-200 card-shadow-hover">
+    <Card className="my-4 transition cursor-pointer bg-primary-200 card-shadow-hover">
       <a
         href={shareLink}
         target="_blank"

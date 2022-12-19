@@ -92,7 +92,7 @@ export default function Leaderboard({
 
   return (
     <>
-      <Card className="my-8 bg-tan">
+      <Card className="my-4 bg-tan">
         <div className="px-4 py-5 border-b border-gray-300 md:flex md:items-center md:gap-2 md:justify-between sm:px-6">
           <div className="">
             <h2 className="text-gray-800">{contest.name}</h2>
