@@ -98,22 +98,24 @@ export default function Leaderboard({
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          <div className="flex items-end justify-end w-full mt-3 md:mt-0">
-            {!user?.id && votingOpen ? (
-              <PrimaryButton onClick={() => setShowAuthModal(true)}>
-                Vote
-              </PrimaryButton>
-            ) : (
-              <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
-                <PrimaryButton className="flex items-center justify-center w-48 gap-2">
-                  <div className="flex items-end text-xs font-normal accent">
-                    Voting Power:
-                  </div>
-                  {votingPower}
+          {votingOpen && (
+            <div className="flex items-end justify-end w-full mt-3 md:mt-0">
+              {!user?.id ? (
+                <PrimaryButton onClick={() => setShowAuthModal(true)}>
+                  Vote
                 </PrimaryButton>
-              </Tooltip>
-            )}
-          </div>
+              ) : (
+                <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
+                  <PrimaryButton className="flex items-center justify-center w-48 gap-2">
+                    <div className="flex items-end text-xs font-normal accent">
+                      Voting Power:
+                    </div>
+                    {votingPower}
+                  </PrimaryButton>
+                </Tooltip>
+              )}
+            </div>
+          )}
         </div>
         <ul role="list" className="divide-y divide-gray-300">
           {_candidates
