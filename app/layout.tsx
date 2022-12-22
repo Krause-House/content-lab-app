@@ -24,6 +24,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head />
+      <SupabaseListener accessToken={session?.access_token} />
+      <body className="relative overflow-x-hidden font-light bg-tan-500">
+        <ToastContainer />
+        <Header user={user} />
+        <div className="mt-16">{children}</div>
+        <footer></footer>
+      </body>
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_MEASUREMENT_ID}`}
@@ -42,13 +49,6 @@ export default async function RootLayout({
 		`,
         }}
       />
-      <SupabaseListener accessToken={session?.access_token} />
-      <body className="relative overflow-x-hidden font-light bg-tan-500">
-        <ToastContainer />
-        <Header user={user} />
-        <div className="mt-16">{children}</div>
-        <footer></footer>
-      </body>
     </html>
   );
 }

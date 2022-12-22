@@ -9,6 +9,7 @@ const nextConfig = {
       "cdn.discordapp.com",
       "s.espncdn.com",
       "a.espncdn.com",
+      "images.overtime.tv",
     ],
   },
 };
