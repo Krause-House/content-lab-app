@@ -6,7 +6,7 @@ export default async function Home() {
   return (
     <main className="relative px-4 mx-auto max-w-7xl">
       <div className="flex flex-col items-center justify-center gap-12 p-12 md:flex-row">
-        <a href="/dreamerz">
+        {/* <a href="/dreamerz">
           <Card className="w-[351px] h-[453px] relative card-shadow-hover overflow-hidden cursor-pointer transition-shadow">
             <div className="absolute inset-0 z-0 object-cover w-full h-full">
               <Image
@@ -22,7 +22,7 @@ export default async function Home() {
               <p className="text-center text-white accent">Vote Now</p>
             </div>
           </Card>
-        </a>
+        </a> */}
         <a href="/weekly">
           <Card className="w-[351px] h-[453px] relative card-shadow-hover cursor-pointer transition-shadow">
             <div className="absolute inset-0 z-0 object-cover w-full h-full">

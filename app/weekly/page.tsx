@@ -51,10 +51,10 @@ export default async function Weekly() {
 
   return (
     <>
-      {/* {!user?.email && (
-		  <ActionBanner text="Sign in to decide what gets put into this week's Around the Association!" />
-		)} */}
-      <ActionBanner text="Voting has ended for this week. The podcast will be sent to your email soon." />
+      {!user?.email && (
+        <ActionBanner text="Sign in to decide what gets put into this week's Around the Association!" />
+      )}
+      {/* <ActionBanner text="Voting has ended for this week. The podcast will be sent to your email soon." /> */}
       <div className="hidden sm:block">
         <BannerImage imageUrl="/assets/weekly_banner.png" />
       </div>
@@ -69,7 +69,7 @@ export default async function Weekly() {
           shareLink={shareLink}
           description="Share Around the Association Weekly with friends to get more voting power next week. Tweet using @WatchGameday and every like and retweet will increase your future voting power."
         />
-        <div className="flex flex-col lg:gap-8 lg:flex-row">
+        <div className="flex flex-col">
           {contests
             ?.filter((contest) => new Date(contest.end_date) > new Date())
             .map((contest, idx) => (
@@ -82,7 +82,7 @@ export default async function Weekly() {
                   ) ?? []
                 }
                 votingPower={userDetails.voting_power}
-                votingOpen={false}
+                votingOpen={true}
                 contest={contest}
               />
             ))}
