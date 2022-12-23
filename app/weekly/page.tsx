@@ -71,7 +71,11 @@ export default async function Weekly() {
         />
         <div className="flex flex-col">
           {contests
-            ?.filter((contest) => new Date(contest.end_date) > new Date())
+            ?.filter(
+              (contest) =>
+                new Date(contest.end_date) > new Date() &&
+                contest.created_by === 3
+            )
             .map((contest, idx) => (
               <Leaderboard
                 key={idx}
