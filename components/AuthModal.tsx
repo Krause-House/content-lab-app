@@ -1,43 +1,7 @@
 "use client";
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import toast from "react-hot-toast";
-import Card from "~/components/Card";
-import supabase from "~/util/supabase-browser";
-import { PrimaryButton } from "~/components/Buttons";
-import Input from "~/components/Input";
-import axios from "axios";
-
-async function signInWithDiscord() {
-  await supabase.auth.signInWithOAuth({
-    provider: "discord",
-    options: {},
-  });
-}
-
-async function signInWithPassword(email: string, password: string) {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-  return { data, error };
-}
-
-async function signUp(email: string, password: string) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-  });
-  try {
-    await axios.post(`/api/welcome`, { email });
-  } catch (e) {
-    console.error(e);
-  }
-  if (!error) {
-    await signInWithPassword(email, password);
-  }
-  return { data, error };
-}
+import AuthForm from "./AuthForm";
 
 export default function AuthModal({
   isOpen,
@@ -46,27 +10,6 @@ export default function AuthModal({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [mode, setMode] = useState<"Sign In" | "Sign Up">("Sign In");
-  const [loading, setLoading] = useState(false);
-
-  const attemptSignInOrSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    if (email && password) {
-      const { data, error } =
-        mode === "Sign Up"
-          ? await signUp(email, password)
-          : await signInWithPassword(email, password);
-      // only turn off loading if there was an error, otherwise we wait till the page refreshes on recognized auth change
-      if (error) {
-        toast.error(error.message, { id: "auth-error" });
-        setLoading(false);
-      }
-    }
-  };
-
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -98,71 +41,7 @@ export default function AuthModal({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel>
-                <Card className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-tan">
-                  <Dialog.Title as="h2">{mode}</Dialog.Title>
-                  <form onSubmit={attemptSignInOrSignUp}>
-                    <div className="flex flex-col w-64 gap-2 mt-4 md:w-96">
-                      <div className="w-full">
-                        <label htmlFor="email" className="sr-only">
-                          Email address
-                        </label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="Email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
-                      <div className="w-full">
-                        <label htmlFor="password" className="sr-only">
-                          Password
-                        </label>
-                        <Input
-                          id="password"
-                          type="password"
-                          placeholder="Password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="mt-4">
-                      <PrimaryButton
-                        isLoading={loading}
-                        className="w-full"
-                        type="submit"
-                        loadingText={
-                          mode === "Sign In" ? "Signing in..." : "Signing up..."
-                        }
-                      >
-                        <div className="w-full text-center">{mode}</div>
-                      </PrimaryButton>
-                    </div>
-                  </form>
-                  {mode !== "Sign Up" ? (
-                    <div className="mt-6">
-                      New here?{" "}
-                      <u
-                        className="cursor-pointer"
-                        onClick={() => setMode("Sign Up")}
-                      >
-                        Sign up
-                      </u>
-                    </div>
-                  ) : (
-                    <div className="mt-6">
-                      Have an account?{" "}
-                      <u
-                        className="cursor-pointer"
-                        onClick={() => setMode("Sign In")}
-                      >
-                        Sign in
-                      </u>
-                    </div>
-                  )}
-                </Card>
+                <AuthForm />
               </Dialog.Panel>
             </Transition.Child>
           </div>

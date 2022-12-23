@@ -2,7 +2,6 @@ import Image from "next/image";
 import { MaybeUser } from "~/types/User";
 
 import { SignInButton, SignOutButton } from "~/components/Buttons";
-import UserMenu from "./UserMenu";
 
 export default function Header({ user }: { user: MaybeUser }) {
   return (
