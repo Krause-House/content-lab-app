@@ -24,7 +24,7 @@ function ListenButton() {
   );
 }
 
-export default async function Weekly() {
+export default async function Dreamerz() {
   const supabase = createClient();
 
   // fetch user + data that does not require authentication
@@ -36,7 +36,7 @@ export default async function Weekly() {
     { data: candidates },
   ] = await Promise.all([
     supabase.auth.getUser(),
-    supabase.from("contests").select().eq("created_by", 3),
+    supabase.from("contests").select().eq("created_by", 2),
     supabase.from("candidates").select(),
   ]);
 
@@ -60,14 +60,10 @@ export default async function Weekly() {
       </div>
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader
-          title="Around the Association Weekly"
-          description="Vote on the segments for this week's Around the Association weekly episode. The winning players and games will be broken down for all to hear."
-          shareLink={shareLink}
+          title="YNG Dreamerz Watch Party"
+          description="The YNG Dreamerz fanbase will be tuning into the NBA this Wednesday, and you'll be in the driver's seat. What game should we watch? What pizza should we order the hosts? It's up to you. Plus, refer your friends to win a custom basketball."
+          //   shareLink={shareLink}
           primaryButton={<ListenButton />}
-        />
-        <ShareCard
-          shareLink={shareLink}
-          description="Share Around the Association Weekly with friends to get more voting power next week. Tweet using @WatchGameday and every like and retweet will increase your future voting power."
         />
         <div className="flex flex-col">
           {contests
