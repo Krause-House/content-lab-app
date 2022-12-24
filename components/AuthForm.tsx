@@ -70,8 +70,8 @@ export default function AuthForm({
   const router = useRouter();
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(async () => {
-      if ((await supabase.auth.getUser()).data.user) {
-        router.push(redirectTo ? "/" + redirectTo : "/");
+      if ((await supabase.auth.getUser()).data.user && redirectTo) {
+        router.push(redirectTo);
       }
     });
     return () => {

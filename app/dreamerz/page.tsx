@@ -38,7 +38,7 @@ export default async function Dreamerz() {
       )}
       {/* <ActionBanner text="Voting has ended for this week. The podcast will be sent to your email soon." /> */}
       <div className="hidden sm:block">
-        <BannerImage imageUrl="/assets/weekly_banner.png" />
+        <BannerImage imageUrl="/assets/dreamerz_banner.png" />
       </div>
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader
@@ -47,13 +47,15 @@ export default async function Dreamerz() {
           //   shareLink={shareLink}
           //   primaryButton={<ListenButton />}
         />
-        <ReferralCard
-          title="Win a custom basketball"
-          creatorIdToSubscribeTo="2"
-          referredByEmail={user?.email}
-          redirectTo="/dreamerz"
-          description="Copy and share your referral link with friends. Whoever invites to most people will win a custom basketball."
-        />
+        {user?.email && (
+          <ReferralCard
+            title="Win a custom basketball"
+            creatorIdToSubscribeTo="2"
+            referredByEmail={user?.email}
+            redirectTo="/dreamerz"
+            description="Copy and share your referral link with friends. Whoever invites to most people by Wednesday night will win a custom basketball."
+          />
+        )}
         <div className="flex flex-col">
           {contests
             ?.filter((contest) => new Date(contest.end_date) > new Date())
