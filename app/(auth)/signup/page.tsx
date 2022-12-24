@@ -12,6 +12,7 @@ export default async function SignUp({
   const user = (await supabase.auth.getUser()).data.user;
 
   if (user) {
+    console.log("redirecting...");
     redirect(searchParams?.redirectTo || "/");
   }
 

@@ -67,17 +67,17 @@ export default function AuthForm({
   referredByEmail?: string;
   redirectTo?: string;
 }) {
-  const router = useRouter();
-  useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(async () => {
-      if ((await supabase.auth.getUser()).data.user && redirectTo) {
-        router.push(redirectTo);
-      }
-    });
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
-  }, []);
+  //   const router = useRouter();
+  //   useEffect(() => {
+  //     const { data: authListener } = supabase.auth.onAuthStateChange(async () => {
+  //       if ((await supabase.auth.getUser()).data.user && redirectTo) {
+  //         router.push(redirectTo);
+  //       }
+  //     });
+  //     return () => {
+  //       authListener.subscription.unsubscribe();
+  //     };
+  //   }, []);
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
