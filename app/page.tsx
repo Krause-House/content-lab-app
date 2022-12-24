@@ -28,7 +28,7 @@ export default async function Home() {
             <div className="absolute inset-0 z-0 object-cover w-full h-full">
               <Image
                 className="object-cover w-full h-full"
-                src="https://images.unsplash.com/photo-1648999600048-5410bc413bd9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
+                src="https://images.unsplash.com/photo-1648999600048-5410bc413bd9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=40"
                 alt=""
                 fill
               />
