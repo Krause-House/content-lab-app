@@ -3,7 +3,6 @@ import BannerImage from "~/components/BannerImage";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
 import ReferralCard from "~/components/ReferralCard";
-import UserDetails, { defaultUserDetails } from "~/types/UserDetails";
 import createClient from "~/util/supabase-server";
 
 export default async function Dreamerz() {
@@ -21,15 +20,6 @@ export default async function Dreamerz() {
     supabase.from("contests").select().eq("created_by", 2),
     supabase.from("candidates").select(),
   ]);
-
-  // fetch user details if user is logged in
-  const userDetailsRes = user?.email
-    ? (await supabase.from("users").select().eq("email", user.email)).data
-    : null;
-  const userDetails: UserDetails =
-    userDetailsRes && userDetailsRes[0]
-      ? userDetailsRes[0]
-      : defaultUserDetails;
 
   return (
     <>
@@ -68,7 +58,6 @@ export default async function Dreamerz() {
                     (candidate) => candidate.contest_id === contest.id
                   ) ?? []
                 }
-                votingPower={userDetails.voting_power}
                 votingOpen={true}
                 contest={contest}
               />

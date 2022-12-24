@@ -20,13 +20,13 @@ export default function Leaderboard({
   contest,
   candidates,
   votingOpen,
-  votingPower,
+  votingPower = 1,
 }: {
   user: User | null;
   contest: Contest;
   candidates: Candidate[];
   votingOpen: boolean;
-  votingPower: number;
+  votingPower?: number;
 }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [_candidates, setCandidates] = useState(candidates);
@@ -105,14 +105,15 @@ export default function Leaderboard({
                   Vote
                 </PrimaryButton>
               ) : (
-                <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
-                  <PrimaryButton className="flex items-center justify-center w-48 gap-2">
-                    <div className="flex items-end text-xs font-normal accent">
-                      Voting Power:
-                    </div>
-                    {votingPower}
-                  </PrimaryButton>
-                </Tooltip>
+                <></>
+                // <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
+                //   <PrimaryButton className="flex items-center justify-center w-48 gap-2">
+                //     <div className="flex items-end text-xs font-normal accent">
+                //       Voting Power:
+                //     </div>
+                //     {votingPower}
+                //   </PrimaryButton>
+                // </Tooltip>
               )}
             </div>
           )}
