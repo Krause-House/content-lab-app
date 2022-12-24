@@ -9,9 +9,8 @@ export default function SupabaseListener({
 }: {
   accessToken?: string;
 }) {
-  const router = useRouter();
-
   useEffect(() => {
+    const router = useRouter();
     supabase.auth.onAuthStateChange((event, session) => {
       if (session?.access_token !== accessToken) {
         router.refresh();
