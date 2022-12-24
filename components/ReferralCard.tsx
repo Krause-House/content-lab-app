@@ -23,7 +23,7 @@ export default function ReferralCard({
         onClick={() => {
           navigator.clipboard.writeText(
             window.location.origin +
-              `/signup?creator=${creatorIdToSubscribeTo}&referredBy=${
+              `/creator/${creatorIdToSubscribeTo}/signup?referredBy=${
                 referredByEmail || ""
               }&redirectTo=${redirectTo || "/"}`
           );
