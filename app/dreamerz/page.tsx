@@ -1,28 +1,10 @@
 import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
-import { PrimaryButton } from "~/components/Buttons";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
-import ShareCard from "~/components/ShareCard";
+import ReferralCard from "~/components/ReferralCard";
 import UserDetails, { defaultUserDetails } from "~/types/UserDetails";
 import createClient from "~/util/supabase-server";
-
-const shareLink = `http://twitter.com/intent/tweet?text=${"Vote on which players and games to cover in this week's Around the Association podcast! @WatchGameday".replace(
-  " ",
-  "%20"
-)}&url=https%3A%2F%2Fgameday.watch/weekly%2F`;
-
-function ListenButton() {
-  return (
-    <a
-      href="https://open.spotify.com/show/3YadlLpwrMTOG0ecvX65bw?si=18d05d20368444cf"
-      target="_blank"
-      rel="noreferrer noopener"
-    >
-      <PrimaryButton>Listen</PrimaryButton>
-    </a>
-  );
-}
 
 export default async function Dreamerz() {
   const supabase = createClient();
@@ -52,7 +34,7 @@ export default async function Dreamerz() {
   return (
     <>
       {!user?.email && (
-        <ActionBanner text="Sign in to decide what gets put into this week's Around the Association!" />
+        <ActionBanner text="Sign in to build this week's YNG Dreamerz x NBA watch party!" />
       )}
       {/* <ActionBanner text="Voting has ended for this week. The podcast will be sent to your email soon." /> */}
       <div className="hidden sm:block">
@@ -63,7 +45,14 @@ export default async function Dreamerz() {
           title="YNG Dreamerz Watch Party"
           description="The YNG Dreamerz fanbase will be tuning into the NBA this Wednesday, and you'll be in the driver's seat. What game should we watch? What pizza should we order the hosts? It's up to you. Plus, refer your friends to win a custom basketball."
           //   shareLink={shareLink}
-          primaryButton={<ListenButton />}
+          //   primaryButton={<ListenButton />}
+        />
+        <ReferralCard
+          title="Win a custom basketball"
+          creatorIdToSubscribeTo="2"
+          referredByEmail={user?.email}
+          redirectTo="/dreamerz"
+          description="Copy and share your referral link with friends. Whoever invites to most people will win a custom basketball."
         />
         <div className="flex flex-col">
           {contests

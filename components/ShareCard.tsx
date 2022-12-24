@@ -17,7 +17,7 @@ export default function ShareCard({
         rel="noreferrer noopener"
         className="block"
       >
-        <div className="flex items-center px-4 py-4 sm:px-6">
+        <div className="flex items-center gap-8 px-4 py-4 sm:px-6">
           <div className="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
             <div>
               <label className="flex text-xs text-gray-300 accent">
