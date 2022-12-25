@@ -31,15 +31,17 @@ export default async function RootLayout({
         <div className="mt-16">{children}</div>
         <footer></footer>
       </body>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_MEASUREMENT_ID}`}
-      />
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
+      {process.env.NODE_ENV === "production" && (
+        <>
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_MEASUREMENT_ID}`}
+          />
+          <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
@@ -47,8 +49,10 @@ export default async function RootLayout({
 			page_path: window.location.pathname,
 		});
 		`,
-        }}
-      />
+            }}
+          />
+        </>
+      )}
     </html>
   );
 }
