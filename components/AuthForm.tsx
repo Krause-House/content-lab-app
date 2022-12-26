@@ -67,17 +67,17 @@ export default function AuthForm({
   referredByEmail?: string;
   redirectTo?: string;
 }) {
-  const router = useRouter();
-  useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(async () => {
-      if ((await supabase.auth.getUser()).data.user) {
-        router.push(redirectTo ? "/" + redirectTo : "/");
-      }
-    });
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
-  }, []);
+  //   const router = useRouter();
+  //   useEffect(() => {
+  //     const { data: authListener } = supabase.auth.onAuthStateChange(async () => {
+  //       if ((await supabase.auth.getUser()).data.user && redirectTo) {
+  //         router.push(redirectTo);
+  //       }
+  //     });
+  //     return () => {
+  //       authListener.subscription.unsubscribe();
+  //     };
+  //   }, []);
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -107,10 +107,10 @@ export default function AuthForm({
     }
   };
   return (
-    <Card className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-tan">
+    <Card className="max-w-md p-6 overflow-hidden text-left align-middle transition-all transform w-72 sm:w-96 bg-tan">
       <h2>{mode}</h2>
       <form onSubmit={attemptSignInOrSignUp}>
-        <div className="flex flex-col w-full gap-2 mt-4 md:w-96">
+        <div className="flex flex-col w-full gap-2 mt-4">
           <div className="w-full">
             <label htmlFor="email" className="sr-only">
               Email address

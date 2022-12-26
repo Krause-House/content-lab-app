@@ -10,6 +10,7 @@ const nextConfig = {
       "s.espncdn.com",
       "a.espncdn.com",
       "images.overtime.tv",
+      "i.ibb.co",
     ],
   },
 };

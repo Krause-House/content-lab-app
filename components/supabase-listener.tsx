@@ -10,7 +10,6 @@ export default function SupabaseListener({
   accessToken?: string;
 }) {
   const router = useRouter();
-
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
       if (session?.access_token !== accessToken) {

@@ -36,7 +36,7 @@ export default async function Weekly() {
     { data: candidates },
   ] = await Promise.all([
     supabase.auth.getUser(),
-    supabase.from("contests").select(),
+    supabase.from("contests").select().eq("created_by", 3),
     supabase.from("candidates").select(),
   ]);
 
@@ -71,11 +71,7 @@ export default async function Weekly() {
         />
         <div className="flex flex-col">
           {contests
-            ?.filter(
-              (contest) =>
-                new Date(contest.end_date) > new Date() &&
-                contest.created_by === 3
-            )
+            ?.filter((contest) => new Date(contest.end_date) > new Date())
             .map((contest, idx) => (
               <Leaderboard
                 key={idx}
