@@ -1,5 +1,4 @@
 import Candidate from "~/types/Candidate";
-import UserDetails, { defaultUserDetails } from "~/types/UserDetails";
 import supabase from "~/util/supabase-browser";
 
 export enum VOTE {
