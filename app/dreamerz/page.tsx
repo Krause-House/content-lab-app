@@ -43,7 +43,7 @@ export default async function Dreamerz() {
             creatorIdToSubscribeTo="2"
             referredByEmail={user?.email}
             redirectTo="/dreamerz"
-            description="Copy and share your referral link with friends. Whoever invites to most people by Wednesday night will win a custom basketball."
+            description="Copy and share your referral link with friends. Whoever invites the most people by Wednesday night will win a custom basketball."
           />
         )}
         <div className="flex flex-col">
