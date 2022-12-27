@@ -51,10 +51,10 @@ export default async function Weekly() {
 
   return (
     <>
-      {!user?.email && (
+      {/* {!user?.email && (
         <ActionBanner text="Sign in to decide what gets put into this week's Around the Association!" />
-      )}
-      {/* <ActionBanner text="Voting has ended for this week. The podcast will be sent to your email soon." /> */}
+      )} */}
+      <ActionBanner text="Voting has ended for this week. The podcast will be sent to your email soon." />
       <div className="hidden sm:block">
         <BannerImage imageUrl="/assets/weekly_banner.png" />
       </div>
@@ -82,7 +82,7 @@ export default async function Weekly() {
                   ) ?? []
                 }
                 votingPower={userDetails.voting_power}
-                votingOpen={true}
+                votingOpen={false}
                 contest={contest}
               />
             ))}
