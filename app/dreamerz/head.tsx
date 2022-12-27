@@ -5,12 +5,12 @@ export default function Head() {
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
-        content="Vote on the games and entertainment for this week's YNG Dreamerz NBA Watch Party on Wednesday night."
+        content="Vote on the games and entertainment for this week's YNG Dreamerz NBA Watch Party."
       />
       <meta property="og:title" content="YNG Dreamerz Watch Party on Gameday" />
       <meta
         property="og:description"
-        content="Vote on the games and entertainment for this week's YNG Dreamerz NBA Watch Party on Wednesday night."
+        content="Vote on the games and entertainment for this week's YNG Dreamerz NBA Watch Party."
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@KrauseHouseDAO" />
