@@ -10,7 +10,7 @@ export enum VOTE {
 const voteFor = async (
   candidate: Candidate,
   voterEmail: string,
-  votingPower: number
+  votingPower = 1
 ) => {
   if (candidate.for.includes(voterEmail)) {
     throw new Error("User has already voted for this host");
@@ -34,7 +34,7 @@ const voteFor = async (
 const voteAgainst = async (
   candidate: Candidate,
   voterEmail: string,
-  votingPower: number
+  votingPower = 1
 ) => {
   if (candidate.against.includes(voterEmail)) {
     throw new Error("User has already voted against this host");
@@ -66,19 +66,12 @@ const setVote = async (
   if (!user) {
     throw new Error("User is not logged in");
   }
-  const userDetailsRes = user?.email
-    ? (await supabase.from("users").select().eq("email", user.email)).data
-    : null;
-  const userDetails: UserDetails =
-    userDetailsRes && userDetailsRes[0]
-      ? userDetailsRes[0]
-      : defaultUserDetails;
 
   switch (vote) {
     case VOTE.FOR:
-      return voteFor(candidate, voterEmail, userDetails.voting_power);
+      return voteFor(candidate, voterEmail);
     case VOTE.AGAINST:
-      return voteAgainst(candidate, voterEmail, userDetails.voting_power);
+      return voteAgainst(candidate, voterEmail);
   }
 };
 
