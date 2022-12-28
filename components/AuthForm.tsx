@@ -40,7 +40,6 @@ async function signUp(
     password,
   });
   try {
-    console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV === "production") {
       // add to email list only in production
       await axios.post(`/api/welcome`, { email });
@@ -68,17 +67,7 @@ export default function AuthForm({
   referredByEmail?: string;
   redirectTo?: string;
 }) {
-  //   const router = useRouter();
-  //   useEffect(() => {
-  //     const { data: authListener } = supabase.auth.onAuthStateChange(async () => {
-  //       if ((await supabase.auth.getUser()).data.user && redirectTo) {
-  //         router.push(redirectTo);
-  //       }
-  //     });
-  //     return () => {
-  //       authListener.subscription.unsubscribe();
-  //     };
-  //   }, []);
+  console.log(process.env.NODE_ENV);
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
