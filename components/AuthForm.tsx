@@ -40,6 +40,7 @@ async function signUp(
     password,
   });
   try {
+    console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV === "production") {
       // add to email list only in production
       await axios.post(`/api/welcome`, { email });
