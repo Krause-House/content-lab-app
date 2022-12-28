@@ -67,8 +67,6 @@ export default function AuthForm({
   referredByEmail?: string;
   redirectTo?: string;
 }) {
-  console.log(process.env.NODE_ENV);
-
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [mode, setMode] = useState<"Sign In" | "Sign Up">(
