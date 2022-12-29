@@ -124,13 +124,21 @@ export default function Leaderboard({
                 candidate2.against.length -
                 (candidate1.for.length - candidate1.against.length)
             )
-            .map((candidate: Candidate) => (
+            .map((candidate: Candidate, index: number) => (
               <li key={candidate.id}>
                 <LeaderboardCandidate
                   userEmail={user?.email ?? null}
                   canVote={!!user?.email && contest.is_active}
                   candidate={candidate}
                   vote={(_vote) => vote(candidate, _vote)}
+                  badges={candidate.is_winner ? ["Winner"] : []}
+                  className={
+                    !candidate.is_winner &&
+                    !contest.is_active &&
+                    _candidates.some((c) => c.is_winner) // only set losers if there is a winner
+                      ? "opacity-50"
+                      : ""
+                  }
                 />
               </li>
             ))}

@@ -8,14 +8,18 @@ export default function LeaderboardCandidate({
   userEmail,
   canVote,
   vote,
+  badges,
+  className,
 }: {
   candidate: Candidate;
   userEmail: string | null;
   canVote: boolean;
   vote: (vote: VOTE) => void;
+  badges?: string[];
+  className?: string;
 }) {
   return (
-    <div className="block">
+    <div className={`block ${className}`}>
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="flex items-center justify-start flex-1 min-w-0 gap-3">
           {candidate.imageUrl && (
@@ -31,7 +35,14 @@ export default function LeaderboardCandidate({
             </div>
           )}
           <div className="truncate">
-            <h4 className="text-gray-800 truncate">{candidate.name}</h4>
+            <h4 className="flex items-center gap-1">
+              <span className="truncate">{candidate.name}</span>
+              {badges?.map((b) => (
+                <span className="px-2 text-xs text-white rounded-md bg-primary-200 border-primary border-2 py-0.5">
+                  {b}
+                </span>
+              ))}
+            </h4>
             <p className="text-sm text-gray-500">{candidate.supporting_text}</p>
           </div>
         </div>
