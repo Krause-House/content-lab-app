@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import supabase from "~/util/supabase-browser";
 import { PrimaryButton } from "~/components/Buttons";
 import Card from "~/components/Card";
 import Input from "~/components/Input";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 async function signInWithPassword(email: string, password: string) {
   const { data, error } = await supabase.auth.signInWithPassword({
