@@ -19,20 +19,18 @@ export default function Leaderboard({
   user,
   contest,
   candidates,
-  votingOpen,
   votingPower = 1,
 }: {
   user: User | null;
   contest: Contest;
   candidates: Candidate[];
-  votingOpen: boolean;
   votingPower?: number;
 }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [_candidates, setCandidates] = useState(candidates);
 
   const vote = async (candidate: Candidate, vote: VOTE) => {
-    if (!votingOpen) return;
+    if (!contest.is_active) return;
     let originalCandidates = _candidates;
     try {
       if (user?.email) {
@@ -98,7 +96,7 @@ export default function Leaderboard({
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          {votingOpen && (
+          {contest.is_active && (
             <div className="flex items-end justify-end w-full mt-3 md:mt-0">
               {!user?.id ? (
                 <PrimaryButton onClick={() => setShowAuthModal(true)}>
@@ -130,7 +128,7 @@ export default function Leaderboard({
               <li key={candidate.id}>
                 <LeaderboardCandidate
                   userEmail={user?.email ?? null}
-                  canVote={!!user?.email && votingOpen}
+                  canVote={!!user?.email && contest.is_active}
                   candidate={candidate}
                   vote={(_vote) => vote(candidate, _vote)}
                 />

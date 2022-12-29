@@ -17,7 +17,11 @@ export default async function Dreamerz() {
     { data: candidates },
   ] = await Promise.all([
     supabase.auth.getUser(),
-    supabase.from("contests").select().eq("created_by", 2),
+    supabase
+      .from("contests")
+      .select()
+      .eq("created_by", 2)
+      .eq("is_visible", true),
     supabase.from("candidates").select(),
   ]);
 
@@ -48,7 +52,7 @@ export default async function Dreamerz() {
         )}
         <div className="flex flex-col">
           {contests
-            ?.filter((contest) => new Date(contest.end_date) > new Date())
+            ?.sort((a, b) => a.id - b.id)
             .map((contest, idx) => (
               <Leaderboard
                 key={idx}
@@ -58,7 +62,6 @@ export default async function Dreamerz() {
                     (candidate) => candidate.contest_id === contest.id
                   ) ?? []
                 }
-                votingOpen={true}
                 contest={contest}
               />
             ))}

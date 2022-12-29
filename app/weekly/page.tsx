@@ -36,7 +36,11 @@ export default async function Weekly() {
     { data: candidates },
   ] = await Promise.all([
     supabase.auth.getUser(),
-    supabase.from("contests").select().eq("created_by", 3),
+    supabase
+      .from("contests")
+      .select()
+      .eq("created_by", 3)
+      .eq("is_visible", true),
     supabase.from("candidates").select(),
   ]);
 
@@ -71,7 +75,7 @@ export default async function Weekly() {
         />
         <div className="flex flex-col">
           {contests
-            ?.filter((contest) => new Date(contest.end_date) > new Date())
+            ?.sort((a, b) => a.id - b.id)
             .map((contest, idx) => (
               <Leaderboard
                 key={idx}
@@ -81,8 +85,6 @@ export default async function Weekly() {
                     (candidate) => candidate.contest_id === contest.id
                   ) ?? []
                 }
-                votingPower={userDetails.voting_power}
-                votingOpen={false}
                 contest={contest}
               />
             ))}
