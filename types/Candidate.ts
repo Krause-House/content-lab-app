@@ -6,6 +6,7 @@ type Candidate = {
   imageUrl: string;
   for: string[]; // emails
   against: string[]; // emails
+  is_winner?: boolean;
 };
 
 export default Candidate;
