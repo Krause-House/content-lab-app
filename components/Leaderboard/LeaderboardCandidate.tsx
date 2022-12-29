@@ -37,8 +37,11 @@ export default function LeaderboardCandidate({
           <div className="truncate">
             <h4 className="flex items-center gap-1">
               <span className="truncate">{candidate.name}</span>
-              {badges?.map((b) => (
-                <span className="px-2 text-xs text-white rounded-md bg-primary-200 border-primary border-2 py-0.5">
+              {badges?.map((b, idx) => (
+                <span
+                  key={idx}
+                  className="px-2 text-xs text-white rounded-md bg-primary-200 border-primary border-2 py-0.5"
+                >
                   {b}
                 </span>
               ))}
