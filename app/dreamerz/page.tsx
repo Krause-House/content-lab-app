@@ -41,7 +41,7 @@ export default async function Dreamerz() {
           //   shareLink={shareLink}
           //   primaryButton={<ListenButton />}
         />
-        {user?.email && (
+        {/* {user?.email && (
           <ReferralCard
             title="Win a custom basketball"
             creatorIdToSubscribeTo="2"
@@ -49,7 +49,7 @@ export default async function Dreamerz() {
             redirectTo="/dreamerz"
             description="Copy and share your referral link with friends. Whoever invites the most people by Thursday night will win a custom basketball."
           />
-        )}
+        )} */}
         <div className="flex flex-col">
           {contests
             ?.sort((a, b) => a.id - b.id)
