@@ -37,7 +37,7 @@ export default async function Dreamerz() {
       <main className="relative px-4 mx-auto max-w-7xl">
         <PageHeader
           title="YNG Dreamerz Watch Party"
-          description="The YNG Dreamerz fanbase will be tuning into the NBA this Thursday or Friday, and you'll be in the driver's seat. What game should we watch? What pizza should we order the hosts? It's up to you. Plus, refer your friends to win a custom basketball."
+          description="The YNG Dreamerz fanbase will be tuning into the NBA this Friday, and you'll be in the driver's seat. What game should we watch? What pizza should we order the hosts? It's up to you. Plus, refer your friends to win a custom basketball."
           //   shareLink={shareLink}
           //   primaryButton={<ListenButton />}
         />
