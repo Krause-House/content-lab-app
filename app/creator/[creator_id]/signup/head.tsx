@@ -1,11 +1,5 @@
+import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
-
-type Creator = {
-  id: string;
-  name: string;
-  description?: string;
-  signUpImageUrl?: string;
-};
 
 async function getCreator(creatorId: string) {
   const supabase = createClient();
@@ -36,7 +30,7 @@ export default async function Head({
       <meta
         name="description"
         content={
-          creator.description ??
+          creator.bio ??
           "Join the world's greatest basketball community on Gameday."
         }
       />
@@ -44,7 +38,7 @@ export default async function Head({
       <meta
         property="og:description"
         content={
-          creator.description ??
+          creator.bio ??
           "Join the world's greatest basketball community on Gameday."
         }
       />
@@ -58,7 +52,7 @@ export default async function Head({
       <meta
         property="og:image"
         content={
-          creator?.signUpImageUrl ?? "https://i.ibb.co/fSFHKFf/preview.png"
+          creator?.sign_up_image_url ?? "https://i.ibb.co/fSFHKFf/preview.png"
         }
       />
       <link rel="icon" href="/favicon.ico" />

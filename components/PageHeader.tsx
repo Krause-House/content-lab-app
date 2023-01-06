@@ -9,7 +9,7 @@ export default function PageHeader({
   primaryButton,
 }: {
   title: string;
-  description: string;
+  description?: string;
   shareLink?: string;
   primaryButton?: React.ReactNode;
 }) {
