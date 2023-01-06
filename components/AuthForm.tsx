@@ -59,12 +59,10 @@ export default function AuthForm({
   onlyMode,
   creatorIdToSubscribeTo,
   referredByEmail,
-  redirectTo,
 }: {
   onlyMode?: "Sign In" | "Sign Up";
   creatorIdToSubscribeTo?: string;
   referredByEmail?: string;
-  redirectTo?: string;
 }) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");

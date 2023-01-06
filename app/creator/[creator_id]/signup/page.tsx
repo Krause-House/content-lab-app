@@ -28,7 +28,6 @@ export default async function SignUp({
           onlyMode="Sign Up"
           creatorIdToSubscribeTo={params?.creator_id}
           referredByEmail={searchParams?.referredBy}
-          redirectTo={searchParams?.redirectTo}
         />
       </div>
     </>
