@@ -22,14 +22,14 @@ export default function LeaderboardCandidate({
     <div className={`block ${className}`}>
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="flex items-center justify-start flex-1 min-w-0 gap-3">
-          {candidate.imageUrl && (
+          {candidate.image_url && (
             <div className="relative min-w-[50px] min-h-[50px] overflow-hidden rounded-full min-w-lg bg-tan-500 ring-2 ring-tan-400 z-0">
               <Image
                 fill
                 sizes="100%"
                 key={candidate.id}
                 className="object-cover min-w-full min-h-full"
-                src={candidate.imageUrl}
+                src={candidate.image_url}
                 alt={candidate.name}
               />
             </div>

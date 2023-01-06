@@ -11,6 +11,7 @@ const nextConfig = {
       "a.espncdn.com",
       "images.overtime.tv",
       "i.ibb.co",
+      "pmgxknlyzvixzwjqqkzg.supabase.co",
     ],
   },
 };
