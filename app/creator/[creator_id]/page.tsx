@@ -48,7 +48,7 @@ export default async function CreatorProfile({
   return (
     <>
       {!user?.email && (
-        <ActionBanner text="Sign in to build this week's YNG Dreamerz x NBA watch party!" />
+        <ActionBanner text={`Sign in to vote on ${creator.name}'s page.`} />
       )}
       {creator.banner_image_url && (
         <div className="hidden sm:block">
