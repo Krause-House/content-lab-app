@@ -9,12 +9,11 @@ export default function BannerImage({
   isLive?: boolean;
 }) {
   return (
-    <div className="relative">
+    <div className="relative h-[100px] sm:h-[150px] lg:h-[250px] overflow-hidden w-full">
       <Image
         priority
-        width={1512}
-        height={200}
-        className="block object-cover w-full"
+        fill
+        className="absolute block object-cover w-full h-full"
         src={imageUrl}
         alt=""
       />
