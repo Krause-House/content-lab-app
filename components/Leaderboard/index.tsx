@@ -86,7 +86,7 @@ export default function Leaderboard({
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [_candidates]);
+  }, [_candidates, contest.id]);
 
   return (
     <>
