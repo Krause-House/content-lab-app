@@ -35,12 +35,6 @@ export default async function CreatorEditProfile({
   ] = await Promise.all([
     supabase.auth.getUser(),
     getCreator(params.creator_id),
-    supabase
-      .from("contests")
-      .select()
-      .eq("created_by", params.creator_id)
-      .eq("is_visible", true),
-    supabase.from("candidates").select(),
   ]);
 
   if (user?.email !== creator.creator_email) {
@@ -49,9 +43,6 @@ export default async function CreatorEditProfile({
 
   return (
     <>
-      {!user?.email && (
-        <ActionBanner text={`Sign in to vote on ${creator.name}'s page.`} />
-      )}
       {creator.banner_image_url && (
         <BannerImage imageUrl={creator.banner_image_url} />
       )}
