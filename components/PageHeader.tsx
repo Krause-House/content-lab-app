@@ -23,7 +23,7 @@ export default function PageHeader({
           {title}
           {editLink && (
             <a href={editLink}>
-              <PencilIcon className="w-4 h-4 text-gray-500 cursor-pointer" />
+              <PencilIcon className="w-4 h-4 text-gray-500 cursor-pointer hover:scale-110" />
             </a>
           )}
         </h1>

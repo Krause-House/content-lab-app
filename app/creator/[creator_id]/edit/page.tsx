@@ -5,6 +5,7 @@ import PageHeader from "~/components/PageHeader";
 import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
 import CreatorProfileEditForm from "~/components/Forms/CreatorProfileEditForm";
+import { redirect } from "next/navigation";
 
 async function getCreator(creatorId: string) {
   const supabase = createClient();
@@ -18,7 +19,7 @@ async function getCreator(creatorId: string) {
   return creators[0] as Creator;
 }
 
-export default async function CreatorProfile({
+export default async function CreatorEditProfile({
   params,
 }: {
   params: { creator_id: string };
@@ -41,6 +42,10 @@ export default async function CreatorProfile({
       .eq("is_visible", true),
     supabase.from("candidates").select(),
   ]);
+
+  if (user?.email !== creator.creator_email) {
+    redirect(`/creator/${creator.id}`);
+  }
 
   return (
     <>

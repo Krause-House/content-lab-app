@@ -47,7 +47,11 @@ export default async function CreatorProfile({
   return (
     <>
       {!user?.email && (
-        <ActionBanner text={`Sign in to vote on ${creator.name}'s page.`} />
+        <ActionBanner
+          text={`Sign in to vote on ${creator.name}'${
+            creator.name.slice(-1) !== "s" ? "s" : ""
+          } page.`}
+        />
       )}
       {creator.banner_image_url && (
         <BannerImage imageUrl={creator.banner_image_url} />
