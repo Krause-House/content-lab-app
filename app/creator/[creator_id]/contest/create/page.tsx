@@ -3,8 +3,8 @@ import BannerImage from "~/components/BannerImage";
 import PageHeader from "~/components/PageHeader";
 import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
-import CreatorProfileEditForm from "~/components/Forms/CreatorProfileEditForm";
 import { redirect } from "next/navigation";
+import CreateContestForm from "~/components/Forms/CreateContestForm";
 
 async function getCreator(creatorId: string) {
   const supabase = createClient();
@@ -46,13 +46,8 @@ export default async function CreatorEditProfile({
         <BannerImage imageUrl={creator.banner_image_url} />
       )}
       <main className="relative px-4 mx-auto max-w-7xl">
-        <PageHeader
-          title={`Edit ${creator.name}'${
-            creator.name.slice(-1) !== "s" ? "s" : ""
-          } Profile`}
-          description=""
-        />
-        <CreatorProfileEditForm creator={creator} />
+        <PageHeader title={`New Contest in ${creator.name}`} description="" />
+        <CreateContestForm creator={creator} />
       </main>
     </>
   );

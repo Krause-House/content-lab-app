@@ -1,6 +1,8 @@
+import Link from "next/link";
 import React from "react";
 import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
+import { PrimaryButton } from "~/components/Buttons";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
 import Creator from "~/types/Creator";
@@ -87,6 +89,14 @@ export default async function CreatorProfile({
                 No contests yet
               </h3>
             ))}
+          {user?.email === creator.creator_email && (
+            <Link
+              href={`/creator/${creator.id}/contest/create`}
+              className="w-32 ml-auto"
+            >
+              <PrimaryButton>New contest</PrimaryButton>
+            </Link>
+          )}
         </div>
       </main>
     </>
