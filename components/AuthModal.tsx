@@ -1,7 +1,7 @@
 "use client";
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import AuthForm from "./AuthForm";
+import AuthForm from "./Forms/AuthForm";
 
 export default function AuthModal({
   isOpen,

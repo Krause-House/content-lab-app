@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import Card from "~/components/Card";
 import Creator from "~/types/Creator";
@@ -22,7 +23,10 @@ export default async function Home() {
     <main className="relative px-4 mx-auto max-w-7xl">
       <div className="flex flex-col items-center justify-center gap-12 p-12 md:flex-row">
         {creators.map((creator) => (
-          <a href={creator.page_url ?? `/creator/${creator.id}`}>
+          <Link
+            href={creator.page_url ?? `/creator/${creator.id}`}
+            key={creator.id}
+          >
             <Card className="w-[351px] h-[453px] relative card-shadow-hover overflow-hidden cursor-pointer transition-shadow">
               <div className="absolute inset-0 z-0 object-cover w-full h-full">
                 {creator.homepage_image_url && (
@@ -44,7 +48,7 @@ export default async function Home() {
                 <p className="text-center text-white accent">Vote Now</p>
               </div>
             </Card>
-          </a>
+          </Link>
         ))}
       </div>
     </main>

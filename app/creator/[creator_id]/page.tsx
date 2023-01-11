@@ -1,6 +1,8 @@
+import Link from "next/link";
 import React from "react";
 import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
+import { PrimaryButton } from "~/components/Buttons";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
 import Creator from "~/types/Creator";
@@ -12,7 +14,6 @@ async function getCreator(creatorId: string) {
     .from("creators")
     .select()
     .eq("id", creatorId);
-  console.log(creatorId, creators);
   if (!creators || creators.length === 0) {
     throw new Error("Creator not found");
   }
@@ -48,15 +49,25 @@ export default async function CreatorProfile({
   return (
     <>
       {!user?.email && (
-        <ActionBanner text={`Sign in to vote on ${creator.name}'s page.`} />
+        <ActionBanner
+          text={`Sign in to vote on ${creator.name}'${
+            creator.name.slice(-1) !== "s" ? "s" : ""
+          } page.`}
+        />
       )}
       {creator.banner_image_url && (
-        <div className="hidden sm:block">
-          <BannerImage imageUrl={creator.banner_image_url} />
-        </div>
+        <BannerImage imageUrl={creator.banner_image_url} />
       )}
       <main className="relative px-4 mx-auto max-w-7xl">
-        <PageHeader title={creator.name} description={creator.bio} />
+        <PageHeader
+          title={creator.name}
+          description={creator.bio}
+          editLink={
+            user?.email === creator.creator_email
+              ? `/creator/${creator.id}/edit`
+              : undefined
+          }
+        />
         <div className="flex flex-col">
           {contests
             ?.sort((a, b) => a.id - b.id)
@@ -78,6 +89,14 @@ export default async function CreatorProfile({
                 No contests yet
               </h3>
             ))}
+          {user?.email === creator.creator_email && (
+            <Link
+              href={`/creator/${creator.id}/contest/create`}
+              className="w-32 ml-auto"
+            >
+              <PrimaryButton>New contest</PrimaryButton>
+            </Link>
+          )}
         </div>
       </main>
     </>

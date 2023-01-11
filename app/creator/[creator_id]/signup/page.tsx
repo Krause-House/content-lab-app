@@ -1,6 +1,6 @@
 import "server-only";
 import createClient from "~/util/supabase-server";
-import AuthForm from "~/components/AuthForm";
+import AuthForm from "~/components/Forms/AuthForm";
 import { redirect } from "next/navigation";
 import BannerImage from "~/components/BannerImage";
 
