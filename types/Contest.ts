@@ -7,6 +7,7 @@ type Contest = {
   created_by: string;
   is_visible: boolean;
   is_active: boolean;
+  type: "poll" | "referrals";
 };
 
 export default Contest;

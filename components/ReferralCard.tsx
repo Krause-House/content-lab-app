@@ -12,7 +12,7 @@ export default function ReferralCard({
 }: {
   title: string;
   description: string;
-  creatorIdToSubscribeTo?: string;
+  creatorIdToSubscribeTo?: number | string;
   referredByEmail?: string;
   redirectTo?: string;
 }) {

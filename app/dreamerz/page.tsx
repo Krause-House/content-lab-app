@@ -2,7 +2,6 @@ import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
-import ReferralCard from "~/components/ReferralCard";
 import createClient from "~/util/supabase-server";
 
 export default async function Dreamerz() {

@@ -5,20 +5,10 @@ import BannerImage from "~/components/BannerImage";
 import { PrimaryButton } from "~/components/Buttons";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
-import Creator from "~/types/Creator";
+import ReferralCard from "~/components/ReferralCard";
+import fetchCreator from "~/lib/fetchCreator";
+import Contest from "~/types/Contest";
 import createClient from "~/util/supabase-server";
-
-async function getCreator(creatorId: string) {
-  const supabase = createClient();
-  const { data: creators } = await supabase
-    .from("creators")
-    .select()
-    .eq("id", creatorId);
-  if (!creators || creators.length === 0) {
-    throw new Error("Creator not found");
-  }
-  return creators[0] as Creator;
-}
 
 export default async function CreatorProfile({
   params,
@@ -37,7 +27,7 @@ export default async function CreatorProfile({
     { data: candidates },
   ] = await Promise.all([
     supabase.auth.getUser(),
-    getCreator(params.creator_id),
+    fetchCreator(params.creator_id),
     supabase
       .from("contests")
       .select()
@@ -68,10 +58,25 @@ export default async function CreatorProfile({
               : undefined
           }
         />
+        {user?.email &&
+          contests
+            ?.filter((c) => c.type === "referrals" && c.is_active)
+            .map((contest: Contest, idx) => (
+              <ReferralCard
+                key={idx}
+                title={contest.name}
+                creatorIdToSubscribeTo={creator.id}
+                referredByEmail={user?.email}
+                redirectTo={`/creator/${creator.id}`}
+                description={contest.description}
+              />
+            ))}
+        {/* POLLS */}
         <div className="flex flex-col">
           {contests
-            ?.sort((a, b) => a.id - b.id)
-            .map((contest, idx) => (
+            ?.filter((c) => c.type === "poll")
+            .sort((a, b) => a.id - b.id)
+            .map((contest: Contest, idx) => (
               <Leaderboard
                 key={idx}
                 user={user}

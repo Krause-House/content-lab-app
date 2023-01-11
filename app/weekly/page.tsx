@@ -44,15 +44,6 @@ export default async function Weekly() {
     supabase.from("candidates").select(),
   ]);
 
-  // fetch user details if user is logged in
-  const userDetailsRes = user?.email
-    ? (await supabase.from("users").select().eq("email", user.email)).data
-    : null;
-  const userDetails: UserDetails =
-    userDetailsRes && userDetailsRes[0]
-      ? userDetailsRes[0]
-      : defaultUserDetails;
-
   return (
     <>
       {/* {!user?.email && (
