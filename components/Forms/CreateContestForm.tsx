@@ -25,6 +25,8 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
     setIsLoading(true);
     if (!name) {
       toast.error("Name is required");
+    } else if (type === "poll" && candidates.length < 1) {
+      toast.error("Add at least one voting option");
     } else {
       try {
         const { data, error } = await supabase
