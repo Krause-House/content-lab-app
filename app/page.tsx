@@ -24,7 +24,11 @@ export default async function Home() {
       <div className="flex flex-col items-center justify-center gap-12 p-12 md:flex-row">
         {creators.map((creator) => (
           <Link
-            href={creator.page_url ?? `/creator/${creator.id}`}
+            href={
+              (creator.page_url?.length ?? 0) > 0
+                ? creator.page_url!
+                : `/creator/${creator.id}`
+            }
             key={creator.id}
           >
             <Card className="w-[351px] h-[453px] relative card-shadow-hover overflow-hidden cursor-pointer transition-shadow">
