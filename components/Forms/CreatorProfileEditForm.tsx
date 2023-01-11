@@ -25,7 +25,7 @@ export default function CreatorProfileEditForm({
       toast.error("Name is required");
     } else {
       try {
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from("creators")
           .update({ name, bio })
           .eq("id", creator.id);
@@ -33,7 +33,7 @@ export default function CreatorProfileEditForm({
           throw error;
         } else {
           toast.success("Profile updated");
-          router.refresh();
+          router.push(`/creator/${creator.id}`);
         }
       } catch (e) {
         console.error(e);

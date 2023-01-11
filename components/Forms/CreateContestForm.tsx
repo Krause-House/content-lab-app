@@ -8,9 +8,11 @@ import supabase from "~/util/supabase-browser";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Checkbox from "~/components/Checkbox";
-import Contest, { contest_types } from "~/types/Contest";
+import { contest_types } from "~/types/Contest";
 import { NewCandidate } from "~/types/Candidate";
 import NewCandidateButton from "~/components/Buttons/NewCandidateButton";
+import addCandidates from "~/lib/addCandidates";
+import addContest from "~/lib/addContest";
 
 export default function CreateContestForm({ creator }: { creator: Creator }) {
   const router = useRouter();
@@ -29,36 +31,19 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
       toast.error("Add at least one voting option");
     } else {
       try {
-        const { data, error } = await supabase
-          .from("contests")
-          .insert({
-            name,
-            description,
-            type,
-            created_by: creator.id,
-            is_active: true,
-            is_visible: true,
-          })
-          .select();
-        console.log(data, error);
-        if (!error && data && type === "poll") {
-          const { data: candidatesData, error: candidatesError } =
-            await supabase.from("candidates").insert(
-              candidates.map((candidate) => ({
-                ...candidate,
-                contest_id: (data as unknown as Contest[])[0].id,
-              }))
-            );
-          if (candidatesError) {
-            throw candidatesError ?? "Something went wrong";
-          }
+        const contest = await addContest({
+          name,
+          description,
+          type,
+          created_by: creator.id,
+          is_active: true,
+          is_visible: true,
+        });
+        if (type === "poll") {
+          addCandidates(contest.id, candidates);
         }
-        if (error || !data) {
-          throw error ?? "Something went wrong";
-        } else {
-          toast.success("Contest created");
-          router.push(`/creator/${creator.id}`);
-        }
+        toast.success("Contest created");
+        router.push(`/creator/${creator.id}`);
       } catch (e) {
         console.error(e);
         toast.error("Something went wrong");

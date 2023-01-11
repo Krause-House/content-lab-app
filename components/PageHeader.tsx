@@ -17,7 +17,7 @@ export default function PageHeader({
   primaryButton?: React.ReactNode;
 }) {
   return (
-    <div className="my-4 md:my-10 md:flex md:items-start md:justify-between">
+    <div className="my-4 md:flex md:items-start md:justify-between">
       <div className="flex-1 min-w-0">
         <h1 className="flex items-center gap-2 text-primary sm:truncate">
           {title}
