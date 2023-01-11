@@ -1,14 +1,15 @@
 "use client";
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import AuthForm from "./Forms/AuthForm";
 
-export default function AuthModal({
+export default function Modal({
   isOpen,
   setIsOpen,
+  children,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  children: React.ReactNode;
 }) {
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -40,9 +41,7 @@ export default function AuthModal({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel>
-                <AuthForm />
-              </Dialog.Panel>
+              <Dialog.Panel>{children}</Dialog.Panel>
             </Transition.Child>
           </div>
         </div>

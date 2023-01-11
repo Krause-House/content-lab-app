@@ -8,8 +8,8 @@ import Contest from "~/types/Contest";
 import Candidate from "~/types/Candidate";
 import LeaderboardCandidate from "./LeaderboardCandidate";
 import { PrimaryButton } from "~/components/Buttons";
-import AuthModal from "~/components/AuthModal";
-import Tooltip from "~/components/Tooltip";
+import Modal from "~/components/Modal";
+import { AuthForm } from "~/components/Forms";
 
 const update = async (candidate: Candidate, userEmail: string, vote: VOTE) => {
   return await setVote(candidate, userEmail, vote);
@@ -145,7 +145,9 @@ export default function Leaderboard({
         </ul>
       </Card>
       {!user?.id && (
-        <AuthModal isOpen={showAuthModal} setIsOpen={setShowAuthModal} />
+        <Modal isOpen={showAuthModal} setIsOpen={setShowAuthModal}>
+          <AuthForm />
+        </Modal>
       )}
     </>
   );

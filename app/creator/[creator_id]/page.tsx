@@ -48,7 +48,7 @@ export default async function CreatorProfile({
       {creator.banner_image_url && (
         <BannerImage imageUrl={creator.banner_image_url} />
       )}
-      <main className="relative px-4 mx-auto max-w-7xl">
+      <main className="relative px-4 py-16 mx-auto max-w-7xl">
         <PageHeader
           title={creator.name}
           description={creator.bio}
