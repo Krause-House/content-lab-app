@@ -1,3 +1,4 @@
+export const contest_types = ["poll", "referrals"] as const;
 type Contest = {
   id: number;
   name: string;
@@ -7,7 +8,7 @@ type Contest = {
   created_by: string;
   is_visible: boolean;
   is_active: boolean;
-  type: "poll" | "referrals";
+  type: typeof contest_types[number];
 };
 
 export default Contest;

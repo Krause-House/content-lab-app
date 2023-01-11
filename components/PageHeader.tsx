@@ -27,7 +27,9 @@ export default function PageHeader({
             </a>
           )}
         </h1>
-        <p className="max-w-4xl mt-2 text-gray-500">{description}</p>
+        {description && (
+          <p className="max-w-4xl mt-2 text-gray-500">{description}</p>
+        )}
       </div>
       <div className="flex gap-3 mt-3 md:mt-0 md:ml-4">
         {shareLink && (
