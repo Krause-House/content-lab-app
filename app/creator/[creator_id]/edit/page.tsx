@@ -45,13 +45,11 @@ export default async function CreatorEditProfile({
       {creator.banner_image_url && (
         <BannerImage imageUrl={creator.banner_image_url} />
       )}
-      <main className="relative px-4 mx-auto max-w-7xl">
-        <PageHeader
-          title={`Edit ${creator.name}'${
-            creator.name.slice(-1) !== "s" ? "s" : ""
-          } Profile`}
-          description=""
-        />
+      <main className="relative px-4 mx-auto lg:px-8 max-w-7xl">
+        <h1 className="flex items-center justify-start gap-2 my-8 text-primary sm:truncate">
+          Edit {creator.name}&apos;{creator.name.slice(-1) !== "s" ? "s" : ""}{" "}
+          Profile
+        </h1>
         <CreatorProfileEditForm creator={creator} />
       </main>
     </>

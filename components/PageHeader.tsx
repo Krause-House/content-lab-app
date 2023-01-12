@@ -17,7 +17,7 @@ export default function PageHeader({
   primaryButton?: React.ReactNode;
 }) {
   return (
-    <div className="my-4 md:my-10 md:flex md:items-start md:justify-between">
+    <div className="my-4 md:flex md:items-start md:justify-between">
       <div className="flex-1 min-w-0">
         <h1 className="flex items-center gap-2 text-primary sm:truncate">
           {title}
@@ -27,7 +27,9 @@ export default function PageHeader({
             </a>
           )}
         </h1>
-        <p className="max-w-4xl mt-2 text-gray-500">{description}</p>
+        {description && (
+          <p className="max-w-4xl mt-2 text-gray-500">{description}</p>
+        )}
       </div>
       <div className="flex gap-3 mt-3 md:mt-0 md:ml-4">
         {shareLink && (

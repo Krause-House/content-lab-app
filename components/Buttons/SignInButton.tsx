@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { PrimaryButton } from "~/components/Buttons";
-import AuthModal from "~/components/AuthModal";
+import Modal from "~/components/Modal";
+import { AuthForm } from "~/components/Forms";
 
 export default function SignInButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,9 @@ export default function SignInButton() {
   return (
     <>
       <PrimaryButton onClick={() => setIsOpen(true)}>Sign In</PrimaryButton>
-      <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+        <AuthForm />
+      </Modal>
     </>
   );
 }

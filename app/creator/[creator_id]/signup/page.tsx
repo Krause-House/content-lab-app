@@ -3,6 +3,8 @@ import createClient from "~/util/supabase-server";
 import AuthForm from "~/components/Forms/AuthForm";
 import { redirect } from "next/navigation";
 import BannerImage from "~/components/BannerImage";
+import fetchCreator from "~/lib/fetchCreator";
+import PageHeader from "~/components/PageHeader";
 
 export default async function SignUp({
   params,
@@ -12,7 +14,15 @@ export default async function SignUp({
   searchParams?: { referredBy?: string; redirectTo?: string };
 }) {
   const supabase = createClient();
-  const user = (await supabase.auth.getUser()).data.user;
+  const [
+    {
+      data: { user },
+    },
+    creator,
+  ] = await Promise.all([
+    supabase.auth.getUser(),
+    fetchCreator(params.creator_id),
+  ]);
 
   if (user) {
     redirect(searchParams?.redirectTo || "/");
@@ -20,16 +30,18 @@ export default async function SignUp({
 
   return (
     <>
-      <div className="hidden sm:block">
-        <BannerImage imageUrl="/assets/dreamerz_banner.png" />
-      </div>
-      <div className="flex flex-col items-center justify-center gap-8 p-8 py-32">
+      {creator.banner_image_url && (
+        <div className="hidden sm:block">
+          <BannerImage imageUrl={creator.banner_image_url} />
+        </div>
+      )}
+      <main className="flex flex-col items-center justify-center gap-8 p-8">
         <AuthForm
           onlyMode="Sign Up"
           creatorIdToSubscribeTo={params?.creator_id}
           referredByEmail={searchParams?.referredBy}
         />
-      </div>
+      </main>
     </>
   );
 }

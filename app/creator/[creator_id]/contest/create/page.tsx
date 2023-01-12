@@ -45,8 +45,10 @@ export default async function CreatorEditProfile({
       {creator.banner_image_url && (
         <BannerImage imageUrl={creator.banner_image_url} />
       )}
-      <main className="relative px-4 mx-auto max-w-7xl">
-        <PageHeader title={`New Contest in ${creator.name}`} description="" />
+      <main className="relative px-4 mx-auto lg:px-8 max-w-7xl">
+        <h1 className="flex items-center justify-center gap-2 my-8 text-primary sm:truncate">
+          New Contest in {creator.name}
+        </h1>
         <CreateContestForm creator={creator} />
       </main>
     </>
