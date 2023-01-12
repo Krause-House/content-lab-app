@@ -5,6 +5,7 @@ type Creator = {
   bio?: string;
   sign_up_image_url?: string;
   banner_image_url?: string;
+  metadata_image_url?: string;
   homepage_image_url?: string;
   page_url?: string;
   is_visible: boolean;
