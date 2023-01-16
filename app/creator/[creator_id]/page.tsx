@@ -7,7 +7,7 @@ import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
 import ReferralCard from "~/components/ReferralCard";
 import fetchCreator from "~/lib/fetchCreator";
-import Contest from "~/types/Contest";
+import Contest, { CONTEST_TYPE } from "~/types/Contest";
 import createClient from "~/util/supabase-server";
 
 export default async function CreatorProfile({
@@ -60,7 +60,7 @@ export default async function CreatorProfile({
         />
         {user?.email &&
           contests
-            ?.filter((c) => c.type === "referrals" && c.is_active)
+            ?.filter((c) => c.type === CONTEST_TYPE.REFERRALS && c.is_active)
             .map((contest: Contest, idx) => (
               <ReferralCard
                 key={idx}
@@ -74,11 +74,12 @@ export default async function CreatorProfile({
         {/* POLLS */}
         <div className="flex flex-col">
           {contests
-            ?.filter((c) => c.type === "poll")
+            ?.filter((c) => c.type === CONTEST_TYPE.POLL)
             .sort((a, b) => a.id - b.id)
             .map((contest: Contest, idx) => (
               <Leaderboard
                 key={idx}
+                type={contest.display}
                 user={user}
                 candidates={
                   candidates?.filter(

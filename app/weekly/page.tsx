@@ -1,7 +1,7 @@
 import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
 import { PrimaryButton } from "~/components/Buttons";
-import Leaderboard from "~/components/Leaderboard";
+import Leaderboard from "~/components/LeaderboardList";
 import PageHeader from "~/components/PageHeader";
 import ShareCard from "~/components/ShareCard";
 import UserDetails, { defaultUserDetails } from "~/types/UserDetails";
