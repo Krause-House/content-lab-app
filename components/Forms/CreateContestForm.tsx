@@ -26,7 +26,7 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
     setIsLoading(true);
     if (!name) {
       toast.error("Name is required");
-    } else if (type === "poll" && candidates.length < 1) {
+    } else if (type === CONTEST_TYPE.POLL && candidates.length < 1) {
       toast.error("Add at least one voting option");
     } else {
       try {
@@ -39,7 +39,7 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
           is_active: true,
           is_visible: true,
         });
-        if (type === "poll") {
+        if (type === CONTEST_TYPE.POLL) {
           addCandidates(contest.id, candidates);
         }
         toast.success("Contest created");
