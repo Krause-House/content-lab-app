@@ -126,7 +126,7 @@ export default function LeaderboardGrid({
                 (candidate1.for.length - candidate1.against.length)
             )
             .map((candidate: Candidate, index: number) => (
-              <li key={candidate.id}>
+              <li key={candidate.id} className="">
                 <LeaderboardGridItem
                   userEmail={user?.email ?? null}
                   canVote={!!user?.email && contest.is_active}

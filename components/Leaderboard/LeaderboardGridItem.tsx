@@ -20,7 +20,9 @@ export default function LeaderboardGridItem({
   className?: string;
 }) {
   return (
-    <Card className={`block overflow-hidden ${className}`}>
+    <Card
+      className={`overflow-hidden h-full flex flex-col justify-end ${className}`}
+    >
       <div className="">
         {candidate.image_url && (
           <div className="relative min-w-[50px] min-h-[250px] min-w-lg bg-tan-500 border-b border-gray-300">
