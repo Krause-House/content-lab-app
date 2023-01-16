@@ -92,7 +92,7 @@ export default function LeaderboardGrid({
   return (
     <>
       <div className="w-full my-4">
-        <div className="px-4 py-5 md:flex md:items-center md:gap-2 md:justify-between sm:px-6">
+        <div className="py-5 md:flex md:items-center md:gap-2 md:justify-between">
           <div className="w-full">
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
