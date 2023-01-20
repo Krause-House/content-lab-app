@@ -48,7 +48,7 @@ export default async function CreatorProfile({
       {creator.banner_image_url && (
         <BannerImage imageUrl={creator.banner_image_url} />
       )}
-      <main className="relative px-4 pb-16 mx-auto lg:px-8 max-w-7xl">
+      <main className="relative p-4 pb-16 mx-auto lg:px-8 max-w-7xl">
         <PageHeader
           title={creator.name}
           description={creator.bio}
