@@ -4,11 +4,10 @@ import Creator from "~/types/Creator";
 import Input from "~/components/Input";
 import TextArea from "~/components/TextArea";
 import { PrimaryButton } from "~/components/Buttons";
-import supabase from "~/util/supabase-browser";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Checkbox from "~/components/Checkbox";
-import { contest_types } from "~/types/Contest";
+import { CONTEST_DISPLAY, CONTEST_TYPE } from "~/types/Contest";
 import { NewCandidate } from "~/types/Candidate";
 import NewCandidateButton from "~/components/Buttons/NewCandidateButton";
 import addCandidates from "~/lib/addCandidates";
@@ -18,7 +17,7 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [type, setType] = useState<typeof contest_types[number]>("poll");
+  const [type, setType] = useState<CONTEST_TYPE>(CONTEST_TYPE.POLL);
   const [candidates, setCandidates] = useState<NewCandidate[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,7 +26,7 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
     setIsLoading(true);
     if (!name) {
       toast.error("Name is required");
-    } else if (type === "poll" && candidates.length < 1) {
+    } else if (type === CONTEST_TYPE.POLL && candidates.length < 1) {
       toast.error("Add at least one voting option");
     } else {
       try {
@@ -35,11 +34,12 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
           name,
           description,
           type,
+          display: CONTEST_DISPLAY.LIST,
           created_by: creator.id,
           is_active: true,
           is_visible: true,
         });
-        if (type === "poll") {
+        if (type === CONTEST_TYPE.POLL) {
           addCandidates(contest.id, candidates);
         }
         toast.success("Contest created");
@@ -76,15 +76,20 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
             <p>
               <label className="mr-1">Poll</label>
               <Checkbox
-                checked={type === "poll"}
-                onChange={() => type !== "poll" && setType("poll")}
+                checked={type === CONTEST_TYPE.POLL}
+                onChange={() =>
+                  type !== CONTEST_TYPE.POLL && setType(CONTEST_TYPE.POLL)
+                }
               />
             </p>
             <p>
               <label className="mr-1">Referrals</label>
               <Checkbox
-                checked={type === "referrals"}
-                onChange={() => type !== "referrals" && setType("referrals")}
+                checked={type === CONTEST_TYPE.REFERRALS}
+                onChange={() =>
+                  type !== CONTEST_TYPE.REFERRALS &&
+                  setType(CONTEST_TYPE.REFERRALS)
+                }
               />
             </p>
           </div>
