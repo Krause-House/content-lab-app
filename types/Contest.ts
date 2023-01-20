@@ -1,6 +1,6 @@
 export enum CONTEST_TYPE {
   POLL = "poll",
-  REFERRALS = "referrals",
+  REFERRALS = "referral",
 }
 export enum CONTEST_DISPLAY {
   LIST = "list",
