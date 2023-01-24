@@ -12,7 +12,7 @@ export default function Checkbox({
       checked={checked}
       onChange={onChange}
       type="checkbox"
-      className="w-6 h-6 rounded-md input-border bg-tan focus:ring-0"
+      className="w-6 h-6 rounded-md cursor-pointer input-border bg-tan focus:ring-0"
     />
   );
 }

@@ -18,6 +18,7 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState<CONTEST_TYPE>(CONTEST_TYPE.POLL);
+  const [allowSubmissions, setAllowSubmissions] = useState(false);
   const [candidates, setCandidates] = useState<NewCandidate[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,6 +39,7 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
           created_by: creator.id,
           is_active: true,
           is_visible: true,
+          allow_submissions: allowSubmissions,
         });
         if (type === CONTEST_TYPE.POLL) {
           addCandidates(contest.id, candidates);
@@ -71,19 +73,18 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
             className=""
             onChange={(e) => setDescription(e.target.value)}
           />
-          <div className="flex gap-6">
+          <div className="flex items-center gap-6">
             <p>Contest type:</p>
             <p>
-              <label className="mr-1">Poll</label>
               <Checkbox
                 checked={type === CONTEST_TYPE.POLL}
                 onChange={() =>
                   type !== CONTEST_TYPE.POLL && setType(CONTEST_TYPE.POLL)
                 }
               />
+              <label className="ml-2">Poll</label>
             </p>
             <p>
-              <label className="mr-1">Referrals</label>
               <Checkbox
                 checked={type === CONTEST_TYPE.REFERRALS}
                 onChange={() =>
@@ -91,33 +92,44 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
                   setType(CONTEST_TYPE.REFERRALS)
                 }
               />
+              <label className="ml-2">Referrals</label>
             </p>
           </div>
         </div>
         {type === "poll" && (
-          <div className="flex flex-col w-full max-w-md gap-6">
-            <div className="flex flex-col gap-3">
-              <h3 className="text-xl">Voting Options</h3>
-              {candidates.map((candidate, idx) => (
-                <div
-                  key={idx}
-                  className="p-2 px-4 rounded-lg input-border bg-tan"
-                >
-                  <div className="truncate">
-                    <h4 className="flex items-center gap-1">
-                      <span className="truncate">{candidate.name}</span>
-                    </h4>
-                    <p className="text-sm text-gray-500">
-                      {candidate.supporting_text}
-                    </p>
-                  </div>
-                </div>
-              ))}
-              <NewCandidateButton
-                onComplete={(candidate: NewCandidate) =>
-                  setCandidates([...candidates, candidate])
-                }
+          <div className="flex flex-col flex-1 max-w-md gap-3">
+            <h3 className="text-xl">Voting Options</h3>
+            <div className="flex">
+              <Checkbox
+                checked={allowSubmissions}
+                onChange={() => setAllowSubmissions(!allowSubmissions)}
               />
+              <label className="ml-2">Allow user-submitted options</label>
+            </div>
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3">
+                {candidates.map((candidate, idx) => (
+                  <div
+                    key={idx}
+                    className="p-2 px-4 rounded-lg input-border bg-tan"
+                  >
+                    <div className="truncate">
+                      <h4 className="flex items-center gap-1">
+                        <span className="truncate">{candidate.name}</span>
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {candidate.supporting_text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+                <NewCandidateButton
+                  style="creator"
+                  onComplete={(candidate: NewCandidate) =>
+                    setCandidates([...candidates, candidate])
+                  }
+                />
+              </div>
             </div>
           </div>
         )}
