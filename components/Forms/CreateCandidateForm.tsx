@@ -1,10 +1,14 @@
 "use client";
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Input from "~/components/Input";
 import TextArea from "~/components/TextArea";
 import { PrimaryButton } from "~/components/Buttons";
 import { NewCandidate } from "~/types/Candidate";
 import Card from "~/components/Card";
+import FileUploader from "../FileUploader";
+import uploadFile from "~/lib/uploadMedia";
+import { toast } from "react-hot-toast";
 
 // This is technically not a form, since it doesn't submit anything, so it can be used within other forms. BUT it should be used carefully because of that.
 export default function CreateCandidateForm({
@@ -14,14 +18,24 @@ export default function CreateCandidateForm({
 }) {
   const [name, setName] = useState("");
   const [supportingText, setSupportingText] = useState("");
+  const [media, setMedia] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleComplete = async () => {
-    onComplete({
-      name,
-      supporting_text: supportingText,
-      for: [],
-      against: [],
-    });
+    setLoading(true);
+    try {
+      const media_url = media ? await uploadFile(media, uuidv4()) : undefined;
+      onComplete({
+        name,
+        image_url: media_url,
+        supporting_text: supportingText,
+        for: [],
+        against: [],
+      });
+    } catch (e) {
+      toast.error("Error adding candidate.");
+    }
+    setLoading(false);
   };
 
   return (
@@ -42,8 +56,14 @@ export default function CreateCandidateForm({
           className="max-w-md"
           onChange={(e) => setSupportingText(e.target.value)}
         />
+        <FileUploader file={media} setFile={setMedia} />
         <div className="mt-4">
-          <PrimaryButton disabled={!name} onClick={handleComplete}>
+          <PrimaryButton
+            disabled={!name}
+            onClick={handleComplete}
+            isLoading={loading}
+            loadingText="Adding..."
+          >
             Add
           </PrimaryButton>
         </div>
