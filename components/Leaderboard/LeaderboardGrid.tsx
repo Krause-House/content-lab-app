@@ -4,7 +4,11 @@ import supabase from "~/util/supabase-browser";
 import Candidate from "~/types/Candidate";
 import Contest from "~/types/Contest";
 import User from "~/types/User";
-import { EndContestButton, PrimaryButton } from "~/components/Buttons";
+import {
+  ArchiveContestButton,
+  EndContestButton,
+  PrimaryButton,
+} from "~/components/Buttons";
 import { AuthForm } from "~/components/Forms";
 import Modal from "~/components/Modal";
 import setVote, { VOTE } from "~/lib/setVote";
@@ -113,9 +117,12 @@ export default function LeaderboardGrid({
                   }
                 />
               )}
-              {isCreator && contest.is_active && (
-                <EndContestButton contestId={contest.id} />
-              )}
+              {isCreator &&
+                (contest.is_active ? (
+                  <EndContestButton contestId={contest.id} />
+                ) : (
+                  <ArchiveContestButton contestId={contest.id} />
+                ))}
             </div>
           )}
         </div>

@@ -4,11 +4,7 @@ import PrimaryButton from "./PrimaryButton";
 import endContest from "~/lib/endContest";
 import { useRouter } from "next/navigation";
 
-export default function NewCandidateButton({
-  contestId,
-}: {
-  contestId: number;
-}) {
+export default function EndContestButton({ contestId }: { contestId: number }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
