@@ -24,10 +24,12 @@ export default function CreateCandidateForm({
   const handleComplete = async () => {
     setLoading(true);
     try {
-      const media_url = media ? await uploadFile(media, uuidv4()) : undefined;
+      const media_url = media
+        ? await uploadFile(media, uuidv4() + media.name.slice(-4))
+        : undefined;
       onComplete({
         name,
-        image_url: media_url,
+        media_url: media_url,
         supporting_text: supportingText,
         for: [],
         against: [],

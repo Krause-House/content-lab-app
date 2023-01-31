@@ -22,7 +22,7 @@ export default function FileUploader({
           htmlFor="file-upload"
           className="relative font-medium truncate rounded-md cursor-pointer text-primary"
         >
-          <span>{file?.name ?? "Upload a file"}</span>
+          <span>{file?.name ?? "Upload a file (mp3, mp4, or image)"}</span>
           <input
             id="file-upload"
             name="file-upload"

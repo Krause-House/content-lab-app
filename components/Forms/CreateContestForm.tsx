@@ -12,13 +12,14 @@ import { NewCandidate } from "~/types/Candidate";
 import NewCandidateButton from "~/components/Buttons/NewCandidateButton";
 import addCandidates from "~/lib/addCandidates";
 import addContest from "~/lib/addContest";
-import Image from "next/image";
+import DisplayMedia from "../DisplayMedia";
 
 export default function CreateContestForm({ creator }: { creator: Creator }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState<CONTEST_TYPE>(CONTEST_TYPE.POLL);
+  const [display, setDisplay] = useState<CONTEST_DISPLAY>(CONTEST_DISPLAY.LIST);
   const [allowSubmissions, setAllowSubmissions] = useState(false);
   const [candidates, setCandidates] = useState<NewCandidate[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +37,7 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
           name,
           description,
           type,
-          display: CONTEST_DISPLAY.LIST,
+          display: display,
           created_by: creator.id,
           is_active: true,
           is_visible: true,
@@ -96,9 +97,32 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
               <label className="ml-2">Referrals</label>
             </p>
           </div>
+          <div className="flex items-center gap-6">
+            <p>Display as:</p>
+            <p>
+              <Checkbox
+                checked={display === CONTEST_DISPLAY.LIST}
+                onChange={() =>
+                  display !== CONTEST_DISPLAY.LIST &&
+                  setDisplay(CONTEST_DISPLAY.LIST)
+                }
+              />
+              <label className="ml-2">List</label>
+            </p>
+            <p>
+              <Checkbox
+                checked={display === CONTEST_DISPLAY.GRID}
+                onChange={() =>
+                  display !== CONTEST_DISPLAY.GRID &&
+                  setDisplay(CONTEST_DISPLAY.GRID)
+                }
+              />
+              <label className="ml-2">Grid</label>
+            </p>
+          </div>
         </div>
         {type === "poll" && (
-          <div className="flex flex-col flex-1 max-w-md gap-3">
+          <div className="flex flex-col w-full max-w-md gap-3">
             <h3 className="text-xl">Voting Options</h3>
             <div className="flex">
               <Checkbox
@@ -112,21 +136,17 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
                 {candidates.map((candidate, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-start gap-2 p-2 px-4 rounded-lg input-border bg-tan"
+                    className="flex flex-col items-center justify-start gap-2 overflow-hidden rounded-lg input-border bg-tan"
                   >
-                    {candidate.image_url && (
-                      <div className="relative min-w-[50px] min-h-[50px] overflow-hidden rounded-full min-w-lg bg-tan-500 ring-2 ring-tan-400 z-0">
-                        <Image
-                          fill
-                          sizes="100%"
-                          key={idx}
-                          className="object-cover min-w-full min-h-full"
-                          src={candidate.image_url}
+                    {candidate.media_url && (
+                      <div className="relative min-w-full min-h-[200px] overflow-hidden min-w-lg bg-tan-500 z-0">
+                        <DisplayMedia
+                          mediaUrl={candidate.media_url}
                           alt={candidate.name}
                         />
                       </div>
                     )}
-                    <div className="truncate">
+                    <div className="p-2 px-4 truncate">
                       <h4 className="flex items-center gap-1">
                         <span className="truncate">{candidate.name}</span>
                       </h4>
