@@ -7,7 +7,7 @@ import setVote, { VOTE } from "~/lib/setVote";
 import Contest from "~/types/Contest";
 import Candidate from "~/types/Candidate";
 import LeaderboardListItem from "./LeaderboardListItem";
-import { PrimaryButton } from "~/components/Buttons";
+import { EndContestButton, PrimaryButton } from "~/components/Buttons";
 import Modal from "~/components/Modal";
 import { AuthForm } from "~/components/Forms";
 import NewCandidateButton from "~/components/Buttons/NewCandidateButton";
@@ -21,11 +21,13 @@ export default function LeaderboardList({
   user,
   contest,
   candidates,
+  isCreator = false,
   votingPower = 1,
 }: {
   user: User | null;
   contest: Contest;
   candidates: Candidate[];
+  isCreator?: boolean;
   votingPower?: number;
 }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -111,6 +113,9 @@ export default function LeaderboardList({
                     addCandidates(contest.id, [candidate])
                   }
                 />
+              )}
+              {isCreator && contest.is_active && (
+                <EndContestButton contestId={contest.id} />
               )}
             </div>
           )}

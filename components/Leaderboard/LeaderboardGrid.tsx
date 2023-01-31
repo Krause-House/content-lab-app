@@ -4,7 +4,7 @@ import supabase from "~/util/supabase-browser";
 import Candidate from "~/types/Candidate";
 import Contest from "~/types/Contest";
 import User from "~/types/User";
-import { PrimaryButton } from "~/components/Buttons";
+import { EndContestButton, PrimaryButton } from "~/components/Buttons";
 import { AuthForm } from "~/components/Forms";
 import Modal from "~/components/Modal";
 import setVote, { VOTE } from "~/lib/setVote";
@@ -20,11 +20,13 @@ export default function LeaderboardGrid({
   contest,
   candidates,
   user,
+  isCreator = false,
   votingPower = 1,
 }: {
   contest: Contest;
   candidates: Candidate[];
   user: User | null;
+  isCreator?: boolean;
   votingPower?: number;
 }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -110,6 +112,9 @@ export default function LeaderboardGrid({
                     addCandidates(contest.id, [candidate])
                   }
                 />
+              )}
+              {isCreator && contest.is_active && (
+                <EndContestButton contestId={contest.id} />
               )}
             </div>
           )}

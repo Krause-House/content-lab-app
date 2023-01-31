@@ -12,6 +12,7 @@ export default function Leaderboard({
   type: CONTEST_DISPLAY;
   contest: Contest;
   candidates: Candidate[];
+  isCreator?: boolean;
   votingPower?: number;
   user: User | null;
 }) {

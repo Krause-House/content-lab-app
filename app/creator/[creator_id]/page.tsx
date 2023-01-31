@@ -81,6 +81,7 @@ export default async function CreatorProfile({
                 key={idx}
                 type={contest.display}
                 user={user}
+                isCreator={user?.email === creator.creator_email}
                 candidates={
                   candidates?.filter(
                     (candidate) => candidate.contest_id === contest.id
