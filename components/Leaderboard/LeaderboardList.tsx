@@ -74,7 +74,7 @@ export default function LeaderboardList({
 
   useEffect(() => {
     const channel = supabase
-      .channel("candidate-changes")
+      .channel(`candidate-changes-${contest.id}`)
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "candidates" },
@@ -104,7 +104,7 @@ export default function LeaderboardList({
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          <div className="flex items-end justify-end w-full mt-3 md:mt-0">
+          <div className="flex items-end justify-end w-full gap-2 mt-3 md:mt-0">
             {contest.is_active && !user?.id && (
               <PrimaryButton onClick={() => setShowAuthModal(true)}>
                 Vote
