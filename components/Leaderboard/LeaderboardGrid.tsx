@@ -73,7 +73,7 @@ export default function LeaderboardGrid({
 
   useEffect(() => {
     const channel = supabase
-      .channel("candidate-changes")
+      .channel(`candidate-changes-${contest.id}`)
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "candidates" },
@@ -89,6 +89,7 @@ export default function LeaderboardGrid({
         }
       )
       .subscribe();
+    console.log("SUBSCRIBE TO CANDIDATE CHANGES", channel);
 
     return () => {
       supabase.removeChannel(channel);
@@ -104,7 +105,7 @@ export default function LeaderboardGrid({
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
           {contest.is_active && (
-            <div className="flex items-end justify-end w-full mt-3 md:mt-0">
+            <div className="flex items-end justify-end w-full gap-2 mt-3 md:mt-0">
               {!user?.id && (
                 <PrimaryButton onClick={() => setShowAuthModal(true)}>
                   Vote
