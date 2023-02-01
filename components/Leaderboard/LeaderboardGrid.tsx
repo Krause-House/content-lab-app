@@ -4,13 +4,17 @@ import supabase from "~/util/supabase-browser";
 import Candidate from "~/types/Candidate";
 import Contest from "~/types/Contest";
 import User from "~/types/User";
-import { PrimaryButton } from "~/components/Buttons";
-import Card from "~/components/Card";
+import {
+  ArchiveContestButton,
+  EndContestButton,
+  PrimaryButton,
+} from "~/components/Buttons";
 import { AuthForm } from "~/components/Forms";
 import Modal from "~/components/Modal";
-import LeaderboardListItem from "./LeaderboardListItem";
 import setVote, { VOTE } from "~/lib/setVote";
 import LeaderboardGridItem from "./LeaderboardGridItem";
+import NewCandidateButton from "../Buttons/NewCandidateButton";
+import addCandidates from "~/lib/addCandidates";
 
 const update = async (candidate: Candidate, userEmail: string, vote: VOTE) => {
   return await setVote(candidate, userEmail, vote);
@@ -20,11 +24,13 @@ export default function LeaderboardGrid({
   contest,
   candidates,
   user,
+  isCreator = false,
   votingPower = 1,
 }: {
   contest: Contest;
   candidates: Candidate[];
   user: User | null;
+  isCreator?: boolean;
   votingPower?: number;
 }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -99,21 +105,24 @@ export default function LeaderboardGrid({
           </div>
           {contest.is_active && (
             <div className="flex items-end justify-end w-full mt-3 md:mt-0">
-              {!user?.id ? (
+              {!user?.id && (
                 <PrimaryButton onClick={() => setShowAuthModal(true)}>
                   Vote
                 </PrimaryButton>
-              ) : (
-                <></>
-                // <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
-                //   <PrimaryButton className="flex items-center justify-center w-48 gap-2">
-                //     <div className="flex items-end text-xs font-normal accent">
-                //       Voting Power:
-                //     </div>
-                //     {votingPower}
-                //   </PrimaryButton>
-                // </Tooltip>
               )}
+              {user?.id && contest.allow_submissions && (
+                <NewCandidateButton
+                  onComplete={(candidate) =>
+                    addCandidates(contest.id, [candidate])
+                  }
+                />
+              )}
+              {isCreator &&
+                (contest.is_active ? (
+                  <EndContestButton contestId={contest.id} />
+                ) : (
+                  <ArchiveContestButton contestId={contest.id} />
+                ))}
             </div>
           )}
         </div>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { VOTE } from "~/lib/setVote";
 import Candidate from "~/types/Candidate";
 import Card from "~/components/Card";
+import DisplayMedia from "~/components/DisplayMedia";
 
 export default function LeaderboardGridItem({
   candidate,
@@ -24,16 +25,9 @@ export default function LeaderboardGridItem({
       className={`overflow-hidden h-full flex flex-col justify-end ${className}`}
     >
       <div className="">
-        {candidate.image_url && (
-          <div className="relative min-w-[50px] min-h-[250px] min-w-lg bg-tan-500 border-b border-gray-300">
-            <Image
-              fill
-              sizes="100%"
-              key={candidate.id}
-              className="object-cover min-w-full min-h-full"
-              src={candidate.image_url}
-              alt={candidate.name}
-            />
+        {candidate.media_url && (
+          <div className="relative min-w-[50px] min-h-[250px] flex items-center justify-center min-w-lg bg-tan-500 border-b border-gray-300">
+            <DisplayMedia mediaUrl={candidate.media_url} alt={candidate.name} />
           </div>
         )}
         <div className="flex items-center justify-between min-w-0 gap-3 px-4 py-4 sm:px-6">

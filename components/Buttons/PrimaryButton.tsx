@@ -24,7 +24,11 @@ export default function PrimaryButton({
       type={type}
       className={`font-medium text-white bg-primary-200 hover:bg-primary-300  ${className}`}
       disabled={disabled || isLoading}
-      onClick={() => !isLoading && !disabled && onClick && onClick()}
+      onClick={() => {
+        if (!isLoading && !disabled && !!onClick) {
+          onClick();
+        }
+      }}
     >
       <>
         {isLoading ? (

@@ -17,6 +17,7 @@ type Contest = {
   is_active: boolean;
   type: CONTEST_TYPE;
   display: CONTEST_DISPLAY;
+  allow_submissions: boolean;
 };
 
 export default Contest;

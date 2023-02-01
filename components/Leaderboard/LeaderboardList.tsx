@@ -7,9 +7,15 @@ import setVote, { VOTE } from "~/lib/setVote";
 import Contest from "~/types/Contest";
 import Candidate from "~/types/Candidate";
 import LeaderboardListItem from "./LeaderboardListItem";
-import { PrimaryButton } from "~/components/Buttons";
+import {
+  ArchiveContestButton,
+  EndContestButton,
+  PrimaryButton,
+} from "~/components/Buttons";
 import Modal from "~/components/Modal";
 import { AuthForm } from "~/components/Forms";
+import NewCandidateButton from "~/components/Buttons/NewCandidateButton";
+import addCandidates from "~/lib/addCandidates";
 
 const update = async (candidate: Candidate, userEmail: string, vote: VOTE) => {
   return await setVote(candidate, userEmail, vote);
@@ -19,11 +25,13 @@ export default function LeaderboardList({
   user,
   contest,
   candidates,
+  isCreator = false,
   votingPower = 1,
 }: {
   user: User | null;
   contest: Contest;
   candidates: Candidate[];
+  isCreator?: boolean;
   votingPower?: number;
 }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -96,25 +104,26 @@ export default function LeaderboardList({
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          {contest.is_active && (
-            <div className="flex items-end justify-end w-full mt-3 md:mt-0">
-              {!user?.id ? (
-                <PrimaryButton onClick={() => setShowAuthModal(true)}>
-                  Vote
-                </PrimaryButton>
+          <div className="flex items-end justify-end w-full mt-3 md:mt-0">
+            {contest.is_active && !user?.id && (
+              <PrimaryButton onClick={() => setShowAuthModal(true)}>
+                Vote
+              </PrimaryButton>
+            )}
+            {contest.is_active && user?.id && contest.allow_submissions && (
+              <NewCandidateButton
+                onComplete={(candidate) =>
+                  addCandidates(contest.id, [candidate])
+                }
+              />
+            )}
+            {isCreator &&
+              (contest.is_active ? (
+                <EndContestButton contestId={contest.id} />
               ) : (
-                <></>
-                // <Tooltip text="This is your voting power for this category. Use the share button each week to increase your voting power.">
-                //   <PrimaryButton className="flex items-center justify-center w-48 gap-2">
-                //     <div className="flex items-end text-xs font-normal accent">
-                //       Voting Power:
-                //     </div>
-                //     {votingPower}
-                //   </PrimaryButton>
-                // </Tooltip>
-              )}
-            </div>
-          )}
+                <ArchiveContestButton contestId={contest.id} />
+              ))}
+          </div>
         </div>
         <ul role="list" className="divide-y divide-gray-300">
           {_candidates
