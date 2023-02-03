@@ -31,7 +31,7 @@ export default function LeaderboardListItem({
               />
             </div>
           )}
-          <div className="truncate">
+          <div className="">
             <h4 className="flex items-center gap-1">
               <span className="truncate">{candidate.name}</span>
               {badges?.map((b, idx) => (
