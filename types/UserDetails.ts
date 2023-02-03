@@ -1,5 +1,6 @@
 type UserDetails = {
   voting_power: number;
+  apple_id?: string;
 };
 
 const defaultUserDetails: UserDetails = {

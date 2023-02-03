@@ -1,6 +1,5 @@
 import React from "react";
 import BannerImage from "~/components/BannerImage";
-import PageHeader from "~/components/PageHeader";
 import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
 import CreatorProfileEditForm from "~/components/Forms/CreatorProfileEditForm";

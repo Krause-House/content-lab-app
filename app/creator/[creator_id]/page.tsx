@@ -51,12 +51,14 @@ export default async function CreatorProfile({
       <main className="relative p-4 pb-16 mx-auto lg:px-8 max-w-7xl">
         <PageHeader
           title={creator.name}
+          userEmail={user?.email}
           description={creator.bio}
           editLink={
             user?.email === creator.creator_email
               ? `/creator/${creator.id}/edit`
               : undefined
           }
+          powerUps={creator.power_ups}
         />
         {user?.email &&
           contests
