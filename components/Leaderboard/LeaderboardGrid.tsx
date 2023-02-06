@@ -111,7 +111,7 @@ export default function LeaderboardGrid({
                   Vote
                 </PrimaryButton>
               )}
-              {user?.id && contest.allow_submissions && (
+              {user?.id && (contest.allow_submissions ?? false) && (
                 <NewCandidateButton
                   onComplete={(candidate) =>
                     addCandidates(contest.id, [candidate])

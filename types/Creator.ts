@@ -12,7 +12,6 @@ type Creator = {
   homepage_image_url?: string;
   page_url?: string;
   is_visible: boolean;
-  power_ups: POWER_UPS[];
 };
 
 export default Creator;

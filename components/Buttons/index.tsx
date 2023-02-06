@@ -4,7 +4,6 @@ import SignInButton from "./SignInButton";
 import SignOutButton from "./SignOutButton";
 import EndContestButton from "./EndContestButton";
 import ArchiveContestButton from "./ArchiveContestButton";
-import SubmitAppleIdButton from "./SubmitAppleIdButton";
 
 export {
   PrimaryButton,
@@ -13,5 +12,4 @@ export {
   SignOutButton,
   EndContestButton,
   ArchiveContestButton,
-  SubmitAppleIdButton,
 };

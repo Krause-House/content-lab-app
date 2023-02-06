@@ -110,13 +110,15 @@ export default function LeaderboardList({
                 Vote
               </PrimaryButton>
             )}
-            {contest.is_active && user?.id && contest.allow_submissions && (
-              <NewCandidateButton
-                onComplete={(candidate) =>
-                  addCandidates(contest.id, [candidate])
-                }
-              />
-            )}
+            {contest.is_active &&
+              user?.id &&
+              (contest.allow_submissions ?? false) && (
+                <NewCandidateButton
+                  onComplete={(candidate) =>
+                    addCandidates(contest.id, [candidate])
+                  }
+                />
+              )}
             {isCreator &&
               (contest.is_active ? (
                 <EndContestButton contestId={contest.id} />

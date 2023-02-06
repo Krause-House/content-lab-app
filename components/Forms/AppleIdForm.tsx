@@ -5,14 +5,17 @@ import { PrimaryButton } from "~/components/Buttons";
 import Card from "~/components/Card";
 import { toast } from "react-hot-toast";
 import submitAppleId from "~/lib/submitAppleId";
+import Link from "next/link";
 
 // This is technically not a form, since it doesn't submit anything, so it can be used within other forms. BUT it should be used carefully because of that.
 export default function AppleIdForm({
   userEmail,
   onComplete,
+  reviewsLink,
 }: {
   userEmail: string;
   onComplete: () => void;
+  reviewsLink?: string;
 }) {
   const [id, setId] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,7 +27,7 @@ export default function AppleIdForm({
       toast.error("Name is required");
     } else {
       try {
-        const contest = await submitAppleId(userEmail, id);
+        await submitAppleId(userEmail, id);
         toast.success("Apple ID submitted");
         onComplete();
       } catch (e) {
@@ -40,7 +43,18 @@ export default function AppleIdForm({
       <Card className="max-w-md p-6 overflow-hidden text-left align-middle transition-all transform w-72 sm:w-96 bg-tan">
         <h2 className="mb-4">Submit your Apple ID</h2>
         <p className="mb-2">
-          Write a review, submit your apple ID, get bonus votes.
+          Write a review
+          {reviewsLink && (
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold"
+              href={reviewsLink}
+            >
+              {" here"}
+            </Link>
+          )}
+          , submit your apple ID, get bonus votes.
         </p>
         <div className="flex flex-col gap-2">
           <Input

@@ -1,6 +1,6 @@
 import React from "react";
 import { ShareIcon } from "@heroicons/react/20/solid";
-import { SecondaryButton, SubmitAppleIdButton } from "~/components/Buttons";
+import { SecondaryButton } from "~/components/Buttons";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { POWER_UPS } from "~/types/Creator";
 
@@ -11,7 +11,6 @@ export default function PageHeader({
   editLink,
   shareLink,
   primaryButton,
-  powerUps,
 }: {
   title: string;
   userEmail?: string;
@@ -19,7 +18,6 @@ export default function PageHeader({
   editLink?: string;
   shareLink?: string;
   primaryButton?: React.ReactNode;
-  powerUps: POWER_UPS[];
 }) {
   return (
     <div className="my-4 md:flex md:items-start md:justify-between">
@@ -44,9 +42,6 @@ export default function PageHeader({
               Share
             </SecondaryButton>
           </a>
-        )}
-        {powerUps?.includes(POWER_UPS.APPLE_REVIEWS) && userEmail && (
-          <SubmitAppleIdButton userEmail={userEmail} />
         )}
         {primaryButton}
       </div>
