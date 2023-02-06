@@ -73,7 +73,7 @@ export default async function CreatorProfile({
   ]);
 
   const user_metadata = user?.email
-    ? await supabase.from("users").select().eq("email", user?.email)
+    ? (await supabase.from("users").select().eq("email", user?.email)).data?.[0]
     : undefined;
 
   return (
