@@ -1,3 +1,4 @@
+import { MicrophoneIcon, TvIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import React from "react";
 import ActionBanner from "~/components/ActionBanner";
@@ -9,7 +10,41 @@ import ReferralCard from "~/components/ReferralCard";
 import ReviewContestCard from "~/components/ReviewContestCard";
 import fetchCreator from "~/lib/fetchCreator";
 import Contest, { CONTEST_DISPLAY, CONTEST_TYPE } from "~/types/Contest";
+import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
+
+const getPrimaryButton = (creator: Creator) => {
+  if (creator.watch_url) {
+    return (
+      <Link href={creator.watch_url} target="_blank" rel="noreferrer noopener">
+        <PrimaryButton>
+          <TvIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+          Watch
+        </PrimaryButton>
+      </Link>
+    );
+  }
+
+  if (creator.listen_url) {
+    if (creator.watch_url) {
+      return (
+        <Link
+          href={creator.listen_url}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <PrimaryButton>
+            <MicrophoneIcon
+              className="-ml-0.5 mr-2 h-4 w-4"
+              aria-hidden="true"
+            />
+            Listen
+          </PrimaryButton>
+        </Link>
+      );
+    }
+  }
+};
 
 export default async function CreatorProfile({
   params,
@@ -59,6 +94,7 @@ export default async function CreatorProfile({
               ? `/creator/${creator.id}/edit`
               : undefined
           }
+          primaryButton={getPrimaryButton(creator)}
         />
         <div
           className={`grid grid-cols-1 gap-x-4 ${

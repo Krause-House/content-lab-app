@@ -2,7 +2,6 @@ import React from "react";
 import { ShareIcon } from "@heroicons/react/20/solid";
 import { SecondaryButton } from "~/components/Buttons";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import { POWER_UPS } from "~/types/Creator";
 
 export default function PageHeader({
   title,

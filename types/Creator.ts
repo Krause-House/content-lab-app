@@ -1,6 +1,3 @@
-export enum POWER_UPS {
-  APPLE_REVIEWS = "apple_reviews",
-}
 type Creator = {
   id: number;
   creator_email?: string;
@@ -12,6 +9,8 @@ type Creator = {
   homepage_image_url?: string;
   page_url?: string;
   is_visible: boolean;
+  watch_url?: string;
+  listen_url?: string;
 };
 
 export default Creator;
