@@ -72,6 +72,10 @@ export default async function CreatorProfile({
     supabase.from("candidates").select(),
   ]);
 
+  const user_metadata = user?.email
+    ? await supabase.from("users").select().eq("email", user?.email)
+    : undefined;
+
   return (
     <>
       {!user?.email && (
@@ -148,6 +152,7 @@ export default async function CreatorProfile({
                     (candidate) => candidate.contest_id === contest.id
                   ) ?? []
                 }
+                votingPower={user_metadata?.voting_power ?? 1}
                 contest={contest}
               />
             ))}

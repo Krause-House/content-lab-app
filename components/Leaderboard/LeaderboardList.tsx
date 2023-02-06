@@ -17,10 +17,14 @@ import { AuthForm } from "~/components/Forms";
 import NewCandidateButton from "~/components/Buttons/NewCandidateButton";
 import addCandidates from "~/lib/addCandidates";
 
-const update = async (candidate: Candidate, userEmail: string, vote: VOTE) => {
-  return await setVote(candidate, userEmail, vote);
+const update = async (
+  candidate: Candidate,
+  userEmail: string,
+  vote: VOTE,
+  votingPower?: number
+) => {
+  return await setVote(candidate, userEmail, vote, votingPower);
 };
-
 export default function LeaderboardList({
   user,
   contest,
@@ -64,7 +68,7 @@ export default function LeaderboardList({
                 : candidate.against.filter((email) => email !== user.email),
           },
         ]);
-        await update(candidate, user?.email, vote);
+        await update(candidate, user?.email, vote, votingPower);
       } else throw new Error("User is not logged in");
     } catch (e) {
       console.error(e);
