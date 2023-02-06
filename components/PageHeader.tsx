@@ -9,14 +9,14 @@ export default function PageHeader({
   description,
   editLink,
   shareLink,
-  primaryButton,
+  buttons,
 }: {
   title: string;
   userEmail?: string;
   description?: string;
   editLink?: string;
   shareLink?: string;
-  primaryButton?: React.ReactNode;
+  buttons?: React.ReactNode[];
 }) {
   return (
     <div className="my-4 md:flex md:items-start md:justify-between">
@@ -42,7 +42,7 @@ export default function PageHeader({
             </SecondaryButton>
           </a>
         )}
-        {primaryButton}
+        {buttons?.map((button, index) => button)}
       </div>
     </div>
   );

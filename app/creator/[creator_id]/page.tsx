@@ -1,4 +1,8 @@
-import { MicrophoneIcon, TvIcon } from "@heroicons/react/24/outline";
+import {
+  BookOpenIcon,
+  MicrophoneIcon,
+  TvIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import React from "react";
 import ActionBanner from "~/components/ActionBanner";
@@ -13,11 +17,12 @@ import Contest, { CONTEST_DISPLAY, CONTEST_TYPE } from "~/types/Contest";
 import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
 
-const getPrimaryButton = (creator: Creator) => {
+const getButtons = (creator: Creator) => {
+  const buttons: React.ReactNode[] = [];
   if (creator.watch_url) {
-    return (
+    buttons.push(
       <Link href={creator.watch_url} target="_blank" rel="noreferrer noopener">
-        <PrimaryButton>
+        <PrimaryButton className="bg-[#A9433C] hover:bg-[#A9433C]">
           <TvIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
           Watch
         </PrimaryButton>
@@ -26,24 +31,28 @@ const getPrimaryButton = (creator: Creator) => {
   }
 
   if (creator.listen_url) {
-    if (creator.watch_url) {
-      return (
-        <Link
-          href={creator.listen_url}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <PrimaryButton>
-            <MicrophoneIcon
-              className="-ml-0.5 mr-2 h-4 w-4"
-              aria-hidden="true"
-            />
-            Listen
-          </PrimaryButton>
-        </Link>
-      );
-    }
+    buttons.push(
+      <Link href={creator.listen_url} target="_blank" rel="noreferrer noopener">
+        <PrimaryButton className="bg-[#C55A2E] hover:bg-[#C55A2E]">
+          <MicrophoneIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+          Listen
+        </PrimaryButton>
+      </Link>
+    );
   }
+
+  if (creator.read_url) {
+    buttons.push(
+      <Link href={creator.read_url} target="_blank" rel="noreferrer noopener">
+        <PrimaryButton className="bg-[#CB843F] hover:bg-[#CB843F]">
+          <BookOpenIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+          Read
+        </PrimaryButton>
+      </Link>
+    );
+  }
+
+  return buttons;
 };
 
 export default async function CreatorProfile({
@@ -98,7 +107,7 @@ export default async function CreatorProfile({
               ? `/creator/${creator.id}/edit`
               : undefined
           }
-          primaryButton={getPrimaryButton(creator)}
+          buttons={getButtons(creator)}
         />
         <div
           className={`grid grid-cols-1 gap-x-4 ${
