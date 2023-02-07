@@ -57,7 +57,8 @@ const voteAgainst = async (
 const setVote = async (
   candidate: Candidate,
   voterEmail: string,
-  vote: VOTE
+  vote: VOTE,
+  votingPower = 1
 ) => {
   const {
     data: { user },
@@ -68,9 +69,9 @@ const setVote = async (
 
   switch (vote) {
     case VOTE.FOR:
-      return voteFor(candidate, voterEmail);
+      return voteFor(candidate, voterEmail, votingPower);
     case VOTE.AGAINST:
-      return voteAgainst(candidate, voterEmail);
+      return voteAgainst(candidate, voterEmail, votingPower);
   }
 };
 

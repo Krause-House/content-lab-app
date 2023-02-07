@@ -1,3 +1,8 @@
+import {
+  BookOpenIcon,
+  MicrophoneIcon,
+  TvIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import React from "react";
 import ActionBanner from "~/components/ActionBanner";
@@ -6,9 +11,49 @@ import { PrimaryButton } from "~/components/Buttons";
 import Leaderboard from "~/components/Leaderboard";
 import PageHeader from "~/components/PageHeader";
 import ReferralCard from "~/components/ReferralCard";
+import ReviewContestCard from "~/components/ReviewContestCard";
 import fetchCreator from "~/lib/fetchCreator";
-import Contest, { CONTEST_TYPE } from "~/types/Contest";
+import Contest, { CONTEST_DISPLAY, CONTEST_TYPE } from "~/types/Contest";
+import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
+
+const getButtons = (creator: Creator) => {
+  const buttons: React.ReactNode[] = [];
+  if (creator.watch_url) {
+    buttons.push(
+      <Link href={creator.watch_url} target="_blank" rel="noreferrer noopener">
+        <PrimaryButton className="bg-[#A9433C] hover:bg-[#A9433C]">
+          <TvIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+          Watch
+        </PrimaryButton>
+      </Link>
+    );
+  }
+
+  if (creator.listen_url) {
+    buttons.push(
+      <Link href={creator.listen_url} target="_blank" rel="noreferrer noopener">
+        <PrimaryButton className="bg-[#C55A2E] hover:bg-[#C55A2E]">
+          <MicrophoneIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+          Listen
+        </PrimaryButton>
+      </Link>
+    );
+  }
+
+  if (creator.read_url) {
+    buttons.push(
+      <Link href={creator.read_url} target="_blank" rel="noreferrer noopener">
+        <PrimaryButton className="bg-[#CB843F] hover:bg-[#CB843F]">
+          <BookOpenIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
+          Read
+        </PrimaryButton>
+      </Link>
+    );
+  }
+
+  return buttons;
+};
 
 export default async function CreatorProfile({
   params,
@@ -36,6 +81,10 @@ export default async function CreatorProfile({
     supabase.from("candidates").select(),
   ]);
 
+  const user_metadata = user?.email
+    ? (await supabase.from("users").select().eq("email", user?.email)).data?.[0]
+    : undefined;
+
   return (
     <>
       {!user?.email && (
@@ -51,26 +100,51 @@ export default async function CreatorProfile({
       <main className="relative p-4 pb-16 mx-auto lg:px-8 max-w-7xl">
         <PageHeader
           title={creator.name}
+          userEmail={user?.email}
           description={creator.bio}
           editLink={
             user?.email === creator.creator_email
               ? `/creator/${creator.id}/edit`
               : undefined
           }
+          buttons={getButtons(creator)}
         />
-        {user?.email &&
-          contests
-            ?.filter((c) => c.type === CONTEST_TYPE.REFERRALS && c.is_active)
-            .map((contest: Contest, idx) => (
-              <ReferralCard
-                key={idx}
-                title={contest.name}
-                creatorIdToSubscribeTo={creator.id}
-                referredByEmail={user?.email}
-                redirectTo={`/creator/${creator.id}`}
-                description={contest.description}
-              />
-            ))}
+        <div
+          className={`grid grid-cols-1 gap-x-4 ${
+            (contests?.filter(
+              (c) =>
+                (c.type === CONTEST_TYPE.REFERRALS ||
+                  c.type === CONTEST_TYPE.REVIEWS) &&
+                c.is_active
+            )?.length ?? 0) >= 2 && "lg:grid-cols-2"
+          }`}
+        >
+          {user?.email &&
+            contests
+              ?.filter((c) => c.type === CONTEST_TYPE.REFERRALS && c.is_active)
+              .map((contest: Contest, idx) => (
+                <ReferralCard
+                  key={idx}
+                  title={contest.name}
+                  creatorIdToSubscribeTo={creator.id}
+                  referredByEmail={user?.email}
+                  redirectTo={`/creator/${creator.id}`}
+                  description={contest.description}
+                />
+              ))}
+          {user?.email &&
+            contests
+              ?.filter((c) => c.type === CONTEST_TYPE.REVIEWS && c.is_active)
+              .map((contest: Contest, idx) => (
+                <ReviewContestCard
+                  key={idx}
+                  title={contest.name}
+                  description={contest.description}
+                  userEmail={user?.email!}
+                  reviewsLink={contest.link}
+                />
+              ))}
+        </div>
         {/* POLLS */}
         <div className="flex flex-col">
           {contests
@@ -79,7 +153,7 @@ export default async function CreatorProfile({
             .map((contest: Contest, idx) => (
               <Leaderboard
                 key={idx}
-                type={contest.display}
+                type={contest.display ?? CONTEST_DISPLAY.GRID}
                 user={user}
                 isCreator={user?.email === creator.creator_email}
                 candidates={
@@ -87,6 +161,7 @@ export default async function CreatorProfile({
                     (candidate) => candidate.contest_id === contest.id
                   ) ?? []
                 }
+                votingPower={user_metadata?.voting_power ?? 1}
                 contest={contest}
               />
             ))}

@@ -4,7 +4,6 @@ import AuthForm from "~/components/Forms/AuthForm";
 import { redirect } from "next/navigation";
 import BannerImage from "~/components/BannerImage";
 import fetchCreator from "~/lib/fetchCreator";
-import PageHeader from "~/components/PageHeader";
 
 export default async function SignUp({
   params,

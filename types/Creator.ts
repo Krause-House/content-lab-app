@@ -9,6 +9,9 @@ type Creator = {
   homepage_image_url?: string;
   page_url?: string;
   is_visible: boolean;
+  watch_url?: string;
+  listen_url?: string;
+  read_url?: string;
 };
 
 export default Creator;
