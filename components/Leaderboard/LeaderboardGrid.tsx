@@ -109,28 +109,31 @@ export default function LeaderboardGrid({
             <h2 className="text-gray-800">{contest.name}</h2>
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
-          {contest.is_active && (
-            <div className="flex items-end justify-end w-full gap-2 mt-3 md:mt-0">
-              {!user?.id && (
+
+          <div className="flex items-end justify-end w-full gap-2 mt-3 md:mt-0">
+            {contest.is_active &&
+              !user?.id &&
+              contest.type === CONTEST_TYPE.POLL && (
                 <PrimaryButton onClick={() => setShowAuthModal(true)}>
                   Vote
                 </PrimaryButton>
               )}
-              {user?.id && (contest.allow_submissions ?? false) && (
+            {contest.is_active &&
+              user?.id &&
+              (contest.allow_submissions ?? false) && (
                 <NewCandidateButton
                   onComplete={(candidate) =>
                     addCandidates(contest.id, [candidate])
                   }
                 />
               )}
-              {isCreator &&
-                (contest.is_active ? (
-                  <EndContestButton contestId={contest.id} />
-                ) : (
-                  <ArchiveContestButton contestId={contest.id} />
-                ))}
-            </div>
-          )}
+            {isCreator &&
+              (contest.is_active ? (
+                <EndContestButton contestId={contest.id} />
+              ) : (
+                <ArchiveContestButton contestId={contest.id} />
+              ))}
+          </div>
         </div>
         <ul
           role="list"
