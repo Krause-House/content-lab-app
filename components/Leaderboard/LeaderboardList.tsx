@@ -4,7 +4,7 @@ import supabase from "~/util/supabase-browser";
 import User from "~/types/User";
 import { useEffect, useState } from "react";
 import setVote, { VOTE } from "~/lib/setVote";
-import Contest from "~/types/Contest";
+import Contest, { CONTEST_TYPE } from "~/types/Contest";
 import Candidate from "~/types/Candidate";
 import LeaderboardListItem from "./LeaderboardListItem";
 import {
@@ -147,6 +147,7 @@ export default function LeaderboardList({
                   candidate={candidate}
                   vote={(_vote) => vote(candidate, _vote)}
                   badges={candidate.is_winner ? ["Winner"] : []}
+                  hasVoting={contest.type !== CONTEST_TYPE.SUBMISSIONS}
                   className={
                     !candidate.is_winner &&
                     !contest.is_active &&

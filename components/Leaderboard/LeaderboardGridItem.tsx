@@ -11,6 +11,7 @@ export default function LeaderboardGridItem({
   canVote,
   vote,
   badges,
+  hasVoting = true,
   className,
 }: {
   candidate: Candidate;
@@ -18,6 +19,7 @@ export default function LeaderboardGridItem({
   canVote: boolean;
   vote: (vote: VOTE) => void;
   badges?: string[];
+  hasVoting?: boolean;
   className?: string;
 }) {
   return (
@@ -45,35 +47,37 @@ export default function LeaderboardGridItem({
             </h4>
             <p className="text-sm text-gray-500">{candidate.supporting_text}</p>
           </div>
-          <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-400">
-            {userEmail && canVote && (
-              <ChevronUpIcon
-                onClick={() =>
-                  !candidate.for.includes(userEmail) && vote(VOTE.FOR)
-                }
-                className={`w-5 h-5 hover:text-gray-800 transition ${
-                  !candidate.for.includes(userEmail)
-                    ? "cursor-pointer hover:scale-125"
-                    : "text-gray-800"
-                }`}
-              />
-            )}
-            <p className="text-base text-primary">
-              {candidate.for.length - candidate.against.length}
-            </p>
-            {userEmail && canVote && (
-              <ChevronDownIcon
-                onClick={() =>
-                  !candidate.against.includes(userEmail) && vote(VOTE.AGAINST)
-                }
-                className={`w-5 h-5 hover:text-gray-800 transition ${
-                  !candidate.against.includes(userEmail)
-                    ? "cursor-pointer hover:scale-125"
-                    : "text-gray-800"
-                }`}
-              />
-            )}
-          </div>
+          {hasVoting && (
+            <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-400">
+              {userEmail && canVote && (
+                <ChevronUpIcon
+                  onClick={() =>
+                    !candidate.for.includes(userEmail) && vote(VOTE.FOR)
+                  }
+                  className={`w-5 h-5 hover:text-gray-800 transition ${
+                    !candidate.for.includes(userEmail)
+                      ? "cursor-pointer hover:scale-125"
+                      : "text-gray-800"
+                  }`}
+                />
+              )}
+              <p className="text-base text-primary">
+                {candidate.for.length - candidate.against.length}
+              </p>
+              {userEmail && canVote && (
+                <ChevronDownIcon
+                  onClick={() =>
+                    !candidate.against.includes(userEmail) && vote(VOTE.AGAINST)
+                  }
+                  className={`w-5 h-5 hover:text-gray-800 transition ${
+                    !candidate.against.includes(userEmail)
+                      ? "cursor-pointer hover:scale-125"
+                      : "text-gray-800"
+                  }`}
+                />
+              )}
+            </div>
+          )}
         </div>
       </div>
     </Card>

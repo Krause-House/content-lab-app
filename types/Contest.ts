@@ -2,6 +2,7 @@ export enum CONTEST_TYPE {
   POLL = "poll",
   REFERRALS = "referral",
   REVIEWS = "review",
+  SUBMISSIONS = "submission",
 }
 export enum CONTEST_DISPLAY {
   LIST = "list",

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import supabase from "~/util/supabase-browser";
 import Candidate from "~/types/Candidate";
-import Contest from "~/types/Contest";
+import Contest, { CONTEST_TYPE } from "~/types/Contest";
 import User from "~/types/User";
 import {
   ArchiveContestButton,
@@ -94,7 +94,6 @@ export default function LeaderboardGrid({
         }
       )
       .subscribe();
-    console.log("SUBSCRIBE TO CANDIDATE CHANGES", channel);
 
     return () => {
       supabase.removeChannel(channel);
@@ -151,6 +150,7 @@ export default function LeaderboardGrid({
                   candidate={candidate}
                   vote={(_vote) => vote(candidate, _vote)}
                   badges={candidate.is_winner ? ["Winner"] : []}
+                  hasVoting={contest.type !== CONTEST_TYPE.SUBMISSIONS}
                   className={
                     !candidate.is_winner &&
                     !contest.is_active &&

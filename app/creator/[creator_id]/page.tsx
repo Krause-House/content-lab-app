@@ -9,10 +9,13 @@ import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
 import { PrimaryButton } from "~/components/Buttons";
 import Leaderboard from "~/components/Leaderboard";
+import { MediaItem } from "~/components/Media";
 import PageHeader from "~/components/PageHeader";
 import ReferralCard from "~/components/ReferralCard";
 import ReviewContestCard from "~/components/ReviewContestCard";
 import fetchCreator from "~/lib/fetchCreator";
+import fetchMediaByCreator from "~/lib/fetchMediaByCreator";
+import Candidate from "~/types/Candidate";
 import Contest, { CONTEST_DISPLAY, CONTEST_TYPE } from "~/types/Contest";
 import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
@@ -68,11 +71,13 @@ export default async function CreatorProfile({
       data: { user },
     },
     creator,
+    media,
     { data: contests },
     { data: candidates },
   ] = await Promise.all([
     supabase.auth.getUser(),
     fetchCreator(params.creator_id),
+    fetchMediaByCreator(params.creator_id),
     supabase
       .from("contests")
       .select()
@@ -145,10 +150,14 @@ export default async function CreatorProfile({
                 />
               ))}
         </div>
-        {/* POLLS */}
+        {/* POLLS AND SUBMISSIONS */}
         <div className="flex flex-col">
           {contests
-            ?.filter((c) => c.type === CONTEST_TYPE.POLL)
+            ?.filter(
+              (c) =>
+                c.type === CONTEST_TYPE.POLL ||
+                c.type === CONTEST_TYPE.SUBMISSIONS
+            )
             .sort((a, b) => a.id - b.id)
             .map((contest: Contest, idx) => (
               <Leaderboard
@@ -179,6 +188,23 @@ export default async function CreatorProfile({
               <PrimaryButton>New contest</PrimaryButton>
             </Link>
           )}
+        </div>
+
+        {/* MEDIA */}
+        <div className="flex flex-col">
+          {media.length > 0 &&
+            media.map((m) => (
+              <MediaItem
+                key={m.id}
+                media={m}
+                winners={
+                  candidates?.filter(
+                    (c: Candidate) =>
+                      m.contests.includes(c.contest_id) && c.is_winner
+                  ) ?? []
+                }
+              />
+            ))}
         </div>
       </main>
     </>
