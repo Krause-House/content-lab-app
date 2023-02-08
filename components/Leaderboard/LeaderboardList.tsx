@@ -109,11 +109,13 @@ export default function LeaderboardList({
             <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
           </div>
           <div className="flex items-end justify-end w-full gap-2 mt-3 md:mt-0">
-            {contest.is_active && !user?.id && (
-              <PrimaryButton onClick={() => setShowAuthModal(true)}>
-                Vote
-              </PrimaryButton>
-            )}
+            {contest.is_active &&
+              !user?.id &&
+              contest.type === CONTEST_TYPE.POLL && (
+                <PrimaryButton onClick={() => setShowAuthModal(true)}>
+                  Vote
+                </PrimaryButton>
+              )}
             {contest.is_active &&
               user?.id &&
               (contest.allow_submissions ?? false) && (
