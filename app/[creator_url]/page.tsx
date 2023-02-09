@@ -15,11 +15,13 @@ async function getCreator(creatorUrl: string) {
   return creators[0] as Creator;
 }
 
-export default async function CreatorLinkPage({
+export default async function CreatorLinkRedirect({
   params,
 }: {
   params: { creator_url: string };
 }) {
   const creator = await getCreator(params.creator_url);
   redirect(`/creator/${creator.id}`);
+
+  return <></>;
 }
