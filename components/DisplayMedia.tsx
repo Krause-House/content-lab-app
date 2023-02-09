@@ -23,7 +23,7 @@ export default function DisplayMedia({
     if (imageOnly) return <div></div>;
     return (
       <video className="object-cover min-w-full min-h-full" controls>
-        <source src={mediaUrl} type="video/mov" />
+        <source src={mediaUrl} />
         Your browser does not support the video tag.
       </video>
     );
