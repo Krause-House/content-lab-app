@@ -11,7 +11,7 @@ export default function DisplayMedia({
   alt?: string;
   imageOnly?: boolean;
 }) {
-  if (mediaUrl.slice(-3) === "mp4") {
+  if (mediaUrl.toLowerCase().slice(-3) === "mp4") {
     if (imageOnly) return <div></div>;
     return (
       <video className="object-cover min-w-full min-h-full" controls>
@@ -19,7 +19,15 @@ export default function DisplayMedia({
         Your browser does not support the video tag.
       </video>
     );
-  } else if (mediaUrl.slice(-3) === "mp3") {
+  } else if (mediaUrl.toLowerCase().slice(-3) === "mov") {
+    if (imageOnly) return <div></div>;
+    return (
+      <video className="object-cover min-w-full min-h-full" controls>
+        <source src={mediaUrl} type="video/mov" />
+        Your browser does not support the video tag.
+      </video>
+    );
+  } else if (mediaUrl.toLowerCase().slice(-3) === "mp3") {
     if (imageOnly) return <div></div>;
     return <AudioPlayer url={mediaUrl} />;
   } else {
