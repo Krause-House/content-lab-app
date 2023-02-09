@@ -5,6 +5,7 @@ import ToastContainer from "~/components/ToastContainer";
 import createClient from "~/util/supabase-server";
 import Script from "next/script";
 import "./globals.css";
+import Footer from "~/components/Footer";
 
 // do not cache this layout due to the access token
 export const revalidate = 0;
@@ -25,11 +26,11 @@ export default async function RootLayout({
     <html lang="en">
       <head />
       <SupabaseListener accessToken={session?.access_token} />
-      <body className="relative overflow-x-hidden font-light bg-tan-500">
+      <body className="relative flex flex-col min-h-screen overflow-x-hidden font-light bg-tan-500">
         <ToastContainer />
         <Header user={user} />
-        <div className="mt-16">{children}</div>
-        <footer></footer>
+        <div className="flex-1 mt-16">{children}</div>
+        <Footer />
       </body>
       {process.env.NODE_ENV === "production" && (
         <>
