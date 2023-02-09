@@ -94,7 +94,6 @@ export default function LeaderboardGrid({
         }
       )
       .subscribe();
-    console.log("SUBSCRIBE TO CANDIDATE CHANGES", channel);
 
     return () => {
       supabase.removeChannel(channel);
