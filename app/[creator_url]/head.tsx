@@ -1,12 +1,12 @@
 import Creator from "~/types/Creator";
 import createClient from "~/util/supabase-server";
 
-async function getCreator(creatorId: string) {
+async function getCreator(creatorUrl: string) {
   const supabase = createClient();
   const { data: creators } = await supabase
     .from("creators")
     .select()
-    .eq("id", creatorId);
+    .eq("page_url", creatorUrl);
   if (!creators || creators.length === 0) {
     throw new Error("Creator not found");
   }
@@ -16,9 +16,9 @@ async function getCreator(creatorId: string) {
 export default async function Head({
   params,
 }: {
-  params: { creator_id: string };
+  params: { creator_url: string };
 }) {
-  const creator = await getCreator(params.creator_id);
+  const creator = await getCreator(params.creator_url);
   const title = creator ? `${creator.name} on Gameday` : "Gameday";
 
   return (
@@ -45,7 +45,7 @@ export default async function Head({
       <meta name="twitter:creator" content="@gregfromstl" />
       <meta
         property="og:url"
-        content={`https://gameday.watch/creator/${params.creator_id}/signup`}
+        content={`https://gameday.watch/creator/${creator.id}/signup`}
       />
       <meta
         property="og:image"
