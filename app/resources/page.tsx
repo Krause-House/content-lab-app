@@ -1,5 +1,5 @@
 import React from "react";
-import createClient from "~/util/supabase-server";
+import createClient from "~/util/supabase-server";blank
 import ResourceCard from "~/components/ResourceCard";
 import Resource from "~/types/Resource";
 
