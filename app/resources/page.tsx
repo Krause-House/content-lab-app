@@ -7,7 +7,7 @@ export default async function Resources() {
   const supabase = createClient();
   const { data: resources } = await supabase.from("resources").select("*");
   return (
-    <div className="flex flex-col justify-center py-20 mx-auto max-w-7xl">
+    <div className="flex flex-col justify-center px-6 py-20 mx-auto max-w-7xl">
       <div className="mb-6 text-center">
         <h1 className="">Gamedy Resources</h1>
         <p className="max-w-lg mx-auto text-gray-500">
