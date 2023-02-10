@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const navigation = [
+const social = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/watchgameday/?hl=en",
@@ -57,26 +57,54 @@ const navigation = [
     ),
   },
 ];
+const link = [
+  {
+    name: "Resources",
+    href: "/resources",
+  },
+  {
+    name: "Become a Creator",
+    href: "https://gameday.krausehouse.club",
+  },
+  {
+    name: "Support",
+    href: "mailto: dunk@gameday.watch",
+  },
+];
 
 export default function Footer() {
   return (
     <footer className="">
-      <div className="px-6 py-8 mx-auto max-w-7xl md:flex md:items-center md:justify-between lg:px-8">
-        <div className="flex justify-center space-x-6 md:order-2">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              target="_blank"
-              className="text-gray-400 hover:text-gray-500"
-            >
-              <span className="sr-only">{item.name}</span>
-              <item.icon className="w-6 h-6" aria-hidden="true" />
-            </Link>
-          ))}
+      <div className="px-6 py-8 mx-auto max-w-7xl md:flex md:items-start md:justify-between lg:px-8">
+        <div className="flex flex-col space-y-2 md:order-2">
+          <div className="flex justify-center space-x-6 md:justify-end">
+            {link.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                target="_blank"
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <span className="text-sm">{item.name}</span>
+              </Link>
+            ))}
+          </div>
+          <div className="flex justify-center space-x-6 md:justify-end">
+            {social.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                target="_blank"
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="w-6 h-6" aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
-          <p className="text-xs leading-5 text-center text-gray-500">
+          <p className="text-sm leading-5 text-center text-gray-500">
             &copy; 2023 Krause House Limited. All rights reserved.
           </p>
         </div>
