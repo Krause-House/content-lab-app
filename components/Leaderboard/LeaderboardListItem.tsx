@@ -35,7 +35,7 @@ export default function LeaderboardListItem({
           )}
           <div className="min-w-0">
             <h4 className="flex items-center gap-1">
-              <span className="truncate">{candidate.name}</span>
+              <span className="">{candidate.name}</span>
               {badges?.map((b, idx) => (
                 <span
                   key={idx}

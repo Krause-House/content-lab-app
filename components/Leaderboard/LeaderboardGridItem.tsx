@@ -35,7 +35,7 @@ export default function LeaderboardGridItem({
         <div className="flex items-center justify-between min-w-0 gap-3 px-4 py-4 sm:px-6">
           <div className="min-w-0">
             <h4 className="flex items-center gap-1">
-              <span className="truncate">{candidate.name}</span>
+              <span className="">{candidate.name}</span>
               {badges?.map((b, idx) => (
                 <span
                   key={idx}

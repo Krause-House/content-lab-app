@@ -136,7 +136,7 @@ export default function LeaderboardGrid({
         </div>
         <ul
           role="list"
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3"
+          className="grid items-start grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3"
         >
           {_candidates
             .sort(
