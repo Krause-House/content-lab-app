@@ -15,7 +15,7 @@ export default function UserMenu({ user }: { user: User }) {
   return (
     <Menu as="div" className="relative flex-shrink-0">
       <div>
-        <Menu.Button className="flex text-sm text-white rounded-full shadow-none bg-primary-500 focus:outline-none ">
+        <Menu.Button className="flex text-sm text-black rounded-full shadow-none bg-primary-500 focus:outline-none ">
           <span className="sr-only">Open user menu</span>
           <Image
             width={24}

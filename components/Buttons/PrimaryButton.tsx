@@ -22,7 +22,7 @@ export default function PrimaryButton({
   return (
     <BaseButton
       type={type}
-      className={`font-medium text-white bg-primary-200 hover:bg-primary-300  ${className}`}
+      className={`font-medium text-black bg-primary-200 hover:bg-primary-300  ${className}`}
       disabled={disabled || isLoading}
       onClick={() => {
         if (!isLoading && !disabled && !!onClick) {

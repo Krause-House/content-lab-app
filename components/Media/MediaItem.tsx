@@ -26,8 +26,8 @@ export default function MediaItem({
       <Card className="w-full my-4 bg-tan">
         <div className="px-4 py-5 border-b border-gray-300 md:flex md:items-center md:gap-2 md:justify-between sm:px-6">
           <div className="w-full">
-            <h2 className="text-gray-800">{media.name}</h2>
-            {/* <p className="mt-1 text-sm text-gray-500">{media.description}</p> */}
+            <h2 className="text-gray-100">{media.name}</h2>
+            {/* <p className="mt-1 text-sm text-gray-300">{media.description}</p> */}
           </div>
           <div className="flex items-end justify-end w-full gap-2 mt-3 md:mt-0"></div>
         </div>
@@ -49,7 +49,7 @@ export default function MediaItem({
                     <h4 className="flex items-center gap-1">
                       <span className="truncate">{winner.name}</span>
                     </h4>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-300">
                       {winner.supporting_text}
                     </p>
                   </div>

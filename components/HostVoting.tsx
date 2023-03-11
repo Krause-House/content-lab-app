@@ -73,7 +73,7 @@ export default function HostVoting({
         <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div className="">
             <h2 className="text-primary-500">Host Leaderboard</h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-gray-300">
               Upvote and downvote hosts to influence who&apos;s on stage. The
               leader will be the co-host until they fall out of first place.
             </p>

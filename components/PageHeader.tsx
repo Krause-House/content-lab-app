@@ -25,12 +25,12 @@ export default function PageHeader({
           {title}
           {editLink && (
             <a href={editLink}>
-              <PencilIcon className="w-4 h-4 text-gray-500 cursor-pointer hover:scale-110" />
+              <PencilIcon className="w-4 h-4 text-gray-300 cursor-pointer hover:scale-110" />
             </a>
           )}
         </h1>
         {description && (
-          <p className="max-w-4xl mt-2 text-gray-500">{description}</p>
+          <p className="max-w-4xl mt-2 text-gray-300">{description}</p>
         )}
       </div>
       <div className="flex gap-3 mt-3 md:mt-0 md:ml-4">

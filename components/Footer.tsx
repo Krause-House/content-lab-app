@@ -83,7 +83,7 @@ export default function Footer() {
                 key={item.name}
                 href={item.href}
                 target="_blank"
-                className="text-gray-400 hover:text-gray-500"
+                className="text-gray-200 hover:text-gray-300"
               >
                 <span className="text-sm">{item.name}</span>
               </Link>
@@ -95,7 +95,7 @@ export default function Footer() {
                 key={item.name}
                 href={item.href}
                 target="_blank"
-                className="text-gray-400 hover:text-gray-500"
+                className="text-gray-200 hover:text-gray-300"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="w-6 h-6" aria-hidden="true" />
@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
-          <p className="text-sm leading-5 text-center text-gray-500">
+          <p className="text-sm leading-5 text-center text-gray-300">
             &copy; 2023 Krause House Limited. All rights reserved.
           </p>
         </div>

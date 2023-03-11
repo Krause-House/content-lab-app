@@ -16,7 +16,7 @@ export default function FileUploader({
 
   return (
     <div className="">
-      <div className="flex px-1 py-2 text-sm text-gray-400 border rounded-lg input-border">
+      <div className="flex px-1 py-2 text-sm text-gray-200 border rounded-lg input-border">
         <PhotoIcon className="w-5 mr-1" />
         <label
           htmlFor="file-upload"

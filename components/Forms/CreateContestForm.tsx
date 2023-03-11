@@ -150,7 +150,7 @@ export default function CreateContestForm({ creator }: { creator: Creator }) {
                       <h4 className="flex items-center gap-1">
                         <span className="truncate">{candidate.name}</span>
                       </h4>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-300">
                         {candidate.supporting_text}
                       </p>
                     </div>

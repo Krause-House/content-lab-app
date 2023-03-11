@@ -27,20 +27,20 @@ export default function HostListItem({
             alt={host.displayName}
           />
           <div className="">
-            <h4 className="text-gray-800 truncate">{host.displayName}</h4>
+            <h4 className="text-gray-100 truncate">{host.displayName}</h4>
             <DiscordTag handle={host.discordName} />
           </div>
         </div>
-        <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-400">
+        <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-200">
           {userId && (
             <ChevronUpIcon
               onClick={() => !host.for.includes(userId) && vote(VOTE.FOR)}
-              className={`w-5 h-5 hover:text-gray-600 ${
-                !host.for.includes(userId) ? "cursor-pointer" : "text-gray-600"
+              className={`w-5 h-5 hover:text-gray-100 ${
+                !host.for.includes(userId) ? "cursor-pointer" : "text-gray-100"
               }`}
             />
           )}
-          <p className="text-gray-600">
+          <p className="text-gray-100">
             {host.for.length - host.against.length}
           </p>
           {userId && (
@@ -48,10 +48,10 @@ export default function HostListItem({
               onClick={() =>
                 !host.against.includes(userId) && vote(VOTE.AGAINST)
               }
-              className={`w-5 h-5 hover:text-gray-600 ${
+              className={`w-5 h-5 hover:text-gray-100 ${
                 !host.against.includes(userId)
                   ? "cursor-pointer"
-                  : "text-gray-600"
+                  : "text-gray-100"
               }`}
             />
           )}

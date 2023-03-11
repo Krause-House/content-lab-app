@@ -35,30 +35,30 @@ export default function LeaderboardListItem({
           )}
           <div className="min-w-0">
             <h4 className="flex items-center gap-1">
-              <span className="">{candidate.name}</span>
+              <span className="text-white">{candidate.name}</span>
               {badges?.map((b, idx) => (
                 <span
                   key={idx}
-                  className="px-2 text-xs text-white rounded-md bg-primary-200 border-primary border-2 py-0.5"
+                  className="px-2 text-xs text-black rounded-md bg-primary-200 border-primary border-2 py-0.5"
                 >
                   {b}
                 </span>
               ))}
             </h4>
-            <p className="text-sm text-gray-500">{candidate.supporting_text}</p>
+            <p className="text-sm text-gray-300">{candidate.supporting_text}</p>
           </div>
         </div>
         {hasVoting && (
-          <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-400">
+          <div className="flex flex-col items-center flex-shrink-0 mx-2 text-sm font-medium text-gray-200">
             {userEmail && canVote && (
               <ChevronUpIcon
                 onClick={() =>
                   !candidate.for.includes(userEmail) && vote(VOTE.FOR)
                 }
-                className={`w-5 h-5 hover:text-gray-800 transition ${
+                className={`w-5 h-5 hover:text-gray-100 transition ${
                   !candidate.for.includes(userEmail)
                     ? "cursor-pointer hover:scale-125"
-                    : "text-gray-800"
+                    : "text-gray-100"
                 }`}
               />
             )}
@@ -70,10 +70,10 @@ export default function LeaderboardListItem({
                 onClick={() =>
                   !candidate.against.includes(userEmail) && vote(VOTE.AGAINST)
                 }
-                className={`w-5 h-5 hover:text-gray-800 transition ${
+                className={`w-5 h-5 hover:text-gray-100 transition ${
                   !candidate.against.includes(userEmail)
                     ? "cursor-pointer hover:scale-125"
-                    : "text-gray-800"
+                    : "text-gray-100"
                 }`}
               />
             )}

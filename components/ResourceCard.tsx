@@ -30,7 +30,7 @@ export default function LeaderboardGridItem({
                 <span className="truncate">{resource.title}</span>
               </h4>
               {resource.supporting_text && (
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-300">
                   {resource.supporting_text}
                 </p>
               )}

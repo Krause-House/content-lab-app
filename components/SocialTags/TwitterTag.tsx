@@ -5,7 +5,7 @@ import { Twitter } from "react-feather";
 export default function TwitterTag({ handle }: { handle: string }) {
   return (
     <Link
-      className="flex items-center mt-0 text-sm text-gray-500"
+      className="flex items-center mt-0 text-sm text-gray-300"
       href={`https://twitter.com/${handle}`}
       target="_blank"
     >

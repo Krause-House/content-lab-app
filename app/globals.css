@@ -7,31 +7,31 @@
 }
 
 .button-shadow {
-  box-shadow: -2px 4px #190a2d;
+  box-shadow: -2px 4px #e8c56d;
 }
 
 .button-border {
-  border: 2px solid #190a2d;
+  border: 2px solid #fff;
 }
 
 .input-shadow {
-  box-shadow: -2px 4px #190a2d !important;
+  box-shadow: -2px 4px #e8c56d !important;
 }
 
 .input-border {
-  border: 3px solid #190a2d !important;
+  border: 3px solid #fff !important;
 }
 
 .card {
-  border: 3px solid #190a2d;
+  border: 3px solid #fff;
 }
 
 .card-shadow {
-  box-shadow: -3px 3px #190a2d;
+  box-shadow: -3px 3px #e8c56d;
 }
 
 .card-shadow-hover:hover {
-  box-shadow: -3px 3px #190a2d;
+  box-shadow: -3px 3px #e8c56d;
 }
 
 .loader {

@@ -21,7 +21,7 @@ export default function Input({
       type={type}
       value={value}
       onChange={onChange}
-      className={`block w-full text-base font-light text-gray-800 placeholder-gray-400 border rounded-lg appearance-none input-border bg-tan ${className}`}
+      className={`block w-full text-base font-light text-gray-100 placeholder-gray-200 border rounded-lg appearance-none input-border bg-tan ${className}`}
       placeholder={placeholder}
     />
   );

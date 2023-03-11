@@ -23,7 +23,7 @@ export default function BannerImage({
           rel="noopener noreferrer"
           target="_blank"
         >
-          <button className="absolute top-2 left-2 inline-flex items-center rounded-md bg-red-600 px-2.5 py-0.5 text-sm font-medium text-white">
+          <button className="absolute top-2 left-2 inline-flex items-center rounded-md bg-red-600 px-2.5 py-0.5 text-sm font-medium text-black">
             <svg
               className="-ml-0.5 mr-1.5 h-2 w-2"
               fill="currentColor"

@@ -69,8 +69,8 @@ export default async function Home() {
     <main className="relative px-4 mx-auto max-w-7xl">
       <div className="py-12">
         <div className="w-full pb-4">
-          <h1 className="text-gray-800">Featured Creators</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <h1 className="text-gray-100">Featured Creators</h1>
+          <p className="mt-1 text-sm text-gray-300">
             The best basketball creators on Gameday
           </p>
         </div>
@@ -102,8 +102,8 @@ export default async function Home() {
                     }`}
                   />
                   <div className="absolute flex flex-col justify-between w-full h-full p-6">
-                    <h1 className="text-white mega">{creator.name}</h1>
-                    <p className="text-center text-white accent">Vote Now</p>
+                    <h1 className="text-black mega">{creator.name}</h1>
+                    <p className="text-center text-black accent">Vote Now</p>
                   </div>
                 </Card>
               </Link>
@@ -112,8 +112,8 @@ export default async function Home() {
       </div>
       <div className="py-12">
         <div className="w-full pb-4">
-          <h1 className="text-gray-800">Trending Now</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <h1 className="text-gray-100">Trending Now</h1>
+          <p className="mt-1 text-sm text-gray-300">
             The latest polls and contests across the Gameday ecosystem.
           </p>
         </div>

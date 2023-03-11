@@ -33,10 +33,10 @@ export default function LeaderboardPreview({
       <Card className="w-full bg-tan">
         <div className="gap-2 px-4 py-5 border-b border-gray-300 md:flex md:items-center md:gap-4 md:justify-between sm:px-6">
           <div className="w-full">
-            <h2 className="text-gray-800">
+            <h2 className="text-gray-100">
               {creator.name} - {contest.name}
             </h2>
-            <p className="mt-1 text-sm text-gray-500">{contest.description}</p>
+            <p className="mt-1 text-sm text-gray-300">{contest.description}</p>
           </div>
           <div className="flex items-end justify-end gap-2 mt-3 md:mt-0">
             {contest.is_active &&

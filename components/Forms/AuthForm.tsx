@@ -93,7 +93,7 @@ export default function AuthForm({
   };
   return (
     <Card className="max-w-md p-6 overflow-hidden text-left align-middle transition-all transform w-72 sm:w-96 bg-tan">
-      <h2>{mode}</h2>
+      <h2 className="text-white">{mode}</h2>
       <form onSubmit={attemptSignInOrSignUp}>
         <div className="flex flex-col w-full gap-2 mt-4">
           <div className="w-full">
