@@ -5,6 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import ActionBanner from "~/components/ActionBanner";
 import BannerImage from "~/components/BannerImage";
 import { PrimaryButton } from "~/components/Buttons";
@@ -102,17 +103,19 @@ export default async function CreatorProfile() {
         <BannerImage imageUrl={creator.banner_image_url} />
       )}
       <main className="relative p-4 pb-16 mx-auto lg:px-8 max-w-7xl">
-        <PageHeader
-          title={creator.name}
-          userEmail={user?.email}
-          description={creator.bio}
-          editLink={
-            user?.email === creator.creator_email
-              ? `/creator/${creator.id}/edit`
-              : undefined
-          }
-          buttons={getButtons(creator)}
-        />
+        <div className="flex flex-col items-center justify-center w-full pb-12">
+          <Image
+            src="/assets/yng_logo_lg.png"
+            alt="Gameday"
+            width={679}
+            height={367}
+            priority
+            className="block w-auto h-48"
+          />
+          <h1 className="flex items-center gap-2 text-primary sm:truncate">
+            {creator.name}
+          </h1>
+        </div>
         <div
           className={`grid grid-cols-1 gap-x-4 ${
             (contests?.filter(
