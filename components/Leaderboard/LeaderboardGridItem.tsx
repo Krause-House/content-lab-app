@@ -57,7 +57,7 @@ export default function LeaderboardGridItem({
                   className={`w-5 h-5 hover:text-gray-100 transition ${
                     !candidate.for.includes(userEmail)
                       ? "cursor-pointer hover:scale-125"
-                      : "text-gray-100"
+                      : "opacity-50"
                   }`}
                 />
               )}
@@ -72,7 +72,7 @@ export default function LeaderboardGridItem({
                   className={`w-5 h-5 hover:text-gray-100 transition ${
                     !candidate.against.includes(userEmail)
                       ? "cursor-pointer hover:scale-125"
-                      : "text-gray-100"
+                      : "opacity-50"
                   }`}
                 />
               )}
