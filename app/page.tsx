@@ -47,4 +47,5 @@ const getTrendingContests = async (
 
 export default async function Home() {
   redirect("/dreamerz");
+  return <></>;
 }
