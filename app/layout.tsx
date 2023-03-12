@@ -26,7 +26,7 @@ export default async function RootLayout({
     <html lang="en">
       <head />
       <SupabaseListener accessToken={session?.access_token} />
-      <body className="relative flex flex-col min-h-screen overflow-x-hidden font-light bg-tan-500">
+      <body className="relative flex flex-col min-h-screen overflow-x-hidden font-light text-white bg-tan-500">
         <ToastContainer />
         <Header user={user} />
         <div className="flex-1 mt-16">{children}</div>
