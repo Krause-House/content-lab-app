@@ -14,6 +14,15 @@ const nextConfig = {
       "pmgxknlyzvixzwjqqkzg.supabase.co",
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/dreamerz",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
